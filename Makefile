@@ -11,11 +11,11 @@ DIR_DEPS=.deps
 
 # /////////////////////////
 
-SRCS=
+SRCS=src/main.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
-INCS= 
+INCS=inc/cub3d.h
 OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
 DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.d)
 
