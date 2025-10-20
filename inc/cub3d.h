@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/17 15:36:16 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:46:49 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ typedef struct s_data
 	t_player	player;
 	t_textures	textures;
 	void		*mlx_ptr;
+	void		*mlx_win;
 }	t_data;
 
 //////////// PARS/INIT ////////////
 
 int	pars_map(t_data *data, char **argv);
+int	init_mlx(t_data *data);
 
 
 #endif

@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/20 13:37:18 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/10/20 13:51:00 by gchauvet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../inc/cub3d.h"
+#include "../../minilibx-linux/mlx.h"
+#include <stdlib.h>
+
+int	init_mlx(t_data *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
+		return (EXIT_FAILURE);
+	data->mlx_win = mlx_new_window(data->mlx_ptr, 1920, 1080, "cub3d");
+	if (data->mlx_win == NULL)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}

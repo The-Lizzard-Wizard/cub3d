@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/17 15:40:21 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:48:40 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	pars_map(t_data *data, char **argv)
 {
 	char	*map_str;
 	int		map_fd;
-	
+
+	(void)map_str;
 	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd == -1)
 		return (EXIT_FAILURE);
