@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/20 16:27:02 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:46:02 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	(void)argv;
-	(void)data;
+	(void)argc;
 	if (argc == 1)
 	{
 		printf("try ./cub3d <map.cub>\n");
