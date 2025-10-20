@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/20 13:48:40 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:23:05 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	pars_textures(t_data *data, int map_fd)
 	int		with;
 	int		height;
 
-	with = TEXTURE_W;
-	height = TEXTURE_H;
+	with = 64;
+	height = 64;
 	line = get_next_line(map_fd);
 	if (!line)
 		return (EXIT_FAILURE);

@@ -11,7 +11,7 @@ DIR_DEPS=.deps
 
 # /////////////////////////
 
-SRCS=src/main.c src/init/init_mlx.c src/init/pars_map.c
+SRCS=src/main.c src/init/init_mlx.c src/init/pars_map.c src/graphics/graphics.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
