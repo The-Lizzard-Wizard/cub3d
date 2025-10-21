@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/20 19:08:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:17:19 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,20 @@ t_img	*new_img(t_data *data, int sx, int sy)
 
 int	draw_img(t_data *data, t_img *img, int x, int y)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->mlx_img,
-		x, y);
+	int ix;
+	int iy;
+
+	ix = 0;
+	iy = 0;
+	while (ix < img->size_x)
+	{
+		while (iy < img->size_y)
+		{
+			set_pixel(data->mlx_win, x + ix, y + iy, get_pixel(img, ix, iy));
+			iy++;
+		}
+		ix++;
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -63,8 +75,7 @@ int	get_pixel(t_img *img, int x, int y)
 	color = 0;
 	if (x >= 0 && y >= 0 && x < img->size_x && y < img->size_y)
     {
-        color = *(int *)(img->addr \
-            + (y * img->size_line + x * img->pixels_bits));
+        color = *(int *)(img->addr + (y * img->size_y + x * img->pixels_bits));
     }
 	return (color);
 }
@@ -73,7 +84,6 @@ void	set_pixel(t_img *img, int x, int y, int color)
 {
 	if (x >= 0 && y >= 0 && x < img->size_x && y < img->size_y)
     {
-        *(int *)(img->addr \
-            + (y * img->size_line + x * img->pixels_bits)) = color;
+        *(int *)(img->addr + (y * img->size_y + x * img->pixels_bits)) = color;
     }
 }
