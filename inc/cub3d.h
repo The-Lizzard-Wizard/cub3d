@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/21 13:32:43 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 15:36:07 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_img	*new_xpm_img(t_data *data, char *path);
 t_img	*new_img(t_data *data, int sx, int sy);
 int		draw_img(t_data *data, t_img *img, int x, int y);
 t_color		get_pixel(t_img *img, int x, int y);
-void	set_pixel(t_img *img, int x, int y, int color);
+void	set_pixel(t_img *img, int x, int y, t_color color);
 
 //////////// PARS/INIT ////////////
 
@@ -95,6 +95,11 @@ int	init_mlx(t_data *data);
 /////////////// FREE //////////////
 
 int free_and_exit(t_data *data);
+
+//////////////// MAP //////////////
+
+char get_map_id(t_map map, size_t x, size_t y);
+int set_map_id(t_map map, char id, size_t x, size_t y);
 
 
 #endif

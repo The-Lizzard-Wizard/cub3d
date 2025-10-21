@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/21 13:35:00 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 15:23:34 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_img	*new_xpm_img(t_data *data, char *path)
 		&img->size_x, &img->size_y);
 	if (img->mlx_img == NULL)
 		return (NULL);
-	img->addr = (int *)mlx_get_data_addr(img->mlx_img, &img->pixels_bits,
+	img->addr = (t_color *)mlx_get_data_addr(img->mlx_img, &img->pixels_bits,
 		&img->size_line, &img->endian);
 	return (img);
 }
@@ -44,7 +44,7 @@ t_img	*new_img(t_data *data, int sx, int sy)
 		return (NULL);
 	img->size_x = sx;
 	img->size_y = sy;
-	img->addr = (int *)mlx_get_data_addr(img->mlx_img, &img->pixels_bits,
+	img->addr = (t_color *)mlx_get_data_addr(img->mlx_img, &img->pixels_bits,
 		&img->size_line, &img->endian);
 	return (img);
 }
@@ -58,7 +58,7 @@ int	draw_img(t_data *data, t_img *img, int x, int y)
 
 t_color	get_pixel(t_img *img, int x, int y)
 {
-	int color;
+	t_color color;
 
 	color = 0;
 	if (x >= 0 && y >= 0 && x < img->size_x && y < img->size_y)
