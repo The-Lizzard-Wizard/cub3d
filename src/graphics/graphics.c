@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/21 11:17:19 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:28:58 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,8 @@ t_img	*new_img(t_data *data, int sx, int sy)
 
 int	draw_img(t_data *data, t_img *img, int x, int y)
 {
-	int ix;
-	int iy;
-
-	ix = 0;
-	iy = 0;
-	while (ix < img->size_x)
-	{
-		while (iy < img->size_y)
-		{
-			set_pixel(data->mlx_win, x + ix, y + iy, get_pixel(img, ix, iy));
-			iy++;
-		}
-		ix++;
-	}
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->mlx_img,
+		x, y);
 	return (EXIT_SUCCESS);
 }
 
