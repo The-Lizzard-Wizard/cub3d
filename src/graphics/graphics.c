@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/21 11:28:58 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:35:00 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,22 @@ int	draw_img(t_data *data, t_img *img, int x, int y)
 	return (EXIT_SUCCESS);
 }
 
-int	get_pixel(t_img *img, int x, int y)
+t_color	get_pixel(t_img *img, int x, int y)
 {
 	int color;
 
 	color = 0;
 	if (x >= 0 && y >= 0 && x < img->size_x && y < img->size_y)
     {
-        color = *(int *)(img->addr + (y * img->size_y + x * img->pixels_bits));
+        color = *(t_color *)(img->addr + (y * img->size_y + x * img->pixels_bits));
     }
 	return (color);
 }
 
-void	set_pixel(t_img *img, int x, int y, int color)
+void	set_pixel(t_img *img, int x, int y, t_color color)
 {
 	if (x >= 0 && y >= 0 && x < img->size_x && y < img->size_y)
     {
-        *(int *)(img->addr + (y * img->size_y + x * img->pixels_bits)) = color;
+        *(t_color *)(img->addr + (y * img->size_y + x * img->pixels_bits)) = color;
     }
 }
