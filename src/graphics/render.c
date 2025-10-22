@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 13:37:18 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 14:32:07 by gchauvet         ###   ########.fr       */
+/*   Created: 2025/10/22 12:00:51 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/10/22 15:52:40 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include "../../minilibx-linux/mlx.h"
 #include <stdlib.h>
 
-int	init_mlx(t_data *data)
+void	render(t_data *data)
 {
-	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
-		return (EXIT_FAILURE);
-	data->mlx_win = mlx_new_window(data->mlx_ptr, WIN_W, WIN_H, "cub3d");
-	if (data->mlx_win == NULL)
-		return (EXIT_FAILURE);
-	data->screen_img = new_img(data, WIN_W, WIN_H);
-	return (EXIT_SUCCESS);
+	// draw_img_on_img(data->screen_img, data->rnd_texture, 0, 0);
+	// draw_img_on_img(data->screen_img, data->banana, 0, bx);
+	//draw_img(data, data->banana, 0, 0);
+	//set_pixel(data->screen_img, 10, 10, get_pixel(data->banana, 16, 16));
+	draw_img(data, data->screen_img, 0, 0);
 }

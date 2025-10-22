@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 10:47:36 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:52:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #define WIN_W 1920
 #define WIN_H 1080
 
+#define NONE_COLOR_XPM 4278190080
+
 typedef unsigned int t_color;
 
 #include "../libft/libft.h"
@@ -24,7 +26,7 @@ typedef unsigned int t_color;
 typedef struct s_img
 {
 	void	*mlx_img;
-	t_color		*addr;
+	int		*addr;
 	int		size_x;
 	int		size_y;
 	int		endian;
@@ -61,6 +63,7 @@ typedef struct s_data
 	t_textures	textures;
 	int		floor_color;
 	int		ceiling_color;
+	t_img		*screen_img;
 	void		*mlx_ptr;
 	void		*mlx_win;
 }	t_data;
@@ -86,8 +89,10 @@ int		update();
 t_img	*new_xpm_img(t_data *data, char *path);
 t_img	*new_img(t_data *data, int sx, int sy);
 int		draw_img(t_data *data, t_img *img, int x, int y);
-t_color		get_pixel(t_img *img, int x, int y);
+int		draw_img_on_img(t_img *to_img, t_img *img, int x, int y);
+t_color	get_pixel(t_img *img, int x, int y);
 void	set_pixel(t_img *img, int x, int y, t_color color);
+void	render(t_data *data);
 
 //////////// PARS/INIT ////////////
 
