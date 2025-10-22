@@ -14,11 +14,12 @@ DIR_DEPS=.deps
 SRCS=src/main.c src/init/init_mlx.c \
 	src/init/pars_map.c src/graphics/graphics.c \
 	src/event/event.c src/map/map_utils.c \
-	src/event/update.c src/graphics/render.c
+	src/event/update.c src/graphics/render.c \
+	src/graphics/graphics_alloc.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
-INCS=inc/cub3d.h
+INCS=inc/cub3d.h inc/key.h
 OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
 DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.d)
 

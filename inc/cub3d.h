@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 15:52:56 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/22 18:06:24 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ typedef unsigned int t_color;
 
 #include "../libft/libft.h"
 #include <linux/limits.h>
+
+typedef struct s_modify
+{
+	int x;
+	int y;
+	int scale;
+} t_modify;
+
 
 typedef struct s_img
 {
@@ -66,6 +74,7 @@ typedef struct s_data
 	t_img		*screen_img;
 	void		*mlx_ptr;
 	void		*mlx_win;
+	//t_img		*rnd_img;
 }	t_data;
 
 typedef struct s_pars
@@ -89,7 +98,7 @@ int		update();
 t_img	*new_xpm_img(t_data *data, char *path);
 t_img	*new_img(t_data *data, int sx, int sy);
 int		draw_img(t_data *data, t_img *img, int x, int y);
-int		draw_img_on_img(t_img *to_img, t_img *img, int x, int y);
+int		draw_img_on_img(t_img *to_img, t_img *img, t_modify mod);
 t_color	get_pixel(t_img *img, int x, int y);
 void	set_pixel(t_img *img, int x, int y, t_color color);
 void	render(t_data *data);
