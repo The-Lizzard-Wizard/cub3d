@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/21 15:36:07 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/22 10:47:36 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_pars
 ////////////// EVENT //////////////
 
 void	event_listener(t_data *data);
+int		update();
 
 //////////// GRAPHICS /////////////
 
