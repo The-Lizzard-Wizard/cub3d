@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 18:06:24 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:14:48 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 typedef unsigned int t_color;
 
 #include "../libft/libft.h"
-#include <linux/limits.h>
+#include "../minilibx-linux/mlx.h"
+#include "../minilibx-linux/mlx_int.h"
 
 typedef struct s_modify
 {
@@ -29,7 +30,6 @@ typedef struct s_modify
 	int y;
 	int scale;
 } t_modify;
-
 
 typedef struct s_img
 {
@@ -77,17 +77,6 @@ typedef struct s_data
 	//t_img		*rnd_img;
 }	t_data;
 
-typedef struct s_pars
-{
-	char tex_path_no[PATH_MAX];
-	char tex_path_so[PATH_MAX];
-	char tex_path_ea[PATH_MAX];
-	char tex_path_we[PATH_MAX];
-	int	ceiling_color;
-	int floor_color;
-	char *map;
-}	t_pars;
-
 ////////////// EVENT //////////////
 
 void	event_listener(t_data *data);
@@ -100,6 +89,7 @@ t_img	*new_img(t_data *data, int sx, int sy);
 int		draw_img(t_data *data, t_img *img, int x, int y);
 int		draw_img_on_img(t_img *to_img, t_img *img, t_modify mod);
 t_color	get_pixel(t_img *img, int x, int y);
+t_color rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 void	set_pixel(t_img *img, int x, int y, t_color color);
 void	render(t_data *data);
 
@@ -116,5 +106,8 @@ int free_and_exit(t_data *data);
 char get_map_id(t_map map, size_t x, size_t y);
 int set_map_id(t_map map, char id, size_t x, size_t y);
 
+////////////// UTILS //////////////
+
+int	get_tablen(char **tab);
 
 #endif
