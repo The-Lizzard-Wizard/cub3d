@@ -6,18 +6,18 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:01:01 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 18:01:45 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:37:22 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "../../minilibx-linux/mlx.h"
 
-t_img	*new_xpm_img(t_data *data, char *path)
+t_cub_img	*new_xpm_img(t_data *data, char *path)
 {
-	t_img	*img;
+	t_cub_img	*img;
 
-	img = malloc(sizeof(t_img));
+	img = malloc(sizeof(t_cub_img));
 	if (img == NULL)
 		return (NULL);
 	img->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path,
@@ -29,11 +29,11 @@ t_img	*new_xpm_img(t_data *data, char *path)
 	return (img);
 }
 
-t_img	*new_img(t_data *data, int sx, int sy)
+t_cub_img	*new_img(t_data *data, int sx, int sy)
 {
-	t_img	*img;
+	t_cub_img	*img;
 
-	img = malloc(sizeof(t_img));
+	img = malloc(sizeof(t_cub_img));
 	if (img == NULL)
 		return (NULL);
 	img->mlx_img = mlx_new_image(data->mlx_ptr, sx, sy);

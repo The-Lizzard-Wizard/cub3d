@@ -1,4 +1,4 @@
-NAME=cub3d
+NAME=cub3D
 # /////////////////////////
 
 CC=cc
@@ -15,7 +15,7 @@ SRCS=src/main.c src/init/init_mlx.c \
 	src/init/pars_map.c src/graphics/graphics.c \
 	src/event/event.c src/map/map_utils.c \
 	src/event/update.c src/graphics/render.c \
-	src/graphics/graphics_alloc.c
+	src/graphics/graphics_alloc.c src/init/error.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
@@ -41,7 +41,7 @@ libmlx:
 
 $(NAME): $(OBJS) $(DEPS) $(INCS) Makefile $(LIB)
 	$(CC) $(CC_FLAGS) $(OBJS) -L minilibx-linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIB) $(MLX) -o $@
-	echo "$(BLUE)Your cub3d is ready $(END)"
+	echo "$(BLUE)Your cub3D is ready $(END)"
 
 
 $(DIR_OBJS)/%.o: %.c Makefile 

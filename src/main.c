@@ -6,12 +6,13 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 18:06:12 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:44:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "../inc/define.h"
 #include "../inc/cub3d.h"
 #include "../minilibx-linux/mlx.h"
 
@@ -40,8 +41,8 @@ int	main(int argc, char **argv)
 	{
 		return (EXIT_FAILURE);
 	}
+	print_error(ER_INIT_MLX);
 	event_listener(&data);
-	//data.rnd_img = new_xpm_img(&data, "textures/banana_frame_0.xpm");
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);
 	return (EXIT_SUCCESS);
