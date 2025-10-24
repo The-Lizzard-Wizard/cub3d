@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/23 17:44:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/24 15:55:50 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	if (argc == 1)
 	{
-		printf("try ./cub3d <map.cub>\n");
+		print_error(ER_WRONG_ARG);
 		return (EXIT_SUCCESS);
 	}
 	/*if (init_data(data) == EXIT_FAILURE)
@@ -41,7 +41,6 @@ int	main(int argc, char **argv)
 	{
 		return (EXIT_FAILURE);
 	}
-	print_error(ER_INIT_MLX);
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);

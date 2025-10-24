@@ -19,7 +19,7 @@ SRCS=src/main.c src/init/init_mlx.c \
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
-INCS=inc/cub3d.h inc/key.h
+INCS=inc/cub3d.h inc/key.h inc/define.h inc/pars.h
 OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
 DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.d)
 

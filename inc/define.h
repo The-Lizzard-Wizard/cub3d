@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/23 17:48:44 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:12:51 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,30 @@
 //=
 //================
 
-#define NB_ERROR_CODE 10
+#define NB_ERROR_CODE 11
 
 //init error
-#define RM_INIT_TEX "RM_INIT_TEX"
-#define RM_INIT_MLX "RM_INIT_MLX"
-#define RM_INIT_WIN "RM_INIT_WIN"
+#define RM_INIT_TEX "Failed to load textures."
+#define RM_INIT_MLX "Failed to initialize MLX."
+#define RM_INIT_WIN "Failed to load window."
 
 //map and info parsing
-#define RM_WRONG_ARG "RM_WRONG_ARG"
-#define RM_MAP_TEX_PATH "RM_MAP_TEX_PATH"
-#define RM_MAP_COLOR "RM_MAP_COLOR"
-#define RM_MAP_DONT_CLOSE "RM_MAP_DONT_CLOSE"
-#define RM_MAP_NO_PLAYER_FOUND "RM_MAP_NO_PLAYER_FOUND"
-#define RM_MAP_UNEXPECTED_CHAR "RM_MAP_UNEXPECTED_CHAR"
-#define RM_MAP_NO_TEX_FOUND "RM_MAP_NO_TEX_FOUND"
-#define RM_MAP_NO_COLOR_FOUND "RM_MAP_NO_COLOR_FOUND"//10
+#define RM_WRONG_MAP_FILE "Wrong arg : map argument not found."
+#define RM_WRONG_ARG "Wrong arg : try : ./cub3D <map path>"
+#define RM_MAP_TEX_PATH "Map : The path of the textures is not valid."
+#define RM_MAP_COLOR "Map : The colors for the ceiling or the floor are not valid."
+#define RM_MAP_DONT_CLOSE "Map : The map is not closed."
+#define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
+#define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected characher found in the map."
+#define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
+#define RM_MAP_NO_COLOR_FOUND "Map : Color are missing for the ciling or the floor."//11
 
 typedef enum e_error_code
 {
     ER_INIT_TEX,
     ER_INIT_MLX,
     ER_INIT_WIN,
+    ER_WRONG_MAP_FILE,
     ER_WRONG_ARG,
     ER_MAP_TEX_PATH,
     ER_MAP_COLOR,
