@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/23 17:40:58 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:37:24 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ int	draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod)
 	int		i[2];
 	t_color	px;
 
-	i[0] = mod.quad_x;
-	i[1] = mod.quad_y;
+	i[0] = 0;
+	i[1] = 0;
 	if (mod.quad_sx == 0)
 		mod.quad_sx = img->size_x;
 	if (mod.quad_sy == 0)
 		mod.quad_sy = img->size_y;
 	if (mod.x < 0 || mod.x >= to_img->size_x || mod.x < 0 || mod.x >= to_img->size_y)
 		return (EXIT_FAILURE);
-	while (i[0] < img->size_x && mod.x + (i[0] * mod.sc_x) <= to_img->size_x)
+	while (i[0] < mod.quad_sx && mod.x + ((i[0] + mod.quad_x) * mod.sc_x) <= to_img->size_x)
 	{
 		i[1] = 0;
-		while (i[1] < img->size_y && mod.y + (i[1] * mod.sc_y) <= to_img->size_y)
+		while (i[1] < mod.quad_sy && mod.y + ((i[1] + mod.quad_y) * mod.sc_y) <= to_img->size_y)
 		{
-			px = get_pixel(img, i[0], i[1]);
+			px = get_pixel(img, i[0] + mod.quad_x, i[1] + mod.quad_y);
 			draw_img_while(to_img, mod, px, i);
 			i[1]++;
 		}
