@@ -6,26 +6,21 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:15 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/23 17:18:07 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/25 17:49:55 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pars.h"
 
-void get_id(char *id, char *line)
+int set_path(char *pars_path, char *line, int path_len)
 {
-	if (*line == 'F' && ft_isspace(*(line + 1)))
-		*id = 'F';
-	if (*line == 'C' && ft_isspace(*(line + 1)))
-		*id = 'C';
-	if (*line == 'N' && *(line + 1) == 'O' && ft_isspace(*(line + 2)))
-		*id = 'N';
-	if (*line == 'S' && *(line + 1) == 'O' && ft_isspace(*(line + 2)))
-		*id = 'S';
-	if (*line == 'E' && *(line + 1) == 'A' && ft_isspace(*(line + 2)))
-		*id = 'E';
-	if (*line == 'W' && *(line + 1) == 'E' && ft_isspace(*(line + 2)))
-		*id = 'W';
+	if (*pars_path)
+		return (EXIT_FAILURE);
+	if (path_len > PATH_MAX)
+		path_len = PATH_MAX;
+	ft_strlcpy(pars_path, line, path_len + 1);
+	return (EXIT_SUCCESS);
+	
 }
 
 int get_path_by_id(t_pars *pars, char id, char *line)
@@ -34,22 +29,28 @@ int get_path_by_id(t_pars *pars, char id, char *line)
 
 	i = 0;
 	if (id == 'F')
+	{
 		if (get_color_f(pars, line) == EXIT_FAILURE)
             return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
+	}
     else if (id == 'C')
+	{
         if (get_color_c(pars, line) == EXIT_FAILURE)
             return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
+	}
     while (!ft_isspace(line[i]))
 		i++;
-	if (id == 'N')
-		ft_strlcpy(pars->tex_path_no, line, i);
-	else if (id == 'S')
-		ft_strlcpy(pars->tex_path_so, line, i);
-	else if (id == 'E')
-		ft_strlcpy(pars->tex_path_ea, line, i);
-	else if (id == 'W')
-		ft_strlcpy(pars->tex_path_we, line, i);
-    return (EXIT_SUCCESS);
+	if (id == 'N' && !*(pars->tex_path_no))
+		return (set_path(pars->tex_path_no, line, i));
+	else if (id == 'S' && !*(pars->tex_path_so))
+		return (set_path(pars->tex_path_so, line, i));
+	else if (id == 'E' && !*(pars->tex_path_ea))
+		return (set_path(pars->tex_path_ea, line, i));
+	else if (id == 'W' && !*(pars->tex_path_we))
+		return (set_path(pars->tex_path_we, line, i));
+    return (EXIT_FAILURE);
 }
 
 int check_tex_line(t_pars *pars, char *line)
@@ -70,7 +71,9 @@ int check_tex_line(t_pars *pars, char *line)
 	while (ft_isspace(line[i]))
 		i++;
 	if (get_path_by_id(pars, id, line + i) == EXIT_FAILURE)
+	{
         return (EXIT_FAILURE);
+	}
     return (EXIT_SUCCESS);
 }
 
@@ -86,22 +89,22 @@ int check_var(t_pars *pars)
 	return (EXIT_SUCCESS);
 }
 
-int	pars_textures(t_pars *pars, int map_fd)
+int pars_textures(t_pars *pars, int map_fd)
 {
-	char	*line;
-
-    line = get_next_line(map_fd);
-	while (line)
+    pars->line = get_next_line(map_fd);
+	while (pars->line)
     {
-        if (*line != '\n')
-            if (check_tex_line(pars, line) == EXIT_FAILURE)
+        if (*(pars->line) != '\n')
+		{
+            if (check_tex_line(pars, pars->line) == EXIT_FAILURE)
             {
                 if (check_var(pars) == EXIT_SUCCESS) // check si toutes mes variables sont set et validesgit 
-                    return(EXIT_SUCCESS);
+                    return (EXIT_SUCCESS);
                 return (EXIT_FAILURE);
-            }
-        free(line);
-        line = get_next_line(map_fd);
+			}
+		}
+        free(pars->line);
+        pars->line = get_next_line(map_fd);
     }
-	return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
