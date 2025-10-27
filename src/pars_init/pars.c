@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/27 16:13:55 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 16:44:21 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ int	file_checking(char *file_name)
 	return (EXIT_FAILURE);
 }
 
+int pars_to_data(t_data *data, t_pars *pars)
+{
+	
+}
+
 int	pars(t_data *data, char **argv)
 {
 	t_pars pars;
 	int		map_fd;
 	
-	(void)data;
 	pars_init(&pars, data);
 	map_fd = open(argv[1], O_RDONLY);
 	if (file_checking(argv[1]) == EXIT_FAILURE)
@@ -62,5 +66,6 @@ int	pars(t_data *data, char **argv)
 		return (EXIT_FAILURE);
 	printf("F: %d\nC: %d\nNO: %s\nSO: %s\nWE: %s\nEA: %s\n", *(pars.floor_color), *(pars.ceiling_color), pars.tex_path_no, pars.tex_path_so
 	, pars.tex_path_we, pars.tex_path_ea);
+	pars_to_data(data, &pars);
 	return (EXIT_SUCCESS);
 }

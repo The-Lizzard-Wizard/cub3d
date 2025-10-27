@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:12:05 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/25 17:36:04 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 16:40:00 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_pars
 	bool f_color_check;
 	t_player *player;
 	char player_view;
-	char *map;
+	char **map;
 	char *line;
 }	t_pars;
 

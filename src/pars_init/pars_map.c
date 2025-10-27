@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 16:08:47 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 16:42:42 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ int is_valid_adj(char adj_to_check)
 }
 
 
-int map_check(t_pars *pars, char **map)
+int map_check(char **map)
 {
-    (void)pars;
     size_t x;
     size_t y;
 
@@ -62,7 +61,7 @@ int map_check(t_pars *pars, char **map)
     while (map[y])
     {
         x = 0;
-        printf("map pars at x: %ld, y: %ld\n", x, y);
+        
         while (map[y][x])
         {
             if (map[y][x] == '0')
@@ -120,20 +119,19 @@ int get_player(t_pars *pars, char *map)
 int pars_map(t_pars *pars, int map_fd)
 {
     char *map_inline;
-    char **map;
 
     map_inline = get_map(pars, map_fd);
     if (!map_inline || get_player(pars, map_inline) == EXIT_FAILURE)
     {
         return (EXIT_FAILURE);
     }
-    map = ft_split(map_inline, '\n');
+    pars->map = ft_split(map_inline, '\n');
     free(map_inline);
-    if (!map)
+    if (!pars->map)
         return (EXIT_FAILURE);
-    print_char_array(map);
+    print_char_array(pars->map);
     printf("player view: %c\npos_x: %f\npos_y: %f\n", pars->player_view, pars->player->pos_x, pars->player->pos_y);
-    if (map_check(pars, map) == EXIT_FAILURE)
+    if (map_check(pars->map) == EXIT_FAILURE)
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }

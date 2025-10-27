@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 16:24:21 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:46:55 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@ typedef unsigned int t_color;
 #include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
 #include "../minilibx-linux/mlx_int.h"
-
-typedef struct s_vec2
-{
-	double x;
-	double y;
-}	t_vec2;
-
-typedef struct s_seg
-{
-	t_vec2		p1;
-	t_vec2		p2;
-	t_cub_img	*tex;
-}	t_seg;
 
 typedef struct s_modify
 {
@@ -56,6 +43,19 @@ typedef struct s_cub_img
 	int		pixels_bits;
 	int		size_line;
 } t_cub_img;
+
+typedef struct s_vec2
+{
+	double x;
+	double y;
+}	t_vec2;
+
+typedef struct s_seg
+{
+	t_vec2		p1;
+	t_vec2		p2;
+	t_cub_img	*tex;
+}	t_seg;
 
 typedef struct s_textures
 {

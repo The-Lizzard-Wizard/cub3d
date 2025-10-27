@@ -11,13 +11,13 @@ DIR_DEPS=.deps
 
 # /////////////////////////
 
-SRCS=src/main.c src/init/init_mlx.c \
-	src/init/pars_map.c src/graphics/graphics.c \
+SRCS=src/main.c src/pars_init/init_mlx.c \
+	src/pars_init/pars_map.c src/graphics/graphics.c \
 	src/event/event.c \
 	src/event/update.c src/graphics/render.c \
-	src/graphics/graphics_alloc.c src/init/error.c \
-	src/graphics/graphics_display.c src/init/pars.c \
-	src/init/pars_texture.c src/init/pars_texture_utils.c \
+	src/graphics/graphics_alloc.c src/pars_init/error.c \
+	src/graphics/graphics_display.c src/pars_init/pars.c \
+	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c \
 	src/utils.c
 
 LIB= libft/libft.a
