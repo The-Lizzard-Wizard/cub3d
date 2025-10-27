@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/24 16:12:51 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/24 19:32:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 // r:0 g:0 b:0 a:255
 #define NONE_COLOR_XPM 4278190080
+
+#define FONT_CHAR_SIZE 16
 
 //================
 //= error messages

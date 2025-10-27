@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/24 16:40:27 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/27 11:43:08 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_modify
 	int quad_y;
 	int quad_sx;
 	int quad_sy;
+	int text_space;
 } t_modify;
 
 typedef struct s_cub_img
@@ -75,7 +76,7 @@ typedef struct s_data
 	t_cub_img		*screen_img;
 	void		*mlx_ptr;
 	void		*mlx_win;
-	//t_cub_img	*rnd_img;
+	t_cub_img	*rnd_img;
 }	t_data;
 
 ////////////// EVENT //////////////
@@ -85,6 +86,7 @@ int		update();
 
 //////////// GRAPHICS /////////////
 
+void	put_text_on_img(t_cub_img *to_img, t_cub_img *font, char *str, t_modify mod);
 t_cub_img	*new_xpm_img(t_data *data, char *path);
 t_cub_img	*new_img(t_data *data, int sx, int sy);
 int		draw_img(t_data *data, t_cub_img *img, int x, int y);

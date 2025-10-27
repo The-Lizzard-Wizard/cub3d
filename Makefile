@@ -15,7 +15,8 @@ SRCS=src/main.c src/init/init_mlx.c \
 	src/init/pars_map.c src/graphics/graphics.c \
 	src/event/event.c src/map/map_utils.c \
 	src/event/update.c src/graphics/render.c \
-	src/graphics/graphics_alloc.c src/init/error.c
+	src/graphics/graphics_alloc.c src/init/error.c \
+	src/graphics/graphics_display.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a

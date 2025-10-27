@@ -6,70 +6,22 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/24 16:37:24 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/27 12:48:40 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "../../inc/cub3d.h"
+#include "../../inc/define.h"
 #include "../../minilibx-linux/mlx.h"
 
-int	draw_img(t_data *data, t_cub_img *img, int x, int y)
+t_color rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->mlx_img,
-		x, y);
-	return (EXIT_SUCCESS);
-}
+	t_color color;
 
-void	draw_img_while(t_cub_img *to_img, t_modify mod, t_color px, int i[2])
-{
-	int		i_sc[2];
-
-	i_sc[0] = 0;
-	i_sc[1] = 0;
-	if (px != NONE_COLOR_XPM)
-	{
-		i_sc[0] = 0;
-		while (i_sc[0] < mod.sc_x)
-		{
-			i_sc[1] = 0;
-			while (i_sc[1] < mod.sc_y)
-			{
-				set_pixel(to_img, mod.x + (i[0] * mod.sc_x) + i_sc[0],
-					mod.y + (i[1] * mod.sc_y) + i_sc[1], px);
-				i_sc[1]++;
-			}
-			i_sc[0]++;
-		}
-	}
-}
-
-int	draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod)
-{
-	int		i[2];
-	t_color	px;
-
-	i[0] = 0;
-	i[1] = 0;
-	if (mod.quad_sx == 0)
-		mod.quad_sx = img->size_x;
-	if (mod.quad_sy == 0)
-		mod.quad_sy = img->size_y;
-	if (mod.x < 0 || mod.x >= to_img->size_x || mod.x < 0 || mod.x >= to_img->size_y)
-		return (EXIT_FAILURE);
-	while (i[0] < mod.quad_sx && mod.x + ((i[0] + mod.quad_x) * mod.sc_x) <= to_img->size_x)
-	{
-		i[1] = 0;
-		while (i[1] < mod.quad_sy && mod.y + ((i[1] + mod.quad_y) * mod.sc_y) <= to_img->size_y)
-		{
-			px = get_pixel(img, i[0] + mod.quad_x, i[1] + mod.quad_y);
-			draw_img_while(to_img, mod, px, i);
-			i[1]++;
-		}
-		i[0]++;
-	}
-	return (EXIT_SUCCESS);
+	color = (a << 24) + (r << 16) + (g << 8) + b;
+	return (color);
 }
 
 t_color	get_pixel(t_cub_img *img, int x, int y)
