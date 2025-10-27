@@ -1,7 +1,7 @@
 NAME=cub3D
 # /////////////////////////
 
-CC=cc
+CC=gcc
 CC_FLAGS=-Wall -Wextra -Werror -g3
 
 # /////////////////////////
@@ -13,10 +13,14 @@ DIR_DEPS=.deps
 
 SRCS=src/main.c src/init/init_mlx.c \
 	src/init/pars_map.c src/graphics/graphics.c \
-	src/event/event.c src/map/map_utils.c \
+	src/event/event.c \
 	src/event/update.c src/graphics/render.c \
 	src/graphics/graphics_alloc.c src/init/error.c \
+<<<<<<< HEAD
 	src/graphics/graphics_display.c
+=======
+	src/init/pars_texture_utils.c src/init/pars_texture.c src/init/pars.c src/utils.c
+>>>>>>> origin/main
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a

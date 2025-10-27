@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/10/27 11:43:08 by gchauvet         ###   ########.fr       */
+=======
+/*   Updated: 2025/10/25 17:36:40 by authomas         ###   ########lyon.fr   */
+>>>>>>> origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +60,7 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	int		view_angle;
+	double	view_angle; // faudra faire les fonctions d'angle (rad)
 }	t_player;
 
 typedef struct s_map
@@ -99,6 +103,7 @@ void	render(t_data *data);
 //////////// PARS/INIT ////////////
 
 int	init_mlx(t_data *data);
+int	pars(t_data *data, char **argv);
 
 /////////////// FREE //////////////
 
