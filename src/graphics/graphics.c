@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 12:48:40 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:02:05 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 #include "../../inc/cub3d.h"
 #include "../../inc/define.h"
 #include "../../minilibx-linux/mlx.h"
-
-t_color rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
-{
-	t_color color;
-
-	color = (a << 24) + (r << 16) + (g << 8) + b;
-	return (color);
-}
 
 t_color	get_pixel(t_cub_img *img, int x, int y)
 {
