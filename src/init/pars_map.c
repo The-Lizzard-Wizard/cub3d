@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/25 17:56:35 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 12:17:01 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,36 @@ int is_valid_adj(char adj_to_check)
 }
 
 
-// int map_check(t_pars *pars, char **map)
-// {
-//     size_t x;
-//     size_t y;
+int map_check(t_pars *pars, char **map)
+{
+    (void)pars;
+    size_t x;
+    size_t y;
 
-//     y = 0;
-//     while (map[y])
-//     {
-//         x = 0;
-//         while (map[y][x])
-//         {
-//             while (ft_isspace(map[y][x]))
-//                 x++;
-//             if (map[y][x] == '0')
-//             {
-//                 if (x - 1 < 0 || ft_isspace(map[y][x - 1])
-//                  || map[y][x + 1] || map[y][x] || map[y][x])
-//                  ;
-//             }
-//         }
-//         y++;
-//     }
-// }
+    y = 0;
+    while (map[y])
+    {
+        x = 0;
+        printf("map pars at x: %ld, y: %ld\n", x, y);
+        while (map[y][x])
+        {
+            if (map[y][x] == '0')
+            {
+                if (x == 0 || is_valid_adj(map[y][x - 1]) == EXIT_FAILURE)
+                    return (EXIT_FAILURE);
+                if (is_valid_adj(map[y][x + 1]) == EXIT_FAILURE)
+                    return (EXIT_FAILURE);
+                if (!map[y + 1] || ft_strlen(map[y + 1]) < x || is_valid_adj(map[y + 1][x]) == EXIT_FAILURE)
+                    return (EXIT_FAILURE);
+                if(y == 0 || ft_strlen(map[y - 1]) < x || is_valid_adj(map[y - 1][x]) == EXIT_FAILURE)
+                    return (EXIT_FAILURE);
+            }
+            x++;
+        }
+        y++;
+    }
+    return (EXIT_SUCCESS);
+}
 
 int get_player(t_pars *pars, char *map)
 {
@@ -126,7 +133,7 @@ int pars_map(t_pars *pars, int map_fd)
         return (EXIT_FAILURE);
     print_char_array(map);
     printf("player view: %c\npos_x: %f\npos_y: %f\n", pars->player_view, pars->player->pos_x, pars->player->pos_y);
-    //map_check(pars, map);
-    
+    if (map_check(pars, map) == EXIT_FAILURE)
+        return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/25 17:47:05 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 12:12:30 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	pars(t_data *data, char **argv)
 		print_error(ER_MAP_NO_TEX_FOUND);
 		return (EXIT_FAILURE);
 	}
-	pars_map(&pars, map_fd);
+	if (pars_map(&pars, map_fd) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	printf("F: %d\nC: %d\nNO: %s\nSO: %s\nWE: %s\nEA: %s\n", *(pars.floor_color), *(pars.ceiling_color), pars.tex_path_no, pars.tex_path_so
 	, pars.tex_path_we, pars.tex_path_ea);
 	return (EXIT_SUCCESS);
