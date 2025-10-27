@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/26 12:12:30 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 16:13:55 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ void pars_init(t_pars *pars, t_data *data)
 	pars->player = &data->player;
 }
 
+int	file_checking(char *file_name)
+{
+	int	size;
+
+	size = ft_strlen(file_name);
+	if (size <= 4)
+		return (EXIT_FAILURE);
+	if (ft_strncmp(&file_name[size - 4], ".cub", size) == 0)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
 int	pars(t_data *data, char **argv)
 {
 	t_pars pars;
@@ -34,6 +46,8 @@ int	pars(t_data *data, char **argv)
 	(void)data;
 	pars_init(&pars, data);
 	map_fd = open(argv[1], O_RDONLY);
+	if (file_checking(argv[1]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	if (map_fd == -1)
 	{
 		print_error(ER_WRONG_MAP_FILE);
