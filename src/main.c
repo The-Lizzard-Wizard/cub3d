@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/25 15:21:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 14:06:14 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,19 @@ int	main(int argc, char **argv)
 		print_error(ER_WRONG_ARG);
 		return (EXIT_SUCCESS);
 	}
+	(void)data;
 	if (pars(&data, argv) == EXIT_FAILURE)
 	{
 		printf("pars error");
 		return (EXIT_FAILURE);
 	}
-	// /*if (init_data(data) == EXIT_FAILURE)
-	// {
-	// 	//// EXIT ////
-	// }*/
-	// if (init_mlx(&data) == EXIT_FAILURE)
-	// {
-	// 	return (EXIT_FAILURE);
-	// }
-	// // data.rnd_img = new_xpm_img(&data, "textures/090.xpm");
-	// event_listener(&data);
-	// mlx_loop_hook(data.mlx_ptr, update, &data);
-	// mlx_loop(data.mlx_ptr);
+	if (init_mlx(&data) == EXIT_FAILURE)
+	{
+		return (EXIT_FAILURE);
+	}
+	// data.rnd_img = new_xpm_img(&data, "textures/090.xpm");
+	event_listener(&data);
+	mlx_loop_hook(data.mlx_ptr, update, &data);
+	mlx_loop(data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
