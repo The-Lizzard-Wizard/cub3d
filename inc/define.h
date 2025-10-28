@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/24 19:32:56 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:57:34 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 #define NONE_COLOR_XPM 4278190080
 
 #define FONT_CHAR_SIZE 16
+
+//math define
+#define PI 3.14159
+
+#define DEG_TO_RAD(d) (d * PI / 180)
 
 //================
 //= error messages
