@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 16:46:55 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/10/28 12:47:06 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,6 @@ typedef struct s_vec2
 	double y;
 }	t_vec2;
 
-typedef struct s_seg
-{
-	t_vec2		p1;
-	t_vec2		p2;
-	t_cub_img	*tex;
-}	t_seg;
-
 typedef struct s_textures
 {
 	t_cub_img	*tex_north;
@@ -74,7 +67,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char	*grid;
+	char	**grid;
 	size_t	width;
 	size_t	height;
 }	t_map;
