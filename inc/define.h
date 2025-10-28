@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/28 13:02:47 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:04:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 //math define
 #define PI 3.14159
+
+#define DEG_TO_RAD(d) (d * PI / 180)
 
 //================
 //= error messages
