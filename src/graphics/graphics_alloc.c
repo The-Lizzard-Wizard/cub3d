@@ -6,12 +6,19 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:01:01 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/23 17:37:22 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/31 11:21:51 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "../../minilibx-linux/mlx.h"
+
+int			free_cub_img(t_data *data, t_cub_img *img, int code)
+{
+	//free(img->addr); why segfault ???????????
+	mlx_destroy_image(data->mlx_ptr, img->mlx_img);
+	return (code);
+}
 
 t_cub_img	*new_xpm_img(t_data *data, char *path)
 {

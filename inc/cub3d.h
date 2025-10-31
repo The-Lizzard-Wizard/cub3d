@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/28 12:47:06 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/31 11:16:02 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,16 @@ int		update();
 
 //////////// GRAPHICS /////////////
 
-void	put_text_on_img(t_cub_img *to_img, t_cub_img *font, char *str, t_modify mod);
+void		put_text_on_img(t_cub_img *to_img, t_cub_img *font, char *str, t_modify mod);
+int			free_cub_img(t_data *data, t_cub_img *img, int code);
 t_cub_img	*new_xpm_img(t_data *data, char *path);
 t_cub_img	*new_img(t_data *data, int sx, int sy);
-int		draw_img(t_data *data, t_cub_img *img, int x, int y);
-int		draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod);
-t_color	get_pixel(t_cub_img *img, int x, int y);
-t_color rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
-void	set_pixel(t_cub_img *img, int x, int y, t_color color);
-void	render(t_data *data);
+int			draw_img(t_data *data, t_cub_img *img, int x, int y);
+int			draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod);
+t_color		get_pixel(t_cub_img *img, int x, int y);
+t_color 	rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+void		set_pixel(t_cub_img *img, int x, int y, t_color color);
+void		render(t_data *data);
 
 //////////// PARS/INIT ////////////
 

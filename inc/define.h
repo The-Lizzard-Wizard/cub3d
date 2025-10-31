@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/28 13:25:29 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/31 11:05:05 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@
 //=
 //================
 
-#define NB_ERROR_CODE 11
+#define NB_ERROR_CODE 12
 
 //init error
-#define RM_INIT_TEX "Failed to load textures."
-#define RM_INIT_MLX "Failed to initialize MLX."
-#define RM_INIT_WIN "Failed to load window."
+#define RM_INIT_TEX "MLX : Failed to load textures."
+#define RM_INIT_MLX "MLX : Failed to initialize MLX."
+#define RM_INIT_WIN "MLX : Failed to load window."
+#define RM_INIT_SC_IMG "MLX : Failed to load screen image."
 
 //map and info parsing
 #define RM_WRONG_MAP_FILE "Wrong arg : map argument not found."
@@ -51,13 +52,14 @@
 #define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
 #define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected characher found in the map."
 #define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
-#define RM_MAP_NO_COLOR_FOUND "Map : Color are missing for the ciling or the floor."//11
+#define RM_MAP_NO_COLOR_FOUND "Map : Color are missing for the ciling or the floor."//12
 
 typedef enum e_error_code
 {
     ER_INIT_TEX,
     ER_INIT_MLX,
     ER_INIT_WIN,
+    ER_INIT_SC_IMG,
     ER_WRONG_MAP_FILE,
     ER_WRONG_ARG,
     ER_MAP_TEX_PATH,

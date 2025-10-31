@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/24 16:06:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/10/31 11:05:48 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	init_error(char *er_list[NB_ERROR_CODE])
 	er_list[ER_INIT_MLX] = RM_INIT_MLX;
 	er_list[ER_INIT_TEX] = RM_INIT_TEX;
 	er_list[ER_INIT_WIN] = RM_INIT_WIN;
+	er_list[ER_INIT_SC_IMG] = RM_INIT_SC_IMG;
 	er_list[ER_WRONG_MAP_FILE] = RM_WRONG_MAP_FILE;
 	er_list[ER_WRONG_ARG] = RM_WRONG_ARG;
 	er_list[ER_MAP_TEX_PATH] = RM_MAP_TEX_PATH;
