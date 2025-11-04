@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/27 16:44:21 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/04 15:53:58 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ int	file_checking(char *file_name)
 
 int pars_to_data(t_data *data, t_pars *pars)
 {
-	
+	data->map.grid = pars->map;
+	data->textures.tex_east = new_xpm_img(data, pars->tex_path_ea);
+	data->textures.tex_west = new_xpm_img(data, pars->tex_path_we);
+	data->textures.tex_north = new_xpm_img(data, pars->tex_path_no);
+	data->textures.tex_south = new_xpm_img(data, pars->tex_path_so);
+	if (data->textures.tex_east == NULL || data->textures.tex_west == NULL || data->textures.tex_north == NULL ||data->textures.tex_south == NULL)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int	pars(t_data *data, char **argv)
@@ -66,6 +73,7 @@ int	pars(t_data *data, char **argv)
 		return (EXIT_FAILURE);
 	printf("F: %d\nC: %d\nNO: %s\nSO: %s\nWE: %s\nEA: %s\n", *(pars.floor_color), *(pars.ceiling_color), pars.tex_path_no, pars.tex_path_so
 	, pars.tex_path_we, pars.tex_path_ea);
-	pars_to_data(data, &pars);
+	if(pars_to_data(data, &pars) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
