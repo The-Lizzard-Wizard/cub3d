@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/31 11:16:02 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:20:29 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef unsigned int t_color;
 
 #include "define.h"
+#include "cub_math.h"
 #include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
 #include "../minilibx-linux/mlx_int.h"
@@ -62,7 +63,7 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	double	view_angle; // faudra faire les fonctions d'angle (rad)
+	t_vec2	view_angle; // faudra faire les fonctions d'angle (rad)
 }	t_player;
 
 typedef struct s_map

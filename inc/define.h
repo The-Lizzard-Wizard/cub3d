@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/31 11:05:05 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:43:52 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 #define DEFINE_H
+
+#include "cub_math.h"
 
 //==========================================================
 
@@ -23,6 +25,10 @@
 #define NONE_COLOR_XPM 4278190080
 
 #define FONT_CHAR_SIZE 16
+
+// FOV
+
+#define FOV PI / 4
 
 //================
 //= error messages
