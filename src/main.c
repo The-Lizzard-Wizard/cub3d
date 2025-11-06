@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/06 15:35:44 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:28:09 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	main(int argc, char **argv)
 		return (EXIT_SUCCESS);
 	}
 	(void)data;
+	if (init_mlx(&data) == EXIT_FAILURE)
+	{
+		return (EXIT_FAILURE);
+	}
 	if (pars(&data, argv) == EXIT_FAILURE)
 	{
 		printf("pars error");
-		return (EXIT_FAILURE);
-	}
-	if (init_mlx(&data) == EXIT_FAILURE)
-	{
 		return (EXIT_FAILURE);
 	}
 	init_mini_map(&data);
