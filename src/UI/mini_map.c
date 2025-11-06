@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 13:27:02 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/06 15:40:55 by gchauvet         ###   ########.fr       */
+/*   Created: 2025/11/06 14:58:38 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/11/06 15:37:57 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub_math.h"
-#include <math.h>
+#include <stddef.h>
+#include <stdlib.h>
 #include "../../inc/cub3d.h"
 
-double	deg_to_rad(double deg)
+int	init_mini_map(t_data *data)
 {
-	return (deg * PI / 180.);
+	data->map.width = get_long_line_in_array(data->map.grid);
+	data->map.height = get_tablen(data->map.grid);
+	data->ui.minimap_img = new_img(data, data->map.width, data->map.height);
+	return (EXIT_SUCCESS);
 }
-
-// t_vec2 vect_rot(t_vec2 vec, double angle)
-// {
-// 	t_vec2 new_vec;
-
-// 	new_vec.x = sin(angle);
-// 	new_vec.y = cos(angle);
-// }
-
-
-

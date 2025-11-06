@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:00:51 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/28 16:54:04 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/06 15:36:04 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	render(t_data *data)
 	mod.text_space = 12;
 	mod.sc_x = 2;
 	mod.sc_y = 3;
-	put_text_on_img(data->screen_img, data->rnd_img,
-		"bonjour\n\
-:):):):):):):)", mod);
+// 	put_text_on_img(data->screen_img, data->rnd_img,
+// 		"bonjour\n\
+// :):):):):):):)", mod);
 	draw_img(data, data->screen_img, 0, 0);
 }

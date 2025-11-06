@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/04 17:20:29 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/06 15:42:00 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ typedef struct s_player
 	t_vec2	view_angle; // faudra faire les fonctions d'angle (rad)
 }	t_player;
 
+typedef	struct s_ui
+{
+	t_cub_img	*minimap_img;
+} t_ui;
+
 typedef struct s_map
 {
 	char	**grid;
@@ -84,6 +89,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_cub_img	*rnd_img;
+	t_ui		ui;
 }	t_data;
 
 ////////////// EVENT //////////////
@@ -108,6 +114,7 @@ void		render(t_data *data);
 
 int	init_mlx(t_data *data);
 int	pars(t_data *data, char **argv);
+int	init_mini_map(t_data *data);
 
 /////////////// FREE //////////////
 
@@ -121,6 +128,7 @@ int set_map_id(t_map map, char id, size_t x, size_t y);
 ////////////// UTILS //////////////
 
 int	get_tablen(char **tab);
+size_t	get_long_line_in_array(char **array);
 
 ////////////// ERROR //////////////
 

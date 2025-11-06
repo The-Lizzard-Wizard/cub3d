@@ -18,11 +18,12 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/graphics/graphics_alloc.c src/pars_init/error.c \
 	src/graphics/graphics_display.c src/pars_init/pars.c \
 	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c \
-	src/utils.c src/raycaster/math.c
+	src/utils.c src/raycaster/math.c \
+	src/UI/mini_map.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
-INCS=inc/cub3d.h inc/key.h inc/define.h inc/pars.h inc/math.h
+INCS=inc/cub3d.h inc/key.h inc/define.h inc/pars.h inc/cub_math.h
 OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
 DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.d)
 

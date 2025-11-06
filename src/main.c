@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 16:07:04 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/06 15:35:44 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	main(int argc, char **argv)
 	{
 		return (EXIT_FAILURE);
 	}
-	// data.rnd_img = new_xpm_img(&data, "textures/090.xpm");
+	init_mini_map(&data);
+	data.rnd_img = new_xpm_img(&data, "textures/font.xpm");
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);
