@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 16:42:42 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/07 19:50:36 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int get_player(t_pars *pars, char *map)
         {
             pars->player_view = map[i];
             map[i] = '0';
-            pars->player->pos_x = (double)x;
-            pars->player->pos_y = (double)y;
+            pars->player->pos.x = (double)x + 0.5;
+            pars->player->pos.y = (double)y + 0.5;
             player_flag += 1;
         }
         if (map[i] == '\n')
@@ -130,7 +130,7 @@ int pars_map(t_pars *pars, int map_fd)
     if (!pars->map)
         return (EXIT_FAILURE);
     print_char_array(pars->map);
-    printf("player view: %c\npos_x: %f\npos_y: %f\n", pars->player_view, pars->player->pos_x, pars->player->pos_y);
+    printf("player view: %c\npos_x: %f\npos_y: %f\n", pars->player_view, pars->player->pos.x, pars->player->pos.y);
     if (map_check(pars->map) == EXIT_FAILURE)
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);

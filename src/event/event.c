@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/28 17:01:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:22:37 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	keypresse(int key, t_data *data)
 {
 	if (key == K_ESC)
 		free_and_exit(data);
-	return (key);
+	return (EXIT_SUCCESS);
 }
 
 void	event_listener(t_data *data)

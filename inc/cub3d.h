@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/06 15:42:00 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:21:47 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,16 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
+	t_vec2	pos;
 	t_vec2	view_angle; // faudra faire les fonctions d'angle (rad)
 }	t_player;
 
 typedef	struct s_ui
 {
+	t_cub_img	*wall_img;
 	t_cub_img	*minimap_img;
+	t_cub_img	*player_img;
+	t_cub_img	*minimap_frame;
 } t_ui;
 
 typedef struct s_map
@@ -109,6 +111,11 @@ t_color		get_pixel(t_cub_img *img, int x, int y);
 t_color 	rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 void		set_pixel(t_cub_img *img, int x, int y, t_color color);
 void		render(t_data *data);
+void		init_modify(t_modify *mod);
+
+/////////////// UI ///////////////
+
+void	draw_minimap(t_data *data);
 
 //////////// PARS/INIT ////////////
 
@@ -129,6 +136,7 @@ int set_map_id(t_map map, char id, size_t x, size_t y);
 
 int	get_tablen(char **tab);
 size_t	get_long_line_in_array(char **array);
+void	print_char_array(char **array);
 
 ////////////// ERROR //////////////
 

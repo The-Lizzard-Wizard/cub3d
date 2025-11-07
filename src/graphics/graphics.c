@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:10:24 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 14:02:05 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:11:05 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,16 @@ void	set_pixel(t_cub_img *img, int x, int y, t_color color)
     {
         *(int *)(img->addr + (((y * img->size_x) + x ) * (img->pixels_bits / 32))) = color;
     }
+}
+
+void init_modify(t_modify *mod)
+{
+    mod->x = 0;
+    mod->y = 0;
+    mod->sc_x = 1;
+    mod->sc_y = 1;
+    mod->quad_sx = 0;
+    mod->quad_sy = 0;
+    mod->quad_x = 0;
+    mod->quad_y = 0;
 }

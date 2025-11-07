@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:27:02 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/06 15:40:55 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:32:05 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 double	deg_to_rad(double deg)
 {
 	return (deg * PI / 180.);
+}
+
+int		extract_decimal(double dec)
+{
+	int	res;
+
+	res = (int)((dec - (int)dec) * 100);
+	return (res);
 }
 
 // t_vec2 vect_rot(t_vec2 vec, double angle)
