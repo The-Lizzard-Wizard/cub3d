@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:58:38 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 20:22:32 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 20:36:58 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int update_minimap(t_data *data)
 			mod.x = (x * data->ui.wall_img->size_x);
 			if (data->map.grid[y][x] == '1')
 				draw_img_on_img(data->ui.minimap_img, data->ui.wall_img, mod);
+			else if (data->map.grid[y][x] == '0')
+				draw_img_on_img(data->ui.minimap_img, data->ui.floor_img, mod);
 			x++;
 		}
 		y++;
@@ -59,6 +61,7 @@ int	init_mini_map(t_data *data)
 	print_char_array(data->map.grid);
 	data->ui.player_img = new_xpm_img(data, "textures/player.xpm");
 	data->ui.wall_img = new_xpm_img(data, "textures/minimap_wall.xpm");
+	data->ui.floor_img = new_xpm_img(data, "textures/minimap_floor.xpm");
 	data->ui.minimap_frame = new_xpm_img(data, "textures/minimap_frame.xpm");
 	if (!data->ui.wall_img)
 		return (EXIT_FAILURE);
@@ -72,24 +75,24 @@ int	init_mini_map(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-void	draw_minimap(t_data *data)
+void	draw_minimap(t_data *data, int map_size)
 {
 	t_modify mod;
 
 	init_modify(&mod);
 	mod.sc_x = 4;
 	mod.sc_y = 4;
-	mod.quad_sx = data->ui.minimap_frame->size_x / mod.sc_x * 2;
-	mod.quad_sy = data->ui.minimap_frame->size_y / mod.sc_y * 2;
+	mod.quad_sx = data->ui.minimap_frame->size_x / mod.sc_x * map_size;
+	mod.quad_sy = data->ui.minimap_frame->size_y / mod.sc_y * map_size;
 	int playdecx = (extract_decimal(data->player.pos.x) / 12);
 	int playdecy = (extract_decimal(data->player.pos.y) / 12);
-	mod.quad_x = playdecx + ((int)data->player.pos.x * data->ui.wall_img->size_x) - ((data->ui.minimap_frame->size_x) / mod.sc_x);
-	mod.quad_y = playdecy + ((int)data->player.pos.y * data->ui.wall_img->size_y) - ((data->ui.minimap_frame->size_y) / mod.sc_y);
+	mod.quad_x = playdecx + ((int)data->player.pos.x * data->ui.wall_img->size_x) - (((data->ui.minimap_frame->size_x * map_size) / 2) / mod.sc_x);
+	mod.quad_y = playdecy + ((int)data->player.pos.y * data->ui.wall_img->size_y) - (((data->ui.minimap_frame->size_y * map_size) / 2) / mod.sc_y);
 	printf("x %d y %d\n", playdecx, playdecy);
 	draw_img_on_img(data->screen_img, data->ui.minimap_img, mod);
 	init_modify(&mod);
-	mod.sc_x = 2;
-	mod.sc_y = 2;
+	mod.sc_x = map_size;
+	mod.sc_y = map_size;
 	draw_img_on_img(data->screen_img, data->ui.minimap_frame, mod);
 	mod.x = ((data->ui.minimap_frame->size_x / 2) - data->ui.player_img->size_x / 2) * mod.sc_x;
 	mod.y = ((data->ui.minimap_frame->size_y / 2) - data->ui.player_img->size_y / 2) * mod.sc_y;

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:00:51 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 18:50:58 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 20:41:13 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void	render(t_data *data)
 {
-	draw_minimap(data);
+	draw_minimap(data, 2);
 	draw_img(data, data->screen_img, 0, 0);
 }

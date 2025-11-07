@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 19:21:47 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/07 20:33:59 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef	struct s_ui
 	t_cub_img	*minimap_img;
 	t_cub_img	*player_img;
 	t_cub_img	*minimap_frame;
+	t_cub_img	*floor_img;
 } t_ui;
 
 typedef struct s_map
@@ -115,7 +116,7 @@ void		init_modify(t_modify *mod);
 
 /////////////// UI ///////////////
 
-void	draw_minimap(t_data *data);
+void	draw_minimap(t_data *data, int map_size);
 
 //////////// PARS/INIT ////////////
 
