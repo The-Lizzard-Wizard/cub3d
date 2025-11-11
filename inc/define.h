@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/04 16:43:52 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 14:35:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 // FOV
 
 #define FOV PI / 4
+
+//draw type for shapes
+#define FILL 1
+#define LINE 2
 
 //================
 //= error messages

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 13:27:03 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:51:28 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ t_cub_img	*new_xpm_img(t_data *data, char *path);
 t_cub_img	*new_img(t_data *data, int sx, int sy);
 int			draw_img(t_data *data, t_cub_img *img, int x, int y);
 int			draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod);
+void		draw_recangle(t_cub_img *to_img, t_color color, int fill, t_modify mod);
 t_color		get_pixel(t_cub_img *img, int x, int y);
 t_color 	rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 void		set_pixel(t_cub_img *img, int x, int y, t_color color);
@@ -127,21 +128,21 @@ int	init_ui(t_data *data);
 
 /////////////// FREE //////////////
 
-int free_and_exit(t_data *data);
+int	free_and_exit(t_data *data);
+int	free_one_and_exit(void *ptr, int code);
+int	free_too_and_exit(void *ptr1, void *ptr2, int code);
+int	free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
 
 //////////////// MAP //////////////
 
-char get_map_id(t_map map, size_t x, size_t y);
-int set_map_id(t_map map, char id, size_t x, size_t y);
+char	get_map_id(t_map map, size_t x, size_t y);
+int		set_map_id(t_map map, char id, size_t x, size_t y);
 
 ////////////// UTILS //////////////
 
 int	get_tablen(char **tab);
 size_t	get_long_line_in_array(char **array);
 void	print_char_array(char **array);
-int	free_one_and_exit(void *ptr, int code);
-int	free_too_and_exit(void *ptr1, void *ptr2, int code);
-int	free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
 
 ////////////// ERROR //////////////
 

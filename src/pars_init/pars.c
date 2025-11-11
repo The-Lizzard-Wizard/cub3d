@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/06 15:36:37 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 14:53:53 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int set_player_view(t_vec2 *p_view_angle, char player_view)
 int pars_to_data(t_data *data, t_pars *pars)
 {
 	data->map.grid = pars->map;
+	data->map.width = get_long_line_in_array(pars->map);
+	data->map.height = get_tablen(pars->map);
 	data->textures.tex_east = new_xpm_img(data, pars->tex_path_ea);
 	data->textures.tex_west = new_xpm_img(data, pars->tex_path_we);
 	data->textures.tex_north = new_xpm_img(data, pars->tex_path_no);
