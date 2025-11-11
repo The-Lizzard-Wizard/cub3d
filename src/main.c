@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 19:23:29 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:06:27 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	main(int argc, char **argv)
 		printf("pars error");
 		return (EXIT_FAILURE);
 	}
-	init_mini_map(&data);
-	data.rnd_img = new_xpm_img(&data, "textures/font.xpm");
+	init_ui(&data);
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);

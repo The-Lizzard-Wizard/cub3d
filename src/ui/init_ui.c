@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   init_ui.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 13:45:22 by gchauvet         ###   ########.fr       */
+/*   Created: 2025/11/11 13:01:29 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/11/11 13:11:30 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
 
-int	update(t_data *data)
+int	init_ui(t_data *data)
 {
-    data->player.pos.x += 0.001;
-    //data->player.pos.y -= 0.001;
-    render(data);
-    return (EXIT_SUCCESS);
+	data->ui.font = new_xpm_img(data, "textures/font.xpm");
+	if (!data->ui.font)
+		return (EXIT_FAILURE);
+	if (init_mini_map(data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:58:38 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 20:36:58 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:41:58 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,30 @@ int	init_mini_map(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
+int	draw_player_pos(t_data *data)
+{
+	char	*ch_x;
+	char	*ch_y;
+	t_modify	mod;
+
+	init_modify(&mod);
+	mod.y = 128 * 2;
+	mod.sc_x = 2;
+	mod.sc_y = 2;
+	ch_x = ft_itoa(data->player.pos.x);
+	if (!ch_x)
+		return (EXIT_FAILURE);
+	ch_y = ft_itoa(data->player.pos.y);
+	if (!ch_y)
+		return (free_one_and_exit(ch_x, EXIT_FAILURE));
+	put_text_on_img(data->screen_img, data->ui.font, "(x:  y:  )", mod);
+	mod.x = 32 * 2;
+	put_text_on_img(data->screen_img, data->ui.font, ch_x, mod);
+	mod.x = 32 * 6;
+	put_text_on_img(data->screen_img, data->ui.font, ch_y, mod);
+	return (free_too_and_exit(ch_x, ch_y, EXIT_SUCCESS));
+}
+
 void	draw_minimap(t_data *data, int map_size)
 {
 	t_modify mod;
@@ -88,7 +112,6 @@ void	draw_minimap(t_data *data, int map_size)
 	int playdecy = (extract_decimal(data->player.pos.y) / 12);
 	mod.quad_x = playdecx + ((int)data->player.pos.x * data->ui.wall_img->size_x) - (((data->ui.minimap_frame->size_x * map_size) / 2) / mod.sc_x);
 	mod.quad_y = playdecy + ((int)data->player.pos.y * data->ui.wall_img->size_y) - (((data->ui.minimap_frame->size_y * map_size) / 2) / mod.sc_y);
-	printf("x %d y %d\n", playdecx, playdecy);
 	draw_img_on_img(data->screen_img, data->ui.minimap_img, mod);
 	init_modify(&mod);
 	mod.sc_x = map_size;
@@ -97,4 +120,5 @@ void	draw_minimap(t_data *data, int map_size)
 	mod.x = ((data->ui.minimap_frame->size_x / 2) - data->ui.player_img->size_x / 2) * mod.sc_x;
 	mod.y = ((data->ui.minimap_frame->size_y / 2) - data->ui.player_img->size_y / 2) * mod.sc_y;
 	draw_img_on_img(data->screen_img, data->ui.player_img, mod);
+	draw_player_pos(data);
 }

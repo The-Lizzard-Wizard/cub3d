@@ -19,7 +19,8 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/graphics/graphics_display.c src/pars_init/pars.c \
 	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c \
 	src/utils.c src/raycaster/math.c \
-	src/UI/mini_map.c
+	src/ui/mini_map.c src/ui/init_ui.c \
+	src/free.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a

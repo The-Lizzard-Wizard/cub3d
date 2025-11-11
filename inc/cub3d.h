@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 20:33:59 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:27:03 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef	struct s_ui
 	t_cub_img	*player_img;
 	t_cub_img	*minimap_frame;
 	t_cub_img	*floor_img;
+	t_cub_img	*font;
 } t_ui;
 
 typedef struct s_map
@@ -91,7 +92,6 @@ typedef struct s_data
 	t_cub_img		*screen_img;
 	void		*mlx_ptr;
 	void		*mlx_win;
-	t_cub_img	*rnd_img;
 	t_ui		ui;
 }	t_data;
 
@@ -123,6 +123,7 @@ void	draw_minimap(t_data *data, int map_size);
 int	init_mlx(t_data *data);
 int	pars(t_data *data, char **argv);
 int	init_mini_map(t_data *data);
+int	init_ui(t_data *data);
 
 /////////////// FREE //////////////
 
@@ -138,6 +139,9 @@ int set_map_id(t_map map, char id, size_t x, size_t y);
 int	get_tablen(char **tab);
 size_t	get_long_line_in_array(char **array);
 void	print_char_array(char **array);
+int	free_one_and_exit(void *ptr, int code);
+int	free_too_and_exit(void *ptr1, void *ptr2, int code);
+int	free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
 
 ////////////// ERROR //////////////
 

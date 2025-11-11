@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 13:45:22 by gchauvet         ###   ########.fr       */
+/*   Created: 2025/11/11 13:23:20 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/11/11 13:40:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub3d.h"
-#include <stdlib.h>
+#include "stdlib.h"
 
-int	update(t_data *data)
+int	free_one_and_exit(void *ptr, int code)
 {
-    data->player.pos.x += 0.001;
-    //data->player.pos.y -= 0.001;
-    render(data);
-    return (EXIT_SUCCESS);
+	free(ptr);
+	return (code);
+}
+
+int	free_too_and_exit(void *ptr1, void *ptr2, int code)
+{
+	free(ptr1);
+	free(ptr2);
+	return (code);
+}
+
+int	free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code)
+{
+	free(ptr1);
+	free(ptr2);
+	free(ptr3);
+	return (code);
 }
