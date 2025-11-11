@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 14:35:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:10:59 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@
 //=
 //================
 
-#define NB_ERROR_CODE 12
+#define NB_ERROR_CODE 14
 
 //init error
 #define RM_INIT_TEX "MLX : Failed to load textures."
 #define RM_INIT_MLX "MLX : Failed to initialize MLX."
 #define RM_INIT_WIN "MLX : Failed to load window."
 #define RM_INIT_SC_IMG "MLX : Failed to load screen image."
+#define RM_INIT_UI_IMG "UI : Failed to load images."
+#define RM_INIT_UI_MIMP "UI : Failed to initialize the minimap."
 
 //map and info parsing
 #define RM_WRONG_MAP_FILE "Wrong arg : map argument not found."
@@ -78,7 +80,9 @@ typedef enum e_error_code
     ER_MAP_NO_PLAYER_FOUND,
     ER_MAP_UNEXPECTED_CHAR,
     ER_MAP_NO_TEX_FOUND,
-    ER_MAP_NO_COLOR_FOUND
+    ER_MAP_NO_COLOR_FOUND,
+    ER_INIT_UI_IMG,
+    ER_INIT_UI_MIMP
 } t_error_code;
 
 //================

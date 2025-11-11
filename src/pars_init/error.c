@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/31 11:05:48 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:11:27 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	init_error(char *er_list[NB_ERROR_CODE])
 	er_list[ER_MAP_UNEXPECTED_CHAR] = RM_MAP_UNEXPECTED_CHAR;
 	er_list[ER_MAP_NO_TEX_FOUND] = RM_MAP_NO_TEX_FOUND;
 	er_list[ER_MAP_NO_COLOR_FOUND] = RM_MAP_NO_COLOR_FOUND;
+	er_list[ER_INIT_UI_IMG] = RM_INIT_UI_IMG;
+	er_list[ER_INIT_UI_MIMP] = RM_INIT_UI_MIMP;
 }
 
 int	print_error(int code)
