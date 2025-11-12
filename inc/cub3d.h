@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 14:51:28 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:41:37 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 typedef unsigned int t_color;
 
 #include "define.h"
-#include "cub_math.h"
 #include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
 #include "../minilibx-linux/mlx_int.h"
@@ -45,12 +44,6 @@ typedef struct s_cub_img
 	int		size_line;
 } t_cub_img;
 
-typedef struct s_vec2
-{
-	double x;
-	double y;
-}	t_vec2;
-
 typedef struct s_textures
 {
 	t_cub_img	*tex_north;
@@ -58,6 +51,13 @@ typedef struct s_textures
 	t_cub_img	*tex_east;
 	t_cub_img	*tex_west;
 } t_textures;
+
+typedef struct s_vec2
+{
+	double x;
+	double y;
+}	t_vec2;
+
 
 typedef struct s_player
 {
@@ -69,8 +69,8 @@ typedef	struct s_ui
 {
 	t_cub_img	*wall_img;
 	t_cub_img	*minimap_img;
-	t_cub_img	*player_img;
-	t_cub_img	*minimap_frame;
+	t_cub_img	*pl_img;
+	t_cub_img	*mimp_frame;
 	t_cub_img	*floor_img;
 	t_cub_img	*font;
 } t_ui;

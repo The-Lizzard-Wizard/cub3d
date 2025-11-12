@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/11 14:53:53 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:10:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int pars_to_data(t_data *data, t_pars *pars)
 	data->textures.tex_west = new_xpm_img(data, pars->tex_path_we);
 	data->textures.tex_north = new_xpm_img(data, pars->tex_path_no);
 	data->textures.tex_south = new_xpm_img(data, pars->tex_path_so);
-	if (data->textures.tex_east == NULL || data->textures.tex_west == NULL || data->textures.tex_north == NULL ||data->textures.tex_south == NULL)
+	if (data->textures.tex_east == NULL ||
+			data->textures.tex_west == NULL ||
+			data->textures.tex_north == NULL ||
+			data->textures.tex_south == NULL)
 		return (EXIT_FAILURE);
 	set_player_view(&(data->player.view_angle), pars->player_view);
 	return (EXIT_SUCCESS);

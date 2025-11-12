@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:27:02 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/07 19:32:05 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:37:08 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ int		extract_decimal(double dec)
 	return (res);
 }
 
-// t_vec2 vect_rot(t_vec2 vec, double angle)
-// {
-// 	t_vec2 new_vec;
+t_vec2 vect_rot(t_vec2 vec, double angle)
+{
+	t_vec2 new_vec;
 
-// 	new_vec.x = sin(angle);
-// 	new_vec.y = cos(angle);
-// }
+	new_vec.x = vec.x * cos(angle) - sin(angle) * vec.y;
+	new_vec.y = vec.x * sin(angle) + cos(angle) * vec.y;
+	return (new_vec);
+}
 
 
 

@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/25 16:45:09 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/12 14:11:08 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pars.h"
 #include "../../inc/cub3d.h"
 
-t_color rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+t_color rgba_to_int_color(unsigned char r, unsigned char g,
+	unsigned char b, unsigned char a)
 {
 	t_color color;
 
@@ -23,51 +24,51 @@ t_color rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, uns
 
 int get_color_c(t_pars *pars, char *line)
 {
-    size_t r;
-    size_t g;
-    size_t b;
-    char **raw;
+	size_t r;
+	size_t g;
+	size_t b;
+	char **raw;
 
-    raw = ft_split(line, ',');
-    if (!raw)
-        return (EXIT_FAILURE);
-    if (get_tablen(raw) == 3 && !pars->c_color_check)
-    {
-        r = ft_atoi(raw[0]);
-        g = ft_atoi(raw[1]);
-        b = ft_atoi(raw[2]);
-        if (r > 255 || g > 255 || b > 255)
-            return (EXIT_FAILURE);
-        *(pars->ceiling_color) = rgba_to_int_color(r, g, b, 0);
+	raw = ft_split(line, ',');
+	if (!raw)
+		return (EXIT_FAILURE);
+	if (get_tablen(raw) == 3 && !pars->c_color_check)
+	{
+		r = ft_atoi(raw[0]);
+		g = ft_atoi(raw[1]);
+		b = ft_atoi(raw[2]);
+		if (r > 255 || g > 255 || b > 255)
+			return (EXIT_FAILURE);
+		*(pars->ceiling_color) = rgba_to_int_color(r, g, b, 0);
 		pars->c_color_check = 1;
-        return (EXIT_SUCCESS);
-    }
-    return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
+	}
+	return (EXIT_FAILURE);
 }
 
 int get_color_f(t_pars *pars, char *line)
 {
-    size_t r;
-    size_t g;
-    size_t b;
-    char **raw;
+	size_t r;
+	size_t g;
+	size_t b;
+	char **raw;
 
-    raw = ft_split(line, ',');
-    if (!raw)
-        return (EXIT_FAILURE);
-    if (get_tablen(raw) == 3 && !pars->f_color_check)
-    {
-        r = ft_atoi(raw[0]);
-        g = ft_atoi(raw[1]);
-        b = ft_atoi(raw[2]);
-        if (r > 255|| g > 255 || b > 255)
-            return (EXIT_FAILURE);
-        *(pars->floor_color) = rgba_to_int_color(r, g, b, 0);
+	raw = ft_split(line, ',');
+	if (!raw)
+		return (EXIT_FAILURE);
+	if (get_tablen(raw) == 3 && !pars->f_color_check)
+	{
+		r = ft_atoi(raw[0]);
+		g = ft_atoi(raw[1]);
+		b = ft_atoi(raw[2]);
+		if (r > 255|| g > 255 || b > 255)
+			return (EXIT_FAILURE);
+		*(pars->floor_color) = rgba_to_int_color(r, g, b, 0);
 		pars->f_color_check = 1;
-        return (EXIT_SUCCESS);
-    }
-    
-    return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
+	}
+	
+	return (EXIT_FAILURE);
 }
 
 void get_id(char *id, char *line)

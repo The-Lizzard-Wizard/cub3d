@@ -1,5 +1,5 @@
 /* XPM */
-static char * minimap_frame_xpm[] = {
+static char * mimp_frame_xpm[] = {
 "128 128 10 1",
 " 	c None",
 ".	c #FBF3D8",

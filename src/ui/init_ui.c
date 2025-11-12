@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:01:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 16:13:08 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:03:06 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	check_ui_img(t_data *data)
 {
-	if (!data->ui.player_img)
+	if (!data->ui.pl_img)
 		return (EXIT_FAILURE);
 	if (!data->ui.wall_img)
 		return (EXIT_FAILURE);
 	if (!data->ui.floor_img)
 		return (EXIT_FAILURE);
-	if (!data->ui.minimap_frame)
+	if (!data->ui.mimp_frame)
 		return (EXIT_FAILURE);
 	if (!data->ui.font)
 		return (EXIT_FAILURE);
@@ -29,10 +29,10 @@ int	check_ui_img(t_data *data)
 
 int	init_ui(t_data *data)
 {
-	data->ui.player_img = new_xpm_img(data, "textures/player.xpm");
+	data->ui.pl_img = new_xpm_img(data, "textures/player.xpm");
 	data->ui.wall_img = new_xpm_img(data, "textures/minimap_wall.xpm");
 	data->ui.floor_img = new_xpm_img(data, "textures/minimap_floor.xpm");
-	data->ui.minimap_frame = new_xpm_img(data, "textures/minimap_frame.xpm");
+	data->ui.mimp_frame = new_xpm_img(data, "textures/minimap_frame.xpm");
 	data->ui.font = new_xpm_img(data, "textures/font.xpm");
 	if (check_ui_img(data) == EXIT_FAILURE)
 	{
