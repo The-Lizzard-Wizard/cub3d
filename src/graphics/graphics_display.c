@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:46:10 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/27 13:07:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:20:37 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ int	draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod)
 {
 	int		i[2];
 	t_color	px;
-	int pxd = 0;
+	int		pxd;
 
 	i[0] = 0;
 	i[1] = 0;
+	pxd = 0;
 	if (mod.quad_sx == 0)
 		mod.quad_sx = img->size_x;
 	if (mod.quad_sy == 0)
@@ -61,7 +62,8 @@ int	draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod)
 	while (i[0] < mod.quad_sx && mod.x + (i[0] * mod.sc_x) <= to_img->size_x)
 	{
 		i[1] = 0;
-		while (i[1] < mod.quad_sy && mod.y + (i[1] * mod.sc_y) <= to_img->size_y)
+		while (i[1] < mod.quad_sy && mod.y + (\
+i[1] * mod.sc_y) <= to_img->size_y)
 		{
 			pxd++;
 			px = get_pixel(img, i[0] + mod.quad_x, i[1] + mod.quad_y);
@@ -73,20 +75,21 @@ int	draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod)
 	return (EXIT_SUCCESS);
 }
 
-void    handle_special_char(char *c, t_modify *mod, int first_x)
+void	handle_special_char(char *c, t_modify *mod, int first_x)
 {
-    if (*(c) >= 97 && *(c) <= 122)
-        *(c) -= 32;
-    if (*(c) == 32)
-        mod->x += FONT_CHAR_SIZE * mod->sc_x;
-    if (*(c) == '\n')
-    {
-        mod->x = first_x;
-        mod->y += FONT_CHAR_SIZE * mod->sc_y;
-    }
+	if (*(c) >= 97 && *(c) <= 122)
+		*(c) -= 32;
+	if (*(c) == 32)
+		mod->x += FONT_CHAR_SIZE * mod->sc_x;
+	if (*(c) == '\n')
+	{
+		mod->x = first_x;
+		mod->y += FONT_CHAR_SIZE * mod->sc_y;
+	}
 }
 
-void	put_text_on_img(t_cub_img *to_img, t_cub_img *font, char *str, t_modify mod)
+void	put_text_on_img(t_cub_img *to_img, t_cub_img *font,
+	char *str, t_modify mod)
 {
 	size_t	i;
 	int		first_x;
@@ -100,12 +103,12 @@ void	put_text_on_img(t_cub_img *to_img, t_cub_img *font, char *str, t_modify mod
 	while (str[i])
 	{
 		c = str[i];
-        handle_special_char(&c, &mod, first_x);
+		handle_special_char(&c, &mod, first_x);
 		if (c >= 33 && c <= 90)
 		{
 			mod.x += (FONT_CHAR_SIZE * mod.sc_x);
-            if (mod.x != first_x)
-                mod.x -=  mod.text_space;
+			if (mod.x != first_x)
+				mod.x -= mod.text_space;
 			mod.quad_y = ((c - 33) / 10) * FONT_CHAR_SIZE;
 			mod.quad_x = ((c - 33) % 10) * FONT_CHAR_SIZE;
 			draw_img_on_img(to_img, font, mod);
