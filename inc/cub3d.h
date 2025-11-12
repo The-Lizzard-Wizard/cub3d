@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/12 14:41:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:20:47 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ typedef struct s_vec2
 	double y;
 }	t_vec2;
 
+typedef struct s_int_pos2
+{
+	int x;
+	int y;
+}	t_int_pos2;
 
 typedef struct s_player
 {
