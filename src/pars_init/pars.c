@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/12 14:10:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:36:14 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,36 @@ int	file_checking(char *file_name)
 	return (EXIT_FAILURE);
 }
 
-int set_player_view(t_vec2 *p_view_angle, char player_view)
+int set_player_view(t_vec2 *p_view_angle, t_vec2 *p_plane, char player_view)
 {
 	if (player_view == 'N')
 	{
 		p_view_angle->x = 0;
-		p_view_angle->y = 1;
+		p_view_angle->y = -1;
+		p_plane->x = 0.66;
+		p_plane->y = 0;
+
 	}
 	if (player_view == 'S')
 	{
 		p_view_angle->x = 0;
-		p_view_angle->y = -1;
+		p_view_angle->y = 1;
+		p_plane->x = -0.66;
+		p_plane->y = 0;
 	}
 	if (player_view == 'W')
 	{
 		p_view_angle->x = 1;
 		p_view_angle->y = 0;
+		p_plane->x = 0;
+		p_plane->y = -0.66;
 	}
 	if (player_view == 'E')
 	{
 		p_view_angle->x = -1;
 		p_view_angle->y = 0;
+		p_plane->x = 0;
+		p_plane->y = 0.66;
 	}
 	return (EXIT_SUCCESS);
 }
@@ -77,7 +86,7 @@ int pars_to_data(t_data *data, t_pars *pars)
 			data->textures.tex_north == NULL ||
 			data->textures.tex_south == NULL)
 		return (EXIT_FAILURE);
-	set_player_view(&(data->player.view_angle), pars->player_view);
+	set_player_view(&(data->player.view_angle), &(data->player.camera_plane), pars->player_view);
 	return (EXIT_SUCCESS);
 }
 

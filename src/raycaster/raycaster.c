@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/13 15:31:48 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/13 16:16:50 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ void	raycaster(t_data *data)
 
     // init const
 
-    pos.x = data->player.pos.x;
-    pos.y = data->player.pos.y;
+    pos = data->player.pos;
     dir = data->player.view_angle;
-    plane.x = 0;
-    plane.y = 0.66;
+    plane = data->player.camera_plane;
 
     int x = 0;
     t_vec2 ray_dir; // ray direction vector

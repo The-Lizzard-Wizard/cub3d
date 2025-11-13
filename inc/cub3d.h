@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/13 15:18:00 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/13 16:11:02 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_player
 {
 	t_vec2	pos;
 	t_vec2	view_angle; // faudra faire les fonctions d'angle (rad)
+	t_vec2	camera_plane;
 }	t_player;
 
 typedef	struct s_ui
