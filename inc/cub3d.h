@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/12 17:20:47 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/13 15:18:00 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ t_color 	rgba_to_int_color(unsigned char r, unsigned char g, unsigned char b, un
 void		set_pixel(t_cub_img *img, int x, int y, t_color color);
 void		render(t_data *data);
 void		init_modify(t_modify *mod);
+void		raycaster(t_data *data);
 
 /////////////// UI ///////////////
 
