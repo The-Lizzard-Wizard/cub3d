@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 14:22:58 by gchauvet         ###   ########.fr       */
+/*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/11/14 14:07:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
 
-int	update(t_data *data)
+int	init_data(t_data *data)
 {
-	move(data);
-	render(data);
+	data->player.control.move_w = 0;
+	data->player.control.move_s = 0;
+	data->player.control.move_d = 0;
+	data->player.control.move_a = 0;
 	return (EXIT_SUCCESS);
 }

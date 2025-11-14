@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/13 16:11:02 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 14:20:45 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,20 @@ typedef struct s_int_pos2
 	int y;
 }	t_int_pos2;
 
+typedef struct s_control
+{
+	int	move_w;
+	int	move_s;
+	int	move_d;
+	int	move_a;
+}	t_control;
+
 typedef struct s_player
 {
 	t_vec2	pos;
 	t_vec2	view_angle; // faudra faire les fonctions d'angle (rad)
 	t_vec2	camera_plane;
+	t_control control;
 }	t_player;
 
 typedef	struct s_ui
@@ -105,6 +114,9 @@ typedef struct s_data
 
 void	event_listener(t_data *data);
 int		update();
+void	move_press(t_data *data, int key);
+void	move_release(t_data *data, int key);
+void	move(t_data *data);
 
 //////////// GRAPHICS /////////////
 
@@ -132,6 +144,7 @@ int	init_mlx(t_data *data);
 int	pars(t_data *data, char **argv);
 int	init_mini_map(t_data *data);
 int	init_ui(t_data *data);
+int	init_data(t_data *data);
 
 /////////////// FREE //////////////
 

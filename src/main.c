@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 16:06:08 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:05:43 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (pars(&data, argv) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	init_ui(&data);
+	if (init_ui(&data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	init_data(&data);
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);
