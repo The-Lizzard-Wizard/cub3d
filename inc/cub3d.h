@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 14:20:45 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:36:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,8 @@ void	event_listener(t_data *data);
 int		update();
 void	move_press(t_data *data, int key);
 void	move_release(t_data *data, int key);
-void	move(t_data *data);
+void	move(t_data *data, t_vec2 *move);
+int		collide(t_data *data, t_vec2 pos, int xy);
 
 //////////// GRAPHICS /////////////
 

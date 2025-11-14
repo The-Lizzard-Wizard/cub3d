@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 14:22:58 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:37:42 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 int	update(t_data *data)
 {
-	move(data);
+	t_vec2	next_move;
+
+	next_move = data->player.pos;
+	move(data, &next_move);
+	if (collide(data, next_move, 1) == 0)
+		data->player.pos.x = next_move.x;
+	if (collide(data, next_move, 2) == 0)
+		data->player.pos.y = next_move.y;
 	render(data);
 	return (EXIT_SUCCESS);
 }
