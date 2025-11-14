@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 15:37:42 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:54:34 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ int	update(t_data *data)
 
 	next_move = data->player.pos;
 	move(data, &next_move);
-	if (collide(data, next_move, 1) == 0)
-		data->player.pos.x = next_move.x;
-	if (collide(data, next_move, 2) == 0)
-		data->player.pos.y = next_move.y;
+	if (data->game_state.toggle_collide == 1)
+	{
+		if (collide(data, next_move, 1) == 0)
+			data->player.pos.x = next_move.x;
+		if (collide(data, next_move, 2) == 0)
+			data->player.pos.y = next_move.y;
+	}
+	else
+		data->player.pos = next_move;
 	render(data);
 	return (EXIT_SUCCESS);
 }

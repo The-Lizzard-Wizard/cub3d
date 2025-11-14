@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 15:36:56 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:51:32 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ typedef struct s_control
 	int	move_a;
 }	t_control;
 
+typedef struct s_game_state
+{
+	int	toggle_collide;
+	int	toggle_minimap;
+}	t_game_state;
+
 typedef struct s_player
 {
 	t_vec2	pos;
@@ -108,6 +114,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_ui		ui;
+	t_game_state	game_state;
 }	t_data;
 
 ////////////// EVENT //////////////

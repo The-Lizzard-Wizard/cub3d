@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:00:51 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/13 15:18:18 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 15:55:57 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	render(t_data *data)
 {
 	raycaster(data);
-	draw_minimap(data, 2);
+	if (data->game_state.toggle_minimap == 1)
+		draw_minimap(data, 2);
 	draw_img(data, data->screen_img, 0, 0);
 }
