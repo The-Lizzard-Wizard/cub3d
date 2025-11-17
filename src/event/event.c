@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 16:07:27 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:55:47 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ int	keypresse(int key, t_data *data)
 		switch_int(&data->game_state.toggle_minimap);
 	if (key == K_C)
 		switch_int(&data->game_state.toggle_collide);
+	if (key == K_M)
+	{
+		if (data->game_state.camera_ctrl_type == 0)
+			mlx_mouse_show(data->mlx_ptr, data->mlx_win);
+		else
+			mlx_mouse_hide(data->mlx_ptr, data->mlx_win);
+		switch_int(&data->game_state.camera_ctrl_type);
+	}
 	move_press(data, key);
 	return (EXIT_SUCCESS);
 }
