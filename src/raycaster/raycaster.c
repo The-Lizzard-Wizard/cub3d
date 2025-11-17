@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/13 16:16:50 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 15:54:35 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,23 @@ void	raycaster(t_data *data)
                 map.y += step_dir.y;
                 wall_side = 1;
             }
-            if (data->map.grid[map.y][map.x] == '1')
+            if (map.x >= (int)data->map.width || map.x < 0 || map.y >= (int)data->map.height || map.y < 0)
+                break;
+            else if (data->map.grid[map.y][map.x] == '1')
                 is_hit = 1;
         }
-        // now calculate the distance to the wall from the plane
-        if (wall_side == 0)
-            dist_to_plane = dist_to_side.x - next_step_size.x;
+        int line_height;
+        if (is_hit)
+        {
+            // now calculate the distance to the wall from the plane
+            if (wall_side == 0)
+                dist_to_plane = dist_to_side.x - next_step_size.x;
+            else
+                dist_to_plane = dist_to_side.y - next_step_size.y;
+            line_height = WIN_H / dist_to_plane;
+        }
         else
-            dist_to_plane = dist_to_side.y - next_step_size.y;
-
-        int line_height = WIN_H / dist_to_plane;
+            line_height = 0;
         // le trait a dessiner c'est la hauteur de la window divisé par la distance au plan, la suite c'est de l'affichage
         draw_line(data, x, line_height, wall_side);
         x++;

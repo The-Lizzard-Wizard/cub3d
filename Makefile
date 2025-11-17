@@ -2,7 +2,7 @@ NAME=cub3D
 # /////////////////////////
 
 CC=cc
-CC_FLAGS=-Wall -Wextra -Werror -g3
+CC_FLAGS=-Wall -Wextra -Werror -g3 #-fsanitize=address,leak
 
 # /////////////////////////
 
