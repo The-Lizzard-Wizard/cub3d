@@ -18,7 +18,7 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/graphics/graphics_alloc.c src/pars_init/error.c \
 	src/graphics/graphics_display.c src/pars_init/pars.c \
 	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c \
-	src/utils.c src/raycaster/math.c src/raycaster/raycaster.c \
+	src/utils.c src/raycaster/math.c src/raycaster/raycaster.c src/raycaster/raycast_draw.c\
 	src/ui/mini_map.c src/ui/init_ui.c \
 	src/free.c src/graphics/graphics_shapes.c src/pars_init/init_data.c \
 	src/event/move.c src/event/mouse.c

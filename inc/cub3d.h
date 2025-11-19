@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/17 14:50:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/18 14:31:12 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,22 @@ typedef struct s_map
 	size_t height;
 } t_map;
 
+typedef struct s_raycast
+{
+	t_vec2 pos; // player coordinates
+    t_vec2 dir; // player view angle, where he he's looking
+    t_vec2 plane; // view plane, normal vector to dir
+	t_vec2 ray_dir; // ray direction vector
+    t_vec2 dist_to_side; // the distance from the player to the first x side/y side (rn it's the first step)
+    t_vec2 next_step_size; // the distance from the x side / y side to the next one
+    t_int_pos2 map; // the square of the map the ray is in
+    double dist_to_plane; // distance of the wall to the plane
+	double camera_pos; // x coordinate of the ray in the "camera"
+	t_vec2 step_dir; // the direction of the next step of the ray
+	int side; // which wall was hit? very explicit too
+	char wall_face;
+} t_raycast;
+
 typedef struct s_data
 {
 	t_map map;
@@ -152,6 +168,7 @@ void set_pixel(t_cub_img *img, int x, int y, t_color color);
 void render(t_data *data);
 void init_modify(t_modify *mod);
 void raycaster(t_data *data);
+void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
 
 /////////////// UI ///////////////
 

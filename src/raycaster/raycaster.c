@@ -6,126 +6,125 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 15:54:35 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/18 14:45:29 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "math.h"
 
-void draw_line(t_data *data, int x, int line_height, int wall_side)
+void raycast_init_subs(t_raycast *raycast, t_data *data)
 {
-    int y = 0;
-    t_color wall_color;
+    raycast->pos = data->player.pos;
+    raycast->dir = data->player.view_angle;
+    raycast->plane = data->player.camera_plane;
+}
 
-    if (wall_side == 0)
-        wall_color = rgba_to_int_color(255, 0, 255, 0);
+void raycast_init_x(t_raycast *raycast)
+{
+    raycast->ray_dir.x = raycast->dir.x + raycast->plane.x * raycast->camera_pos;
+    raycast->map.x = (int)raycast->pos.x;
+    if (raycast->ray_dir.x == 0)
+        raycast->next_step_size.x = 1e30;
     else
-        wall_color = rgba_to_int_color(0, 255, 255, 0);
-    while(y < WIN_H)
+        raycast->next_step_size.x = fabs(1 / raycast->ray_dir.x);
+    if (raycast->ray_dir.x < 0)
     {
-        if (y < (WIN_H / 2 - line_height / 2))
-            set_pixel(data->screen_img, x, y, data->ceiling_color);
-        else if (y > (WIN_H / 2 + line_height / 2))
-            set_pixel(data->screen_img, x, y, data->floor_color);
-        else
-            set_pixel(data->screen_img, x, y, wall_color);
-        y++;
+        raycast->step_dir.x = -1;
+        raycast->dist_to_side.x = (raycast->pos.x - raycast->map.x) * raycast->next_step_size.x;
+    }
+    else
+    {
+        raycast->step_dir.x = 1;
+        raycast->dist_to_side.x = (raycast->map.x + 1 - raycast->pos.x) * raycast->next_step_size.x;
     }
 }
 
+void raycast_init_y(t_raycast *raycast)
+{
+    raycast->ray_dir.y = raycast->dir.y + raycast->plane.y * raycast->camera_pos;
+    raycast->map.y = (int)raycast->pos.y;
+    if (raycast->ray_dir.y == 0)
+        raycast->next_step_size.y = 1e30;
+    else
+        raycast->next_step_size.y = fabs(1 / raycast->ray_dir.y);
+    if (raycast->ray_dir.y < 0)
+    {
+        raycast->step_dir.y = -1;
+        raycast->dist_to_side.y= (raycast->pos.y - raycast->map.y) * raycast->next_step_size.y;
+    }
+    else
+    {
+        raycast->step_dir.y = 1;
+        raycast->dist_to_side.y = (raycast->map.y + 1 - raycast->pos.y) * raycast->next_step_size.y;
+    }
+}
+
+void wall_face_finder(t_raycast *raycast)
+{
+    if (raycast->side == 0 && raycast->ray_dir.x < 0)
+        raycast->wall_face = 'E';
+    else if (raycast->side == 0 && raycast->ray_dir.x > 0)
+        raycast->wall_face = 'W';
+    else if (raycast->side == 1 && raycast->ray_dir.y < 0)
+        raycast->wall_face = 'S';
+    else if (raycast->side == 1 && raycast->ray_dir.y > 0)
+        raycast->wall_face = 'N';
+}
+
+void dda(t_raycast *raycast, int *is_hit, t_data *data)
+{
+    *is_hit = 0;
+    while (*is_hit == 0)
+    {
+        if (raycast->dist_to_side.x < raycast->dist_to_side.y)
+        {
+            raycast->dist_to_side.x += raycast->next_step_size.x;
+            raycast->map.x += raycast->step_dir.x;
+            raycast->side = 0;
+        }
+        else
+        {
+            raycast->dist_to_side.y += raycast->next_step_size.y;
+            raycast->map.y += raycast->step_dir.y;
+            raycast->side = 1;
+        }
+        wall_face_finder(raycast);
+        if (raycast->map.x >= (int)data->map.width || raycast->map.x < 0 || raycast->map.y >= (int)data->map.height || raycast->map.y < 0)
+            return ;
+        else if (data->map.grid[raycast->map.y][raycast->map.x] == '1')
+            *is_hit = 1;
+    }
+}
+
+
+
 void	raycaster(t_data *data)
 {
-    t_vec2 pos; // player coordinates
-    t_vec2 dir; // player view angle, where he he's looking
-    t_vec2 plane; // view plane, normal vector to dir
+    t_raycast raycast;
+    int x;
+    int is_hit;// is the wall hit? very explicit
+    int line_height;
 
-    // init const
-
-    pos = data->player.pos;
-    dir = data->player.view_angle;
-    plane = data->player.camera_plane;
-
-    int x = 0;
-    t_vec2 ray_dir; // ray direction vector
-    t_vec2 dist_to_side; // the distance from the player to the first x side/y side (rn it's the first step)
-    t_vec2 next_step_size; // the distance from the x side / y side to the next one
-    t_int_pos2 map; // the square of the map the ray is in
-    double dist_to_plane; // distance of the wall to the plane
-    while (x < WIN_W)
+    x = -1;
+    raycast_init_subs(&raycast, data);
+    while (++x < WIN_W)
     {
-        //init not const
-        double camera_pos = 2 * x / (double)WIN_W - 1; // x coordinate of the ray in the "camera"
-        ray_dir.x = dir.x + plane.x * camera_pos;
-        ray_dir.y = dir.y + plane.y * camera_pos;
-        map.x = (int)pos.x;
-        map.y = (int)pos.y;
-        if (ray_dir.x == 0)
-            next_step_size.x = 1e30;
-        else
-            next_step_size.x = fabs(1 / ray_dir.x);
-        if (ray_dir.y == 0)
-            next_step_size.y = 1e30;
-        else
-            next_step_size.y = fabs(1 / ray_dir.y);
-        t_vec2 step_dir; // the direction of the next step of the ray
-        int is_hit = 0; // is the wall hit? very explicit
-        int wall_side; // which wall was hit? very explicit too
-        if (ray_dir.x < 0)
-        {
-            step_dir.x = -1;
-            dist_to_side.x = (pos.x - map.x) * next_step_size.x;
-        }
-        else
-        {
-            step_dir.x = 1;
-            dist_to_side.x = (map.x + 1 - pos.x) * next_step_size.x;
-        }
-        if (ray_dir.y < 0)
-        {
-            step_dir.y = -1;
-            dist_to_side.y = (pos.y - map.y) * next_step_size.y;
-        }
-        else
-        {
-            step_dir.y = 1;
-            dist_to_side.y = (map.y + 1 - pos.y) * next_step_size.y;
-        }
-        // actual DDA part
-        while (is_hit == 0)
-        {
-            if (dist_to_side.x < dist_to_side.y)
-            {
-                dist_to_side.x += next_step_size.x;
-                map.x += step_dir.x;
-                wall_side = 0;
-            }
-            else
-            {
-                dist_to_side.y += next_step_size.y;
-                map.y += step_dir.y;
-                wall_side = 1;
-            }
-            if (map.x >= (int)data->map.width || map.x < 0 || map.y >= (int)data->map.height || map.y < 0)
-                break;
-            else if (data->map.grid[map.y][map.x] == '1')
-                is_hit = 1;
-        }
-        int line_height;
+        raycast.camera_pos = 2 * x / (double)WIN_W - 1; // x coordinate of the ray in the "camera"
+        raycast_init_x(&raycast);
+        raycast_init_y(&raycast);
+        dda(&raycast, &is_hit, data);
         if (is_hit)
         {
-            // now calculate the distance to the wall from the plane
-            if (wall_side == 0)
-                dist_to_plane = dist_to_side.x - next_step_size.x;
+            if (raycast.side == 0)
+                raycast.dist_to_plane = raycast.dist_to_side.x - raycast.next_step_size.x;
             else
-                dist_to_plane = dist_to_side.y - next_step_size.y;
-            line_height = WIN_H / dist_to_plane;
+                raycast.dist_to_plane = raycast.dist_to_side.y - raycast.next_step_size.y;
+            line_height = WIN_H / raycast.dist_to_plane;
         }
         else
             line_height = 0;
-        // le trait a dessiner c'est la hauteur de la window divisé par la distance au plan, la suite c'est de l'affichage
-        draw_line(data, x, line_height, wall_side);
-        x++;
+        draw_line(data, x, line_height, raycast);
     }
 }
 
