@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 15:46:09 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/19 15:50:57 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@
 //draw type for shapes
 #define FILL 1
 #define LINE 2
+
+// thing type
+
+typedef enum e_thing_type
+{
+	THING_COLLECT,
+	THING_PROPS
+}	t_thing_type;
 
 //================
 //= error messages
@@ -62,25 +70,25 @@
 #define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
 #define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected characher found in the map."
 #define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
-#define RM_MAP_NO_COLOR_FOUND "Map : Color are missing for the ciling or the floor."//12
+#define RM_MAP_NO_COLOR_FOUND "Map : Color are missing for the ciling or the floor."//15
 
 typedef enum e_error_code
 {
-    ER_INIT_TEX,
-    ER_INIT_MLX,
-    ER_INIT_WIN,
-    ER_INIT_SC_IMG,
-    ER_WRONG_MAP_FILE,
-    ER_WRONG_ARG,
-    ER_MAP_TEX_PATH,
-    ER_MAP_COLOR,
-    ER_MAP_DONT_CLOSE,
-    ER_MAP_NO_PLAYER_FOUND,
-    ER_MAP_UNEXPECTED_CHAR,
-    ER_MAP_NO_TEX_FOUND,
-    ER_MAP_NO_COLOR_FOUND,
-    ER_INIT_UI_IMG,
-    ER_INIT_UI_MIMP
+	ER_INIT_TEX,
+	ER_INIT_MLX,
+	ER_INIT_WIN,
+	ER_INIT_SC_IMG,
+	ER_WRONG_MAP_FILE,
+	ER_WRONG_ARG,
+	ER_MAP_TEX_PATH,
+	ER_MAP_COLOR,
+	ER_MAP_DONT_CLOSE,
+	ER_MAP_NO_PLAYER_FOUND,
+	ER_MAP_UNEXPECTED_CHAR,
+	ER_MAP_NO_TEX_FOUND,
+	ER_MAP_NO_COLOR_FOUND,
+	ER_INIT_UI_IMG,
+	ER_INIT_UI_MIMP
 } t_error_code;
 
 //================

@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/18 14:31:12 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/19 23:08:52 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,16 @@ typedef struct s_player
 	t_vec2 view_angle; // faudra faire les fonctions d'angle (rad)
 	t_vec2 camera_plane;
 	t_control control;
+	int score;
 } t_player;
+
+typedef struct s_thing
+{
+	t_vec2		pos;
+	int			type;
+	t_cub_img	*texture;
+	struct s_thing	*next;
+}	t_thing;
 
 typedef struct s_ui
 {
@@ -131,16 +140,17 @@ typedef struct s_raycast
 
 typedef struct s_data
 {
-	t_map map;
-	t_player player;
-	t_textures textures;
-	int floor_color;
-	int ceiling_color;
-	t_cub_img *screen_img;
-	void *mlx_ptr;
-	void *mlx_win;
-	t_ui ui;
-	t_game_state game_state;
+	t_map			map;
+	t_player		player;
+	t_textures		textures;
+	int				floor_color;
+	int				ceiling_color;
+	t_cub_img		*screen_img;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	t_ui			ui;
+	t_game_state	game_state;
+	t_thing			*thing_list;
 } t_data;
 
 ////////////// EVENT //////////////

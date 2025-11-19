@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/13 16:36:14 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/19 15:22:55 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int set_player_view(t_vec2 *p_view_angle, t_vec2 *p_plane, char player_view)
 	}
 	if (player_view == 'W')
 	{
-		p_view_angle->x = 1;
+		p_view_angle->x = -1;
 		p_view_angle->y = 0;
 		p_plane->x = 0;
 		p_plane->y = -0.66;
 	}
 	if (player_view == 'E')
 	{
-		p_view_angle->x = -1;
+		p_view_angle->x = 1;
 		p_view_angle->y = 0;
 		p_plane->x = 0;
 		p_plane->y = 0.66;
