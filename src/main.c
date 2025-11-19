@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/14 14:05:43 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:30:29 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		print_error(ER_WRONG_ARG);
 		return (EXIT_SUCCESS);
 	}
-	(void)data;
+	data.thing_list = NULL;
 	if (init_mlx(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (pars(&data, argv) == EXIT_FAILURE)

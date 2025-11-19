@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/17 14:50:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:09:42 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,16 @@ typedef struct s_player
 	t_vec2 view_angle; // faudra faire les fonctions d'angle (rad)
 	t_vec2 camera_plane;
 	t_control control;
+	int score;
 } t_player;
+
+typedef struct s_thing
+{
+	t_vec2		pos;
+	int			type;
+	t_cub_img	*texture;
+	struct s_thing	*next;
+}	t_thing;
 
 typedef struct s_ui
 {
@@ -115,16 +124,17 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	t_map map;
-	t_player player;
-	t_textures textures;
-	int floor_color;
-	int ceiling_color;
-	t_cub_img *screen_img;
-	void *mlx_ptr;
-	void *mlx_win;
-	t_ui ui;
-	t_game_state game_state;
+	t_map			map;
+	t_player		player;
+	t_textures		textures;
+	int				floor_color;
+	int				ceiling_color;
+	t_cub_img		*screen_img;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	t_ui			ui;
+	t_game_state	game_state;
+	t_thing			*thing_list;
 } t_data;
 
 ////////////// EVENT //////////////
@@ -152,6 +162,11 @@ void set_pixel(t_cub_img *img, int x, int y, t_color color);
 void render(t_data *data);
 void init_modify(t_modify *mod);
 void raycaster(t_data *data);
+
+//////////// GAMEPLAY ////////////
+
+t_thing	*get_last_thing(t_thing *thing_list);
+int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
 
 /////////////// UI ///////////////
 
