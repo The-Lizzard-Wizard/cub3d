@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/19 15:50:57 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:23:32 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@
 #define FILL 1
 #define LINE 2
 
-// thing type
-
+// thing
 typedef enum e_thing_type
 {
 	THING_COLLECT,
 	THING_PROPS
 }	t_thing_type;
+
+#define THING_BOX_W 0.4
+#define THING_BOX_H 0.4
 
 //================
 //= error messages

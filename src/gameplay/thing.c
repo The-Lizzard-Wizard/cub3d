@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/19 16:09:19 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:32:49 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type)
 		return (EXIT_FAILURE);
 	new_thing->texture = texture;
 	new_thing->next = NULL;
+	new_thing->prev = NULL;
 	new_thing->pos.x = pos.x;
 	new_thing->pos.y = pos.y;
 	new_thing->type = type;
@@ -47,5 +48,53 @@ int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type)
 	else
 		last_thing = get_last_thing(data->thing_list);
 	last_thing->next = new_thing;
+	new_thing->prev = last_thing;
+	return (EXIT_SUCCESS);
+}
+
+void	del_thing(t_thing *thing_to_del)
+{
+	t_thing	*prev;
+	t_thing	*next;
+
+	next = NULL;
+	prev = NULL;
+	if (thing_to_del->prev)
+		prev = thing_to_del->prev;
+	if (thing_to_del->next)
+		next = thing_to_del->next;
+	prev->next = next;
+	next->prev = prev;
+	free(thing_to_del);
+}
+
+int	check_collide_thing(t_data *data, t_vec2 pos, t_thing *thing)
+{
+	(void)data;
+	if (pos.x >= thing->pos.x - THING_BOX_W / 2
+		&& pos.x <= thing->pos.x + THING_BOX_W / 2
+		&& pos.y >= thing->pos.y - THING_BOX_H / 2
+		&& pos.y <= thing->pos.y + THING_BOX_H / 2)
+	{
+		printf("collicde with thing\n");
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	collide_with_thing(t_data *data)
+{
+	t_thing	*curr_thing;
+
+	if (!data->thing_list)
+		return (EXIT_SUCCESS);
+	curr_thing = data->thing_list;
+	if (check_collide_thing(data, data->player.pos, curr_thing) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	while (curr_thing->next != NULL)
+	{
+		if (check_collide_thing(data, data->player.pos, curr_thing) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+		curr_thing = curr_thing->next;
+	}
 	return (EXIT_SUCCESS);
 }

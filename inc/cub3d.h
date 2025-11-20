@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/19 23:08:52 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 16:30:09 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_thing
 	int			type;
 	t_cub_img	*texture;
 	struct s_thing	*next;
+	struct s_thing	*prev;
 }	t_thing;
 
 typedef struct s_ui
@@ -162,6 +163,13 @@ void move_release(t_data *data, int key);
 void move(t_data *data, t_vec2 *move);
 int collide(t_data *data, t_vec2 pos, int xy);
 void mouse_camera(t_data *data);
+
+//////////// GAMEPLAY /////////////
+
+t_thing	*get_last_thing(t_thing *thing_list);
+int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
+void	del_thing(t_thing *thing_to_del);
+int	collide_with_thing(t_data *data);
 
 //////////// GRAPHICS /////////////
 

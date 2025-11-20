@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/17 12:38:53 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:29:43 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	update(t_data *data)
 	}
 	else
 		data->player.pos = next_move;
+	collide_with_thing(data);
 	render(data);
 	return (EXIT_SUCCESS);
 }
