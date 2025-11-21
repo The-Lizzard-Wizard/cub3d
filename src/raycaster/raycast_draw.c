@@ -11,41 +11,100 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+#include <math.h>
 
 void draw_line(t_data *data, int x, int line_height, t_raycast raycast)
 {
     int y = 0;
-    // double perp_dist_to_wall;
-    // double wall_coordinate;
+    double wall_coordinate;
+    double step = 0;
+    double tex_pos = 0;
+    int draw_start = (WIN_H / 2 - line_height / 2);
+    int draw_end = (WIN_H / 2 + line_height / 2);
+    int tex_x = 0;
+    int tex_y = 0;
     t_color wall_color;
 
-    if (raycast.wall_face == 'N')
+    if (raycast.side == 0)
     {
-    //     perp_dist_to_wall = (raycast.dist_to_side.y - raycast.next_step_size.y);
-    //     wall_coordinate = raycast.pos.y + perp_dist_to_wall * raycast.ray_dir.y;
-        wall_color = rgba_to_int_color(255, 0, 0, 0);
+        wall_coordinate = raycast.pos.y + raycast.dist_to_plane * raycast.ray_dir.y;
+        wall_coordinate -= floor(wall_coordinate);   
     }
-    else if (raycast.wall_face == 'S')
-        wall_color = rgba_to_int_color(0, 255, 0, 0);
-    else if (raycast.wall_face == 'W')
-        wall_color = rgba_to_int_color(0, 0, 255, 0);
-    else if (raycast.wall_face == 'E')
-        wall_color = rgba_to_int_color(255, 0, 255, 0);
     else
     {
-        // perp_dist_to_wall = (raycast.dist_to_side.x - raycast.next_step_size.x);
-        // wall_coordinate = raycast.pos.x + perp_dist_to_wall * raycast.ray_dir.x;
-        wall_color = rgba_to_int_color(0, 255, 255, 0);
+        wall_coordinate = raycast.pos.x + raycast.dist_to_plane * raycast.ray_dir.x;
+        wall_coordinate -= floor(wall_coordinate);
     }
-     
+    if (raycast.wall_face == 'N')
+    {
+        tex_x = wall_coordinate * data->textures.tex_north->size_x;
+        tex_x = data->textures.tex_west->size_x - tex_x - 1;
+        step = 1.0 * data->textures.tex_north->size_y / line_height;
+        tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * step;
+    }
+    else if (raycast.wall_face == 'S')
+    {
+        tex_x = wall_coordinate * data->textures.tex_south->size_x;
+        step = 1.0 * data->textures.tex_south->size_y / line_height;
+        tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * step;
+    }
+    else if (raycast.wall_face == 'W')
+    {
+        tex_x = wall_coordinate * data->textures.tex_west->size_x;
+        step = 1.0 * data->textures.tex_west->size_y / line_height;
+        tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * step;
+    }
+    else if (raycast.wall_face == 'E')
+    {
+        tex_x = wall_coordinate * data->textures.tex_east->size_x;
+        tex_x = data->textures.tex_west->size_x - tex_x - 1;
+        step = 1.0 * data->textures.tex_east->size_y / line_height;
+        tex_pos = (draw_start + line_height / 2 - WIN_H /2) * step;
+    }
+    while (y <= draw_start)
+    {
+        printf("%d\n", draw_start);
+        set_pixel(data->screen_img, x, y, data->ceiling_color);
+        y++;
+    }
+    if (draw_start < 0)
+        tex_pos += step * (-draw_start);
+    while(y < draw_end)
+    {
+        if (y > WIN_H)
+            break ;
+        if (raycast.wall_face == 'N')
+        {
+            tex_y = (int)tex_pos & (data->textures.tex_north->size_y - 1);
+            wall_color = get_pixel(data->textures.tex_north, tex_x, tex_y);
+            tex_pos += step;
+        }
+        else if (raycast.wall_face == 'S')
+        {
+            tex_y = (int)tex_pos & (data->textures.tex_south->size_y - 1);
+            wall_color = get_pixel(data->textures.tex_south, tex_x, tex_y);
+            tex_pos += step;
+        }
+        else if (raycast.wall_face == 'W')
+        {
+            tex_y = (int)tex_pos & (data->textures.tex_west->size_y - 1);
+            wall_color = get_pixel(data->textures.tex_west, tex_x, tex_y);
+            tex_pos += step;
+        }
+        else if (raycast.wall_face == 'E')
+        {
+            tex_y = (int)tex_pos & (data->textures.tex_east->size_y - 1);
+            wall_color = get_pixel(data->textures.tex_east, tex_x, tex_y);
+            tex_pos += step;
+        }
+        else
+            wall_color = rgba_to_int_color(0, 255, 255, 0);
+        set_pixel(data->screen_img, x, y, wall_color);
+        y++;
+    }
     while(y < WIN_H)
     {
-        if (y <= (WIN_H / 2 - line_height / 2))
-            set_pixel(data->screen_img, x, y, data->ceiling_color);
-        else if (y > (WIN_H / 2 + line_height / 2))
-            set_pixel(data->screen_img, x, y, data->floor_color);
-        else
-            set_pixel(data->screen_img, x, y, wall_color);
+        set_pixel(data->screen_img, x, y, data->floor_color);
         y++;
     }
 }

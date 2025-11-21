@@ -120,10 +120,11 @@ void	raycaster(t_data *data)
                 raycast.dist_to_plane = raycast.dist_to_side.x - raycast.next_step_size.x;
             else
                 raycast.dist_to_plane = raycast.dist_to_side.y - raycast.next_step_size.y;
-            line_height = WIN_H / raycast.dist_to_plane;
+            line_height = WIN_H / raycast.dist_to_plane + 1;
         }
         else
             line_height = 0;
+        printf("player x = %f, player y =%f\n", data->player.pos.x, data->player.pos.y);
         draw_line(data, x, line_height, raycast);
     }
 }
