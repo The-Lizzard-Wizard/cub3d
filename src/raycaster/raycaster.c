@@ -124,7 +124,6 @@ void	raycaster(t_data *data)
         }
         else
             line_height = 0;
-        printf("player x = %f, player y =%f\n", data->player.pos.x, data->player.pos.y);
         draw_line(data, x, line_height, raycast);
     }
 }

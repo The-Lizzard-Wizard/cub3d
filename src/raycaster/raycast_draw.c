@@ -19,12 +19,14 @@ void draw_line(t_data *data, int x, int line_height, t_raycast raycast)
     double wall_coordinate;
     double step = 0;
     double tex_pos = 0;
-    int draw_start = (WIN_H / 2 - line_height / 2);
-    int draw_end = (WIN_H / 2 + line_height / 2);
     int tex_x = 0;
     int tex_y = 0;
     t_color wall_color;
 
+    if (line_height < 0)
+        line_height = WIN_H * data->textures.tex_north->size_y;
+    int draw_start = (WIN_H / 2 - line_height / 2);
+    int draw_end = (WIN_H / 2 + line_height / 2);
     if (raycast.side == 0)
     {
         wall_coordinate = raycast.pos.y + raycast.dist_to_plane * raycast.ray_dir.y;
@@ -63,7 +65,6 @@ void draw_line(t_data *data, int x, int line_height, t_raycast raycast)
     }
     while (y <= draw_start)
     {
-        printf("%d\n", draw_start);
         set_pixel(data->screen_img, x, y, data->ceiling_color);
         y++;
     }
