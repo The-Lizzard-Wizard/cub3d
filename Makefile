@@ -46,14 +46,14 @@ libft:
 libmlx:
 	$(MAKE) --silent -C ./minilibx-linux 2> /dev/null
 
-$(NAME): $(OBJS) $(DEPS) $(INCS) Makefile $(LIB)
-	$(CC) $(CC_FLAGS) $(OBJS) -L minilibx-linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIB) $(MLX) -o $@
+$(NAME): $(OBJS) Makefile $(LIB)
+	$(CC) $(CC_FLAGS) $(OBJS) -L minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz $(LIB) $(MLX) -o $@
 	echo "$(BLUE)Your cub3D is ready $(END)"
 
 
 $(DIR_OBJS)/%.o: %.c Makefile 
 	mkdir -p $(dir $@) $(DIR_DEPS)/$(dir $*)
-	$(CC) $(CC_FLAGS) -I/usr/include -Imlx_linux -O3 -MMD -MP -MF $(DIR_DEPS)/$*.d -c -o $@ $<
+	$(CC) $(CC_FLAGS) -I/inc -Imlx_linux -O3 -MMD -MP -MF $(DIR_DEPS)/$*.d -c -o $@ $<
 
 # /////////////////////////
 
@@ -80,6 +80,8 @@ BLUE=\033[0;34m
 END=\033[0m
 
 # /////////////////////////
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re libft
 .SILENT:
