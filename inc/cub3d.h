@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/20 16:30:09 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:06:14 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_control
 	int move_s;
 	int move_d;
 	int move_a;
+	int move_left;
+	int move_right;
 } t_control;
 
 //===========================================
@@ -108,12 +110,13 @@ typedef struct s_thing
 
 typedef struct s_ui
 {
-	t_cub_img *wall_img;
-	t_cub_img *minimap_img;
-	t_cub_img *pl_img;
-	t_cub_img *mimp_frame;
-	t_cub_img *floor_img;
-	t_cub_img *font;
+	t_cub_img	*wall_img;
+	t_cub_img	*minimap_img;
+	t_cub_img	*pl_img;
+	t_cub_img	*mimp_frame;
+	t_cub_img	*floor_img;
+	t_cub_img	*font;
+	char		number_buffer[13];
 } t_ui;
 
 typedef struct s_map
@@ -126,13 +129,13 @@ typedef struct s_map
 typedef struct s_raycast
 {
 	t_vec2 pos; // player coordinates
-    t_vec2 dir; // player view angle, where he he's looking
-    t_vec2 plane; // view plane, normal vector to dir
+	t_vec2 dir; // player view angle, where he he's looking
+	t_vec2 plane; // view plane, normal vector to dir
 	t_vec2 ray_dir; // ray direction vector
-    t_vec2 dist_to_side; // the distance from the player to the first x side/y side (rn it's the first step)
-    t_vec2 next_step_size; // the distance from the x side / y side to the next one
-    t_int_pos2 map; // the square of the map the ray is in
-    double dist_to_plane; // distance of the wall to the plane
+	t_vec2 dist_to_side; // the distance from the player to the first x side/y side (rn it's the first step)
+	t_vec2 next_step_size; // the distance from the x side / y side to the next one
+	t_int_pos2 map; // the square of the map the ray is in
+	double dist_to_plane; // distance of the wall to the plane
 	double camera_pos; // x coordinate of the ray in the "camera"
 	t_vec2 step_dir; // the direction of the next step of the ray
 	int side; // which wall was hit? very explicit too
@@ -217,6 +220,7 @@ int set_map_id(t_map map, char id, size_t x, size_t y);
 int get_tablen(char **tab);
 size_t get_long_line_in_array(char **array);
 void print_char_array(char **array);
+void	itoa_buff(int n, char buff[11]);
 
 ////////////// ERROR //////////////
 
