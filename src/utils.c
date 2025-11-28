@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:04:07 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/28 15:59:23 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:30:03 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ size_t	get_long_line_in_array(char **array)
 	return (line);
 }
 
-//la fonction est atroce mais s'est normal :)
+//la fonction est atroce mais s'est normal je vien la changer:)
 void	itoa_buff(int n, char *buff)
 {
 	size_t		i;
