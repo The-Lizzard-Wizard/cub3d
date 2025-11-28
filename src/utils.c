@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:04:07 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/06 15:32:51 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:59:23 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,38 @@ size_t	get_long_line_in_array(char **array)
 		i++;
 	}
 	return (line);
+}
+
+//la fonction est atroce mais s'est normal :)
+void	itoa_buff(int n, char *buff)
+{
+	size_t		i;
+	int	is_n;
+	long int	cpy;
+
+	i = 0;
+	is_n = 0;
+	ft_bzero(buff, 13);
+	cpy = n;
+	if (n == 0)
+	{
+		buff[0] = '0';
+		return ;
+	}
+	if (!buff)
+		return ;
+	if (n < 0)
+	{
+		is_n = 1;
+		cpy = cpy * -1;
+	}
+	while (cpy > 0)
+	{
+		buff[i] = (cpy % 10) + '0';
+		cpy = cpy / 10;
+		i++;
+	}
+	if (is_n == 1)
+		buff[i] = '-';
+	i++;
 }

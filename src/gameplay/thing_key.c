@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   thing_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 12:00:51 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/28 16:21:55 by gchauvet         ###   ########.fr       */
+/*   Created: 2025/11/28 16:25:35 by gchauvet          #+#    #+#             */
+/*   Updated: 2025/11/28 17:00:53 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
 
-void	render(t_data *data)
+void	take_y_key(t_data *data, t_thing *to_del)
 {
-	raycaster(data);
-	if (data->game_state.toggle_minimap == 1)
-	{
-		draw_minimap(data, 2);
-		draw_hud(data);
-	}
-	draw_img(data, data->screen_img, 0, 0);
+	del_thing(to_del);
+	data->player.yellow_key = 1;
+}
+
+void	take_b_key(t_data *data, t_thing *to_del)
+{
+	del_thing(to_del);
+	data->player.blue_key = 1;
+}
+
+void	take_g_key(t_data *data, t_thing *to_del)
+{
+	del_thing(to_del);
+	data->player.green_key = 1;
+}
+
+void	take_r_key(t_data *data, t_thing *to_del)
+{
+	del_thing(to_del);
+	data->player.red_key = 1;
 }

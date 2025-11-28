@@ -1,7 +1,7 @@
 NO ./textures/024.xpm
-SO ./textures/043.xpm
-WE ./textures/089.xpm
-EA ./textures/090.xpm
+SO ./textures/024.xpm
+WE ./textures/024.xpm
+EA ./textures/024.xpm
 
 F 220,100,0
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:58:38 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/12 15:03:02 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:26:48 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,20 @@ int	init_mini_map(t_data *data)
 
 int	draw_player_pos(t_data *data)
 {
-	char	*ch_x;
-	char	*ch_y;
 	t_modify	mod;
 
 	init_modify(&mod);
 	mod.y = 128 * 2;
 	mod.sc_x = 2;
 	mod.sc_y = 2;
-	ch_x = ft_itoa(data->player.pos.x);
-	if (!ch_x)
-		return (EXIT_FAILURE);
-	ch_y = ft_itoa(data->player.pos.y);
-	if (!ch_y)
-		return (free_one_and_exit(ch_x, EXIT_FAILURE));
 	put_text_on_img(data->screen_img, data->ui.font, "(x:  y:  )", mod);
 	mod.x = 32 * 2;
-	put_text_on_img(data->screen_img, data->ui.font, ch_x, mod);
+	itoa_buff(data->player.pos.x, data->ui.number_buffer);
+	put_text_on_img(data->screen_img, data->ui.font, data->ui.number_buffer, mod);
 	mod.x = 32 * 5;
-	put_text_on_img(data->screen_img, data->ui.font, ch_y, mod);
-	return (free_too_and_exit(ch_x, ch_y, EXIT_SUCCESS));
+	itoa_buff(data->player.pos.y, data->ui.number_buffer);
+	put_text_on_img(data->screen_img, data->ui.font, data->ui.number_buffer, mod);
+	return (EXIT_SUCCESS);
 }
 
 void	draw_minimap(t_data *data, int map_size)
@@ -106,8 +100,6 @@ void	draw_minimap(t_data *data, int map_size)
 	mod.y = ((data->ui.mimp_frame->size_y / 2)\
 		- data->ui.pl_img->size_y / 2) * mod.sc_y;
 	draw_img_on_img(data->screen_img, data->ui.pl_img, mod);
-
-	
 	mod.x += data->player.view_angle.x * 10;
 	mod.y += data->player.view_angle.y * 10;
 	draw_img_on_img(data->screen_img, data->ui.pl_img, mod);

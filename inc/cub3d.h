@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/26 16:06:14 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:41:10 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ typedef struct s_cub_img
 
 typedef struct s_textures
 {
-	t_cub_img *tex_north;
-	t_cub_img *tex_south;
-	t_cub_img *tex_east;
-	t_cub_img *tex_west;
+	t_cub_img	*tex_north;
+	t_cub_img	*tex_south;
+	t_cub_img	*tex_east;
+	t_cub_img	*tex_west;
+	t_cub_img	*tex_r_key;
+	t_cub_img	*tex_y_key;
+	t_cub_img	*tex_b_key;
+	t_cub_img	*tex_g_key;
 } t_textures;
 
 typedef struct s_vec2
@@ -92,11 +96,15 @@ typedef struct s_game_state
 
 typedef struct s_player
 {
-	t_vec2 pos;
-	t_vec2 view_angle; // faudra faire les fonctions d'angle (rad)
-	t_vec2 camera_plane;
-	t_control control;
-	int score;
+	t_vec2		pos;
+	t_vec2		view_angle; // faudra faire les fonctions d'angle (rad)
+	t_vec2		camera_plane;
+	t_control	control;
+	int			score;
+	int			red_key;
+	int			yellow_key;
+	int			blue_key;
+	int			green_key;
 } t_player;
 
 typedef struct s_thing
@@ -170,9 +178,13 @@ void mouse_camera(t_data *data);
 //////////// GAMEPLAY /////////////
 
 t_thing	*get_last_thing(t_thing *thing_list);
-int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
+int		add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
 void	del_thing(t_thing *thing_to_del);
-int	collide_with_thing(t_data *data);
+int		collide_with_thing(t_data *data);
+void	take_y_key(t_data *data, t_thing *to_del);
+void	take_b_key(t_data *data, t_thing *to_del);
+void	take_g_key(t_data *data, t_thing *to_del);
+void	take_r_key(t_data *data, t_thing *to_del);
 
 //////////// GRAPHICS /////////////
 
@@ -194,6 +206,7 @@ void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
 /////////////// UI ///////////////
 
 void draw_minimap(t_data *data, int map_size);
+int draw_hud(t_data *data);
 
 //////////// PARS/INIT ////////////
 

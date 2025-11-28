@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/20 16:32:49 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:55:06 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ void	del_thing(t_thing *thing_to_del)
 		prev = thing_to_del->prev;
 	if (thing_to_del->next)
 		next = thing_to_del->next;
-	prev->next = next;
-	next->prev = prev;
+	if (prev && next)
+	{
+		prev->next = next;
+		next->prev = prev;
+	}
 	free(thing_to_del);
 }
 
@@ -76,7 +79,14 @@ int	check_collide_thing(t_data *data, t_vec2 pos, t_thing *thing)
 		&& pos.y >= thing->pos.y - THING_BOX_H / 2
 		&& pos.y <= thing->pos.y + THING_BOX_H / 2)
 	{
-		printf("collicde with thing\n");
+		if (thing->type == THING_Y_KEY)
+			take_y_key(data, thing);
+		else if (thing->type == THING_B_KEY)
+			take_b_key(data, thing);
+		else if (thing->type == THING_G_KEY)
+			take_g_key(data, thing);
+		else if (thing->type == THING_R_KEY)
+			take_r_key(data, thing);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -96,5 +106,7 @@ int	collide_with_thing(t_data *data)
 			return (EXIT_FAILURE);
 		curr_thing = curr_thing->next;
 	}
+	if (check_collide_thing(data, data->player.pos, curr_thing) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
