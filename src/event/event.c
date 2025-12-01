@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 11:01:09 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 11:45:57 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	event_listener(t_data *data)
 	mlx_hook(data->mlx_win, 2, (1L << 0), keypresse, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, keyrelease, data);
 	mlx_hook(data->mlx_win, DestroyNotify,
-	KeyPressMask, free_and_exit, &data);
+	KeyPressMask, free_and_exit, data);
 }

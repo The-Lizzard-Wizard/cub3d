@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/28 16:54:06 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 11:44:39 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 int free_and_exit(t_data *data)
 {
 	(void)data;
-	exit(EXIT_SUCCESS);
+	mlx_loop_end(data->mlx_ptr);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
