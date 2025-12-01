@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/18 14:45:29 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/12/01 10:41:47 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void dda(t_raycast *raycast, int *is_hit, t_data *data)
         wall_face_finder(raycast);
         if (raycast->map.x >= (int)data->map.width || raycast->map.x < 0 || raycast->map.y >= (int)data->map.height || raycast->map.y < 0)
             return ;
-        else if (data->map.grid[raycast->map.y][raycast->map.x] == '1')
+        else if (data->map.grid[raycast->map.y][raycast->map.x] == '1' || data->map.grid[raycast->map.y][raycast->map.x] == 'Y')
             *is_hit = 1;
     }
 }

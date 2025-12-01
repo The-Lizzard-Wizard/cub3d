@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/17 14:55:47 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 11:01:09 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	keypresse(int key, t_data *data)
 			mlx_mouse_hide(data->mlx_ptr, data->mlx_win);
 		switch_int(&data->game_state.camera_ctrl_type);
 	}
+	if (key == K_SPACE)
+		door_interact(data);
 	move_press(data, key);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/28 16:41:10 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 11:27:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,10 @@ typedef struct s_thing
 typedef struct s_ui
 {
 	t_cub_img	*wall_img;
+	t_cub_img	*y_door;
+	t_cub_img	*b_door;
+	t_cub_img	*g_door;
+	t_cub_img	*r_door;
 	t_cub_img	*minimap_img;
 	t_cub_img	*pl_img;
 	t_cub_img	*mimp_frame;
@@ -185,6 +189,7 @@ void	take_y_key(t_data *data, t_thing *to_del);
 void	take_b_key(t_data *data, t_thing *to_del);
 void	take_g_key(t_data *data, t_thing *to_del);
 void	take_r_key(t_data *data, t_thing *to_del);
+void		door_interact(t_data *data);
 
 //////////// GRAPHICS /////////////
 
@@ -207,6 +212,7 @@ void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
 
 void draw_minimap(t_data *data, int map_size);
 int draw_hud(t_data *data);
+int update_minimap(t_data *data);
 
 //////////// PARS/INIT ////////////
 
