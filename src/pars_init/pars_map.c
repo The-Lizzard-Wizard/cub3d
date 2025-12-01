@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:45 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:46:33 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <fcntl.h>
 #include "../../inc/pars.h"
 
+//leak chiant de map_inline
+//il est join avec lui meme et ne dois surment pas etre free dans le join
 char *get_map(t_pars *pars, int map_fd)
 {
 	char *map_inline;
@@ -46,7 +48,7 @@ void	print_char_array(char **array)
 
 int is_valid_adj(char adj_to_check)
 {
-	if (adj_to_check == '0' || adj_to_check == '1')
+	if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'Y' || adj_to_check == 'B'|| adj_to_check == 'G' || adj_to_check == 'R')
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }

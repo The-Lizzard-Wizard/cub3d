@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:01:01 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/12 14:16:36 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:39:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int	free_cub_img(t_data *data, t_cub_img *img, int code)
 {
-	//free(img->addr); why segfault ???????????
+	//free(img->addr);
 	mlx_destroy_image(data->mlx_ptr, img->mlx_img);
+	free(img);
 	return (code);
 }
 

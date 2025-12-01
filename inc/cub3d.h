@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 11:27:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:31:02 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ int free_and_exit(t_data *data);
 int free_one_and_exit(void *ptr, int code);
 int free_too_and_exit(void *ptr1, void *ptr2, int code);
 int free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
+int	free_array(char **tab, int code);
 
 //////////////// MAP //////////////
 

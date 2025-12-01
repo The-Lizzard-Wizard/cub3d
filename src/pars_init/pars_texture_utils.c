@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/12 14:11:08 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:42:16 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ int get_color_c(t_pars *pars, char *line)
 			return (EXIT_FAILURE);
 		*(pars->ceiling_color) = rgba_to_int_color(r, g, b, 0);
 		pars->c_color_check = 1;
+		free_array(raw, EXIT_SUCCESS);
 		return (EXIT_SUCCESS);
 	}
+	free_array(raw, EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
 
@@ -65,9 +67,10 @@ int get_color_f(t_pars *pars, char *line)
 			return (EXIT_FAILURE);
 		*(pars->floor_color) = rgba_to_int_color(r, g, b, 0);
 		pars->f_color_check = 1;
+		free_array(raw, EXIT_SUCCESS);
 		return (EXIT_SUCCESS);
 	}
-	
+	free_array(raw, EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 11:04:00 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:37:03 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	init_data(t_data *data)
 	data->player.control.move_s = 0;
 	data->player.control.move_d = 0;
 	data->player.control.move_a = 0;
+	data->player.control.move_left = 0;
+	data->player.control.move_right = 0;
 	data->game_state.toggle_collide = 1;
 	data->game_state.toggle_minimap = 1;
 	data->game_state.camera_ctrl_type = 1;
