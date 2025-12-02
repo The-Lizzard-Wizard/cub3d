@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 13:31:02 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:07:24 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_game_state
 typedef struct s_player
 {
 	t_vec2		pos;
-	t_vec2		view_angle; // faudra faire les fonctions d'angle (rad)
+	t_vec2		view_angle;
 	t_vec2		camera_plane;
 	t_control	control;
 	int			score;
@@ -109,9 +109,9 @@ typedef struct s_player
 
 typedef struct s_thing
 {
-	t_vec2		pos;
-	int			type;
-	t_cub_img	*texture;
+	t_vec2			pos;
+	int				type;
+	t_cub_img		*texture;
 	struct s_thing	*next;
 	struct s_thing	*prev;
 }	t_thing;
@@ -123,6 +123,8 @@ typedef struct s_ui
 	t_cub_img	*b_door;
 	t_cub_img	*g_door;
 	t_cub_img	*r_door;
+	t_cub_img	*door;
+	t_cub_img	*door_open;
 	t_cub_img	*minimap_img;
 	t_cub_img	*pl_img;
 	t_cub_img	*mimp_frame;
@@ -133,25 +135,25 @@ typedef struct s_ui
 
 typedef struct s_map
 {
-	char **grid;
-	size_t width;
-	size_t height;
+	char	**grid;
+	size_t	width;
+	size_t	height;
 } t_map;
 
 typedef struct s_raycast
 {
-	t_vec2 pos; // player coordinates
-	t_vec2 dir; // player view angle, where he he's looking
-	t_vec2 plane; // view plane, normal vector to dir
-	t_vec2 ray_dir; // ray direction vector
-	t_vec2 dist_to_side; // the distance from the player to the first x side/y side (rn it's the first step)
-	t_vec2 next_step_size; // the distance from the x side / y side to the next one
-	t_int_pos2 map; // the square of the map the ray is in
-	double dist_to_plane; // distance of the wall to the plane
-	double camera_pos; // x coordinate of the ray in the "camera"
-	t_vec2 step_dir; // the direction of the next step of the ray
-	int side; // which wall was hit? very explicit too
-	char wall_face;
+	t_vec2		pos; // player coordinates
+	t_vec2		dir; // player view angle, where he he's looking
+	t_vec2		plane; // view plane, normal vector to dir
+	t_vec2		ray_dir; // ray direction vector
+	t_vec2		dist_to_side; // the distance from the player to the first x side/y side (rn it's the first step)
+	t_vec2		next_step_size; // the distance from the x side / y side to the next one
+	t_int_pos2	map; // the square of the map the ray is in
+	double		dist_to_plane; // distance of the wall to the plane
+	double		camera_pos; // x coordinate of the ray in the "camera"
+	t_vec2		step_dir; // the direction of the next step of the ray
+	int			side; // which wall was hit? very explicit too
+	char		wall_face;
 } t_raycast;
 
 typedef struct s_data

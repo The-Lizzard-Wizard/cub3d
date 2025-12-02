@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:58:38 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 11:31:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:07:41 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int update_minimap(t_data *data)
 				draw_img_on_img(data->ui.minimap_img, data->ui.g_door, mod);
 			else if (data->map.grid[y][x] == 'R')
 				draw_img_on_img(data->ui.minimap_img, data->ui.r_door, mod);
+			else if (data->map.grid[y][x] == 'D')
+				draw_img_on_img(data->ui.minimap_img, data->ui.door, mod);
+			else if (data->map.grid[y][x] == 'd')
+				draw_img_on_img(data->ui.minimap_img, data->ui.door_open, mod);
 			x++;
 		}
 		y++;

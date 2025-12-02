@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 11:45:57 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:21:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,7 @@ int	keypresse(int key, t_data *data)
 	if (key == K_C)
 		switch_int(&data->game_state.toggle_collide);
 	if (key == K_M)
-	{
-		if (data->game_state.camera_ctrl_type == 0)
-			mlx_mouse_show(data->mlx_ptr, data->mlx_win);
-		else
-			mlx_mouse_hide(data->mlx_ptr, data->mlx_win);
 		switch_int(&data->game_state.camera_ctrl_type);
-	}
 	if (key == K_SPACE)
 		door_interact(data);
 	move_press(data, key);
