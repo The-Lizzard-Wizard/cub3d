@@ -72,10 +72,30 @@ void wall_face_finder(t_raycast *raycast)
 		raycast->wall_face = 'N';
 }
 
+char map_square_finder(t_data *data, int x, int y)
+{
+    if (x >= (int)data->map.width || x < 0 || y >= (int)data->map.height || y < 0)
+        return ('0');
+    return (data->map.grid[y][x]);
+}
+
+void wall_hit(t_data *data, t_raycast *ray, int *is_hit)
+{
+    if (map_square_finder(data, ray->map.x,ray->map.y) == '1' 
+                    || map_square_finder(data, ray->map.x, ray->map.y) == 'Y'
+					|| map_square_finder(data, ray->map.x, ray->map.y) == 'B'
+					|| map_square_finder(data, ray->map.x, ray->map.y) == 'G'
+					|| map_square_finder(data, ray->map.x, ray->map.y) == 'R')
+			*is_hit = 1;
+}
+
 void dda(t_raycast *raycast, int *is_hit, t_data *data)
 {
+    int i;
+
+    i = 0;
 	*is_hit = 0;
-	while (*is_hit == 0)
+	while (*is_hit == 0 && i <= 100)
 	{
 		if (raycast->dist_to_side.x < raycast->dist_to_side.y)
 		{
@@ -90,18 +110,10 @@ void dda(t_raycast *raycast, int *is_hit, t_data *data)
 			raycast->side = 1;
 		}
 		wall_face_finder(raycast);
-		if (raycast->map.x >= (int)data->map.width || raycast->map.x < 0 || raycast->map.y >= (int)data->map.height || raycast->map.y < 0)
-			return ;
-		else if (data->map.grid[raycast->map.y][raycast->map.x] == '1'
-					|| data->map.grid[raycast->map.y][raycast->map.x] == 'Y'
-					|| data->map.grid[raycast->map.y][raycast->map.x] == 'B'
-					|| data->map.grid[raycast->map.y][raycast->map.x] == 'G'
-					|| data->map.grid[raycast->map.y][raycast->map.x] == 'R')
-			*is_hit = 1;
+		wall_hit(data, raycast, is_hit);
+        i++;
 	}
 }
-
-
 
 void	raycaster(t_data *data)
 {
