@@ -23,7 +23,8 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/free.c src/graphics/graphics_shapes.c src/pars_init/init_data.c \
 	src/event/move.c src/event/mouse.c \
 	src/gameplay/thing.c src/ui/hud.c \
-	src/gameplay/thing_key.c src/gameplay/door.c
+	src/gameplay/thing_key.c src/gameplay/door.c \
+	src/ui/update_minimap.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a

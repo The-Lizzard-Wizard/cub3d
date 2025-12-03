@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/02 17:07:24 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:52:21 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_ui
 	t_cub_img	*mimp_frame;
 	t_cub_img	*floor_img;
 	t_cub_img	*font;
+	t_cub_img	*thing;
 	char		number_buffer[13];
 } t_ui;
 
@@ -185,7 +186,7 @@ void mouse_camera(t_data *data);
 
 t_thing	*get_last_thing(t_thing *thing_list);
 int		add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
-void	del_thing(t_thing *thing_to_del);
+void	del_thing(t_data *data, t_thing *thing_to_del);
 int		collide_with_thing(t_data *data);
 void	take_y_key(t_data *data, t_thing *to_del);
 void	take_b_key(t_data *data, t_thing *to_del);

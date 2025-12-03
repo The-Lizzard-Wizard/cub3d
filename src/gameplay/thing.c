@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/28 16:55:06 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:51:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type)
 	return (EXIT_SUCCESS);
 }
 
-void	del_thing(t_thing *thing_to_del)
+void	del_thing(t_data *data, t_thing *thing_to_del)
 {
 	t_thing	*prev;
 	t_thing	*next;
@@ -69,6 +69,7 @@ void	del_thing(t_thing *thing_to_del)
 		next->prev = prev;
 	}
 	free(thing_to_del);
+	update_minimap(data);
 }
 
 int	check_collide_thing(t_data *data, t_vec2 pos, t_thing *thing)

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:01:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/02 17:08:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:22:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	init_ui(t_data *data)
 	data->ui.door_open = new_xpm_img(data, "textures/door_open.xpm");
 	data->ui.mimp_frame = new_xpm_img(data, "textures/minimap_frame.xpm");
 	data->ui.font = new_xpm_img(data, "textures/font.xpm");
+	data->ui.thing = new_xpm_img(data, "textures/thing.xpm");
 	if (check_ui_img(data) == EXIT_FAILURE)
 	{
 		print_error(ER_INIT_UI_IMG);
