@@ -1,7 +1,7 @@
-NO ./textures/024.xpm
-SO ./textures/043.xpm
-WE ./textures/089.xpm
-EA ./textures/090.xpm
+NO ./textures/door.xpm
+SO ./textures/door.xpm
+WE ./textures/door.xpm
+EA ./textures/door.xpm
 
 F 220,100,0
 C 225,30,0
@@ -11,7 +11,7 @@ C 225,30,0
 1000000000001
 10N0000000001
 1000000000001
-1000000000001
+1000000100001
 1000000000001
 1000000000001
 1000000000001

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/28 16:25:04 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:42:40 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ int draw_hud(t_data *data)
 	t_modify	mod;
 
 	init_modify(&mod);
-	mod.sc_x = 2;
-	mod.sc_y = 2;
+	mod.sc_x = 3;
+	mod.sc_y = 3;
 	mod.x = 0;
-	mod.y = WIN_H - 32;
+	mod.y = WIN_H - (16 * mod.sc_y);
 	if (data->player.yellow_key == 1)
 		draw_img_on_img(data->screen_img, data->textures.tex_y_key, mod);
-	mod.x += 32;
+	mod.x += (16 * mod.sc_x);
 	if (data->player.blue_key == 1)
 		draw_img_on_img(data->screen_img, data->textures.tex_b_key, mod);
-	mod.x += 32;
+	mod.x += (16 * mod.sc_x);
 	if (data->player.green_key == 1)
 		draw_img_on_img(data->screen_img, data->textures.tex_g_key, mod);
-	mod.x += 32;
+	mod.x += (16 * mod.sc_x);
 	if (data->player.red_key == 1)
 		draw_img_on_img(data->screen_img, data->textures.tex_r_key, mod);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:04:07 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/28 17:30:03 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:57:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,44 @@ size_t	get_long_line_in_array(char **array)
 	return (line);
 }
 
-//la fonction est atroce mais s'est normal je vien la changer:)
+static size_t	get_malloclen(int n)
+{
+	int		cpy;
+	size_t	i;
+
+	i = 1;
+	cpy = n;
+	if (n <= 0)
+		i += 1;
+	while (cpy != 0)
+	{
+		cpy /= 10;
+		i++;
+	}
+	return (i);
+}
+
 void	itoa_buff(int n, char *buff)
 {
 	size_t		i;
-	int	is_n;
 	long int	cpy;
 
-	i = 0;
-	is_n = 0;
-	ft_bzero(buff, 13);
+	i = get_malloclen(n);
 	cpy = n;
-	if (n == 0)
-	{
-		buff[0] = '0';
-		return ;
-	}
+	ft_bzero(buff, i + 1);
 	if (!buff)
 		return ;
 	if (n < 0)
 	{
-		is_n = 1;
-		cpy = cpy * -1;
+		buff[0] = '-';
+		cpy *= -1;
 	}
-	while (cpy > 0)
+	i -= 2;
+	while (cpy >= 10)
 	{
 		buff[i] = (cpy % 10) + '0';
 		cpy = cpy / 10;
-		i++;
+		i--;
 	}
-	if (is_n == 1)
-		buff[i] = '-';
-	i++;
+	buff[i] = (cpy % 10) + '0';
 }
