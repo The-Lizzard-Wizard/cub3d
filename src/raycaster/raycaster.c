@@ -18,6 +18,10 @@ void raycast_init_subs(t_raycast *raycast, t_data *data)
 	raycast->pos = data->player.pos;
 	raycast->dir = data->player.view_angle;
 	raycast->plane = data->player.camera_plane;
+	raycast->step = 0;
+    raycast->tex_pos = 0;
+    raycast->tex_x = 0;
+    raycast->tex_y = 0;
 }
 
 void raycast_init_x(t_raycast *raycast)
@@ -91,11 +95,11 @@ void wall_hit(t_data *data, t_raycast *ray, int *is_hit)
 
 void dda(t_raycast *raycast, int *is_hit, t_data *data)
 {
-    int i;
+    int render_dist;
 
-    i = 0;
+    render_dist = 0;
 	*is_hit = 0;
-	while (*is_hit == 0 && i <= 100)
+	while (*is_hit == 0 && render_dist <= 100)
 	{
 		if (raycast->dist_to_side.x < raycast->dist_to_side.y)
 		{
@@ -111,7 +115,7 @@ void dda(t_raycast *raycast, int *is_hit, t_data *data)
 		}
 		wall_face_finder(raycast);
 		wall_hit(data, raycast, is_hit);
-        i++;
+        render_dist++;
 	}
 }
 

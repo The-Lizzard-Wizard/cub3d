@@ -13,93 +13,74 @@
 #include "../../inc/cub3d.h"
 #include <math.h>
 
-void draw_line(t_data *data, int x, int line_height, t_raycast raycast)
+void init_wall_coordinate(t_raycast *raycast)
 {
-    int y = 0;
-    double wall_coordinate;
-    double step = 0;
-    double tex_pos = 0;
-    int tex_x = 0;
-    int tex_y = 0;
-    t_color wall_color;
-
-    if (line_height < 0)
-        line_height = WIN_H * data->textures.tex_north->size_y;
-    int draw_start = (WIN_H / 2 - line_height / 2);
-    int draw_end = (WIN_H / 2 + line_height / 2);
-    if (raycast.side == 0)
+    if (raycast->side == 0)
     {
-        wall_coordinate = raycast.pos.y + raycast.dist_to_plane * raycast.ray_dir.y;
-        wall_coordinate -= floor(wall_coordinate);   
+        raycast->wall_coordinate = raycast->pos.y + raycast->dist_to_plane * raycast->ray_dir.y;
+        raycast->wall_coordinate -= floor(raycast->wall_coordinate);   
     }
     else
     {
-        wall_coordinate = raycast.pos.x + raycast.dist_to_plane * raycast.ray_dir.x;
-        wall_coordinate -= floor(wall_coordinate);
+        raycast->wall_coordinate = raycast->pos.x + raycast->dist_to_plane * raycast->ray_dir.x;
+        raycast->wall_coordinate -= floor(raycast->wall_coordinate);
     }
+}
+
+void texture_finder(t_data *data, t_raycast raycast, t_cub_img **texture)
+{
     if (raycast.wall_face == 'N')
-    {
-        tex_x = wall_coordinate * data->textures.tex_north->size_x;
-        tex_x = data->textures.tex_west->size_x - tex_x - 1;
-        step = 1.0 * data->textures.tex_north->size_y / line_height;
-        tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * step;
-    }
+        *texture = data->textures.tex_north;
     else if (raycast.wall_face == 'S')
-    {
-        tex_x = wall_coordinate * data->textures.tex_south->size_x;
-        step = 1.0 * data->textures.tex_south->size_y / line_height;
-        tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * step;
-    }
-    else if (raycast.wall_face == 'W')
-    {
-        tex_x = wall_coordinate * data->textures.tex_west->size_x;
-        step = 1.0 * data->textures.tex_west->size_y / line_height;
-        tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * step;
-    }
+        *texture = data->textures.tex_south;
     else if (raycast.wall_face == 'E')
+        *texture = data->textures.tex_east;
+    else
+        *texture = data->textures.tex_west;
+}
+
+void draw_line(t_data *data, int x, int line_height, t_raycast raycast)
+{
+    int y;
+    t_color wall_color;
+    t_cub_img *texture;
+    int draw_start;
+    int draw_end;
+
+    texture_finder(data, raycast, &texture);
+    if (line_height < 0)
+        line_height = WIN_H * texture->size_y;
+    draw_start = (WIN_H / 2 - line_height / 2);
+    draw_end = (WIN_H / 2 + line_height / 2);
+    init_wall_coordinate(&raycast);
+    if (raycast.wall_face == 'N' || raycast.wall_face == 'E')
     {
-        tex_x = wall_coordinate * data->textures.tex_east->size_x;
-        tex_x = data->textures.tex_west->size_x - tex_x - 1;
-        step = 1.0 * data->textures.tex_east->size_y / line_height;
-        tex_pos = (draw_start + line_height / 2 - WIN_H /2) * step;
+        raycast.tex_x = raycast.wall_coordinate * texture->size_x;
+        raycast.tex_x = texture->size_x - raycast.tex_x - 1;
+        raycast.step = 1.0 * texture->size_y / line_height;
+        raycast.tex_pos = (draw_start + line_height / 2 - WIN_H / 2) *raycast.step;
     }
+    else
+    {
+        raycast.tex_x = raycast.wall_coordinate * texture->size_x;
+        raycast.step = 1.0 * texture->size_y / line_height;
+        raycast.tex_pos = (draw_start + line_height / 2 - WIN_H / 2) * raycast.step;
+    }
+    y = 0;
     while (y <= draw_start)
     {
         set_pixel(data->screen_img, x, y, data->ceiling_color);
         y++;
     }
     if (draw_start < 0)
-        tex_pos += step * (-draw_start);
+        raycast.tex_pos += raycast.step * (-draw_start);
     while(y < draw_end)
     {
         if (y > WIN_H)
             break ;
-        if (raycast.wall_face == 'N')
-        {
-            tex_y = (int)tex_pos & (data->textures.tex_north->size_y - 1);
-            wall_color = get_pixel(data->textures.tex_north, tex_x, tex_y);
-            tex_pos += step;
-        }
-        else if (raycast.wall_face == 'S')
-        {
-            tex_y = (int)tex_pos & (data->textures.tex_south->size_y - 1);
-            wall_color = get_pixel(data->textures.tex_south, tex_x, tex_y);
-            tex_pos += step;
-        }
-        else if (raycast.wall_face == 'W')
-        {
-            tex_y = (int)tex_pos & (data->textures.tex_west->size_y - 1);
-            wall_color = get_pixel(data->textures.tex_west, tex_x, tex_y);
-            tex_pos += step;
-        }
-        else if (raycast.wall_face == 'E')
-        {
-            tex_y = (int)tex_pos & (data->textures.tex_east->size_y - 1);
-            wall_color = get_pixel(data->textures.tex_east, tex_x, tex_y);
-            tex_pos += step;
-        }
-        else
-            wall_color = rgba_to_int_color(0, 255, 255, 0);
+        raycast.tex_y = (int)raycast.tex_pos & (texture->size_y - 1);
+        wall_color = get_pixel(texture, raycast.tex_x, raycast.tex_y);
+        raycast.tex_pos += raycast.step;
         set_pixel(data->screen_img, x, y, wall_color);
         y++;
     }
