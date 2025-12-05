@@ -153,6 +153,11 @@ typedef struct s_raycast
 	double		camera_pos; // x coordinate of the ray in the "camera"
 	t_vec2		step_dir; // the direction of the next step of the ray
 	int			side; // which wall was hit? very explicit too
+	double wall_coordinate;
+    double step;
+    double tex_pos;
+    int tex_x;
+    int tex_y;
 	char		wall_face;
 } t_raycast;
 
@@ -242,7 +247,7 @@ int set_map_id(t_map map, char id, size_t x, size_t y);
 int get_tablen(char **tab);
 size_t get_long_line_in_array(char **array);
 void print_char_array(char **array);
-void	itoa_buff(int n, char buff[11]);
+void	itoa_buff(int n, char *buff);
 
 ////////////// ERROR //////////////
 
