@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 16:52:21 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:49:44 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_raycast
     int tex_x;
     int tex_y;
 	char		wall_face;
+	double	z_buffer[WIN_W];
 } t_raycast;
 
 typedef struct s_data
@@ -175,6 +176,9 @@ typedef struct s_data
 	t_ui			ui;
 	t_game_state	game_state;
 	t_thing			*thing_list;
+	int				nb_thing;
+	int				*sprite_order;
+	double			*sprite_distance;
 } t_data;
 
 ////////////// EVENT //////////////
@@ -198,6 +202,8 @@ void	take_b_key(t_data *data, t_thing *to_del);
 void	take_g_key(t_data *data, t_thing *to_del);
 void	take_r_key(t_data *data, t_thing *to_del);
 void		door_interact(t_data *data);
+int	get_nb_things(t_thing *list);
+int	update_sprite_info(t_data *data);
 
 //////////// GRAPHICS /////////////
 
@@ -215,6 +221,7 @@ void render(t_data *data);
 void init_modify(t_modify *mod);
 void raycaster(t_data *data);
 void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
+void	draw_sprite(t_data *data, t_raycast *raycast);
 
 /////////////// UI ///////////////
 
