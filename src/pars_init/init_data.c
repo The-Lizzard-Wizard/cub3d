@@ -22,6 +22,16 @@ int check_tex(t_data *data)
 		return (EXIT_FAILURE);
 	if (!data->textures.tex_r_key)
 		return (EXIT_FAILURE);
+	if (!data->textures.tex_r_door)
+		return (EXIT_FAILURE);
+	if (!data->textures.tex_b_door)
+		return (EXIT_FAILURE);
+	if (!data->textures.tex_g_door)
+		return (EXIT_FAILURE);
+	if (!data->textures.tex_y_door)
+		return (EXIT_FAILURE);
+	if (!data->textures.tex_door)
+		return (EXIT_FAILURE);	
 	return (EXIT_SUCCESS);
 }
 
@@ -31,6 +41,11 @@ int	load_textures(t_data *data)
 	data->textures.tex_b_key = new_xpm_img(data, "textures/blue_key.xpm");
 	data->textures.tex_g_key = new_xpm_img(data, "textures/green_key.xpm");
 	data->textures.tex_r_key = new_xpm_img(data, "textures/red_key.xpm");
+	data->textures.tex_r_door = new_xpm_img(data, "textures/door_r.xpm");
+	data->textures.tex_g_door = new_xpm_img(data, "textures/door_g.xpm");
+	data->textures.tex_b_door = new_xpm_img(data, "textures/door_b.xpm");
+	data->textures.tex_y_door = new_xpm_img(data, "textures/door_y.xpm");
+	data->textures.tex_door = new_xpm_img(data, "textures/door.xpm");
 	if (check_tex(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

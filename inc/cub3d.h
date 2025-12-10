@@ -54,6 +54,11 @@ typedef struct s_textures
 	t_cub_img	*tex_y_key;
 	t_cub_img	*tex_b_key;
 	t_cub_img	*tex_g_key;
+	t_cub_img	*tex_r_door;
+	t_cub_img	*tex_y_door;
+	t_cub_img	*tex_g_door;
+	t_cub_img	*tex_b_door;
+	t_cub_img	*tex_door;
 } t_textures;
 
 typedef struct s_vec2
@@ -268,6 +273,7 @@ int	free_array(char **tab, int code);
 
 char get_map_id(t_map map, size_t x, size_t y);
 int set_map_id(t_map map, char id, size_t x, size_t y);
+char map_square_finder(t_data *data, int x, int y);
 
 ////////////// UTILS //////////////
 

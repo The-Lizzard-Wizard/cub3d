@@ -89,7 +89,8 @@ void wall_hit(t_data *data, t_raycast *ray, int *is_hit)
                     || map_square_finder(data, ray->map.x, ray->map.y) == 'Y'
 					|| map_square_finder(data, ray->map.x, ray->map.y) == 'B'
 					|| map_square_finder(data, ray->map.x, ray->map.y) == 'G'
-					|| map_square_finder(data, ray->map.x, ray->map.y) == 'R')
+					|| map_square_finder(data, ray->map.x, ray->map.y) == 'R'
+					|| map_square_finder(data, ray->map.x, ray->map.y) == 'D')
 			*is_hit = 1;
 }
 
