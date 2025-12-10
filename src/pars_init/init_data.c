@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 13:37:03 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:55:43 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	init_data(t_data *data)
 	data->player.blue_key = 0;
 	data->player.green_key = 0;
 	data->player.yellow_key = 0;
+	data->sprite_distance = NULL;
+	data->sprite_order = NULL;
 	load_textures(data);
 	return (EXIT_SUCCESS);
 }

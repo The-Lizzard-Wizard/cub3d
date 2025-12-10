@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/08 13:49:44 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:32:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,24 @@ typedef struct s_raycast
 	double	z_buffer[WIN_W];
 } t_raycast;
 
+typedef struct s_sprite_cast
+{
+	t_vec2	sprite_pos;
+	double	inv_det;
+	t_vec2 	transform;
+	int sprite_sreen_x;
+	int sprite_h;
+	int sprite_w;
+	int	sp_start_x;
+	int	sp_end_x;
+	int	sp_start_y;
+	int	sp_end_y;
+	int	stripe;
+	int	tex_x;
+	int	tex_y;
+	int	b_factor;
+}	t_sprite_cast;
+
 typedef struct s_data
 {
 	t_map			map;
@@ -204,6 +222,7 @@ void	take_r_key(t_data *data, t_thing *to_del);
 void		door_interact(t_data *data);
 int	get_nb_things(t_thing *list);
 int	update_sprite_info(t_data *data);
+t_thing	*get_thing_by_id(t_thing *list, int id);
 
 //////////// GRAPHICS /////////////
 

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 16:45:57 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:31:51 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,19 @@ int	main(int argc, char **argv)
 	t_vec2 pos;
 	pos.x = 2.5;
 	pos.y = 2.5;
-	add_thing(&data, data.textures.tex_north, pos, THING_Y_KEY);
+	add_thing(&data, data.textures.tex_y_key, pos, THING_Y_KEY);
 	pos.x = 3;
 	pos.y = 2;
-	add_thing(&data, data.textures.tex_north, pos, THING_B_KEY);
+	add_thing(&data, data.textures.tex_b_key, pos, THING_B_KEY);
 	pos.x = 5;
 	pos.y = 2;
-	add_thing(&data, data.textures.tex_north, pos, THING_G_KEY);
+	add_thing(&data, data.textures.tex_g_key, pos, THING_G_KEY);
 	pos.x = 6;
 	pos.y = 2;
-	add_thing(&data, data.textures.tex_north, pos, THING_R_KEY);
+	add_thing(&data, data.textures.tex_r_key, pos, THING_R_KEY);
+	update_sprite_info(&data);
+	t_thing *random_thing = get_thing_by_id(data.thing_list, 0);
+	printf("%f %f\n", random_thing->pos.x, random_thing->pos.y);
 	update_minimap(&data);
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);

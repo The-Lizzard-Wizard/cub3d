@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:06:28 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 16:50:06 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:13:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ static void	draw_tile_type(t_data *data, size_t x, size_t y, t_modify mod)
 		draw_img_on_img(data->ui.minimap_img, data->ui.door, mod);
 	else if (data->map.grid[y][x] == 'd')
 		draw_img_on_img(data->ui.minimap_img, data->ui.door_open, mod);
+	else if (data->map.grid[y][x] == ' ')
+	{
+		mod.sc_x = 8;
+		mod.sc_y = 8;
+		draw_recangle(data->ui.minimap_img, 0, FILL, mod);
+		mod.sc_x = 1;
+		mod.sc_y = 1;
+	}
 }
 
 void	draw_thing_on_minimap(t_data *data, t_modify mod)

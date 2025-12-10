@@ -6,13 +6,64 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 16:51:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:22:50 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "../../inc/define.h"
 #include <stdio.h>
+
+int	get_nb_things(t_thing *list)
+{
+	t_thing	*curr_thing;
+	int	nb;
+
+	nb = 1;
+	if (list == NULL)
+		return (0);
+	curr_thing = list;
+	while (curr_thing->next != NULL)
+	{
+		curr_thing = curr_thing->next;
+		nb++;
+	}
+	return (nb);
+}
+int	update_sprite_info(t_data *data)
+{
+	data->nb_thing = get_nb_things(data->thing_list);
+	if (data->sprite_distance)
+		free(data->sprite_distance);
+	if (data->sprite_order)
+		free(data->sprite_order);
+	data->sprite_distance = ft_calloc(data->nb_thing, sizeof(double));
+	if (!data->sprite_distance)
+		return (EXIT_FAILURE);
+	data->sprite_order = ft_calloc(data->nb_thing, sizeof(int));
+	if (!data->sprite_order)
+		return (free_one_and_exit(data->sprite_distance, EXIT_FAILURE));
+	return (EXIT_SUCCESS);
+}
+
+t_thing	*get_thing_by_id(t_thing *list, int id)
+{
+	t_thing	*curr_thing;
+	int		i;
+
+	i = 0;
+	if (list == NULL)
+		return (NULL);
+	curr_thing = list;
+	while (curr_thing->next != NULL && i < id)
+	{
+		if (curr_thing->next == NULL)
+			return (NULL);
+		curr_thing = curr_thing->next;
+		i++;
+	}
+	return (curr_thing);
+}
 
 t_thing	*get_last_thing(t_thing *thing_list)
 {
@@ -54,22 +105,27 @@ int	add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type)
 
 void	del_thing(t_data *data, t_thing *thing_to_del)
 {
-	t_thing	*prev;
-	t_thing	*next;
-
-	next = NULL;
-	prev = NULL;
-	if (thing_to_del->prev)
-		prev = thing_to_del->prev;
-	if (thing_to_del->next)
-		next = thing_to_del->next;
-	if (prev && next)
+	if (thing_to_del == NULL)
+		return ;
+	if (!(thing_to_del->next == NULL && thing_to_del->prev == NULL))
 	{
-		prev->next = next;
-		next->prev = prev;
+		if (thing_to_del->prev == NULL && thing_to_del->next != NULL)
+		{
+			thing_to_del->next->prev = NULL;
+			data->thing_list = thing_to_del->next;
+		}
+		else if (thing_to_del->next == NULL && thing_to_del->prev != NULL)
+			thing_to_del->prev->next = NULL;
+		else
+		{
+			thing_to_del->next->prev = thing_to_del->prev;
+			thing_to_del->prev->next = thing_to_del->next;
+		}
 	}
 	free(thing_to_del);
 	update_minimap(data);
+	update_sprite_info(data);
+	ft_printf("%d\n", data->nb_thing);
 }
 
 int	check_collide_thing(t_data *data, t_vec2 pos, t_thing *thing)
