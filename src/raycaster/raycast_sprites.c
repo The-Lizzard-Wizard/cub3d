@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:42:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/10 15:36:16 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:19:11 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 void	sort_sprite(t_data *data, t_raycast raycast)
 {
 	int	i;
+	int	j;
+	int	tmp;
+	double	dtmp;
 	t_thing	*thing_curr;
 
 	i = 0;
@@ -25,6 +28,26 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 		thing_curr = get_thing_by_id(data->thing_list, i);
 		data->sprite_order[i] = i;
 		data->sprite_distance[i] = ((raycast.pos.x - thing_curr->pos.x) * (raycast.pos.x - thing_curr->pos.x) + (raycast.pos.y - thing_curr->pos.y) * raycast.pos.y - thing_curr->pos.y);
+		i++;
+	}
+	i = 0;
+	j = 0;
+	while (i < data->nb_thing)
+	{
+		j = i + 1;
+		while (j < data->nb_thing)
+		{
+			if (data->sprite_distance[j] > data->sprite_distance[i])
+			{
+				tmp = data->sprite_order[i];
+				dtmp = data->sprite_distance[i];
+				data->sprite_order[i] = data->sprite_order[j];
+				data->sprite_order[j] = tmp;
+				data->sprite_distance[i] = data->sprite_distance[j];
+				data->sprite_distance[j] = dtmp;
+			}
+			j++;
+		}
 		i++;
 	}
 	//sort la liste chainer de sprite ici
@@ -59,10 +82,10 @@ void	draw_sprite(t_data *data, t_raycast *raycast)
 		
 		sprite_cast.sprite_h = abs((int)(WIN_H / sprite_cast.transform.y));
 		//printf("t y -%f-\n", sprite_cast.transform.y);
-		sprite_cast.sp_start_y =  WIN_H / 2 - sprite_cast.sprite_h / 2;
+		sprite_cast.sp_start_y =  -sprite_cast.sprite_h / 2 + WIN_H / 2;
 		if (sprite_cast.sp_start_y < 0)
 			sprite_cast.sp_start_y = 0;
-		sprite_cast.sp_end_y = WIN_H / 2 + sprite_cast.sprite_h / 2;
+		sprite_cast.sp_end_y = sprite_cast.sprite_h / 2 + WIN_H / 2;
 		if (sprite_cast.sp_end_y >= WIN_H)
 			sprite_cast.sp_end_y = WIN_H - 1;
 
@@ -81,7 +104,7 @@ void	draw_sprite(t_data *data, t_raycast *raycast)
 		while (sprite_cast.stripe < sprite_cast.sp_end_x)
 		{
 			sprite_cast.tex_x = (int)(256 * (sprite_cast.stripe - (-sprite_cast.sprite_w / 2 + sprite_cast.sprite_sreen_x)) * thing_curr->texture->size_x / sprite_cast.sprite_w) / 256;
-			if (sprite_cast.transform.x > 0 && sprite_cast.stripe > 0 && sprite_cast.stripe <= WIN_W && sprite_cast.transform.y < raycast->z_buffer[sprite_cast.stripe])
+			if (sprite_cast.transform.y > 0 && sprite_cast.stripe > 0 && sprite_cast.stripe <= WIN_W && sprite_cast.transform.y < raycast->z_buffer[sprite_cast.stripe])
 			{
 				y = sprite_cast.sp_start_y;
 				while (y < sprite_cast.sp_end_y)

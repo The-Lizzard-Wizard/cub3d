@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/09 16:32:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:21:50 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,10 @@ typedef struct s_ui
 	t_cub_img	*b_door;
 	t_cub_img	*g_door;
 	t_cub_img	*r_door;
+	t_cub_img	*tex_r_key;
+	t_cub_img	*tex_y_key;
+	t_cub_img	*tex_b_key;
+	t_cub_img	*tex_g_key;
 	t_cub_img	*door;
 	t_cub_img	*door_open;
 	t_cub_img	*minimap_img;

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:01:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 16:22:12 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:23:30 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ int	check_ui_img(t_data *data)
 		return (EXIT_FAILURE);
 	if (!data->ui.door)
 		return (EXIT_FAILURE);
+	if (!data->ui.tex_y_key)
+		return (EXIT_FAILURE);
+	if (!data->ui.tex_g_key)
+		return (EXIT_FAILURE);
+	if (!data->ui.tex_b_key)
+		return (EXIT_FAILURE);
+	if (!data->ui.tex_r_key)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -51,6 +59,10 @@ int	init_ui(t_data *data)
 	data->ui.mimp_frame = new_xpm_img(data, "textures/minimap_frame.xpm");
 	data->ui.font = new_xpm_img(data, "textures/font.xpm");
 	data->ui.thing = new_xpm_img(data, "textures/thing.xpm");
+	data->ui.tex_y_key = new_xpm_img(data, "textures/ui_yellow_key.xpm");
+	data->ui.tex_b_key = new_xpm_img(data, "textures/ui_blue_key.xpm");
+	data->ui.tex_g_key = new_xpm_img(data, "textures/ui_green_key.xpm");
+	data->ui.tex_r_key = new_xpm_img(data, "textures/ui_red_key.xpm");
 	if (check_ui_img(data) == EXIT_FAILURE)
 	{
 		print_error(ER_INIT_UI_IMG);

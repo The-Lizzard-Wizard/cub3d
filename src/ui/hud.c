@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 15:42:40 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:23:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int draw_hud(t_data *data)
 	mod.x = 0;
 	mod.y = WIN_H - (16 * mod.sc_y);
 	if (data->player.yellow_key == 1)
-		draw_img_on_img(data->screen_img, data->textures.tex_y_key, mod);
+		draw_img_on_img(data->screen_img, data->ui.tex_y_key, mod);
 	mod.x += (16 * mod.sc_x);
 	if (data->player.blue_key == 1)
-		draw_img_on_img(data->screen_img, data->textures.tex_b_key, mod);
+		draw_img_on_img(data->screen_img, data->ui.tex_b_key, mod);
 	mod.x += (16 * mod.sc_x);
 	if (data->player.green_key == 1)
-		draw_img_on_img(data->screen_img, data->textures.tex_g_key, mod);
+		draw_img_on_img(data->screen_img, data->ui.tex_g_key, mod);
 	mod.x += (16 * mod.sc_x);
 	if (data->player.red_key == 1)
-		draw_img_on_img(data->screen_img, data->textures.tex_r_key, mod);
+		draw_img_on_img(data->screen_img, data->ui.tex_r_key, mod);
 	return (EXIT_SUCCESS);
 }
