@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/10 16:21:50 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/12 17:37:50 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,10 @@ typedef struct s_sprite_cast
 	int	tex_x;
 	int	tex_y;
 	int	b_factor;
+	double tex_step_x;
+	double tex_step_y;
+	double tex_pos;
+	double size_factor;
 }	t_sprite_cast;
 
 typedef struct s_data
