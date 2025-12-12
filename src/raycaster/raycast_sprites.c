@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:42:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/12 18:32:04 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/12 18:33:03 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	swap_order(t_data *data, int i, int j)
 void	sort_sprite(t_data *data, t_raycast raycast)
 {
 	int		i;
+	int		j;
 	t_thing	*thing_curr;
 
 	i = 0;
