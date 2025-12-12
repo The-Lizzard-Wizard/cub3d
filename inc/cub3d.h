@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/12 17:37:50 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/12 18:22:20 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ void render(t_data *data);
 void init_modify(t_modify *mod);
 void raycaster(t_data *data);
 void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
-void	draw_sprite(t_data *data, t_raycast *raycast);
+void	sprite_casting(t_data *data, t_raycast *raycast);
 
 /////////////// UI ///////////////
 
