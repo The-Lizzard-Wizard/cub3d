@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 15:21:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:22:37 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,15 @@ int	keypresse(int key, t_data *data)
 		switch_int(&data->game_state.toggle_collide);
 	if (key == K_M)
 		switch_int(&data->game_state.camera_ctrl_type);
-	if (key == K_SPACE)
-		door_interact(data);
+	if (is_out_of_bounds(data) == 0)
+	{
+		if (key == K_SPACE)
+			door_interact(data);
+		if (key == K_SPACE)
+		{
+			shoot(data);
+		}
+	}
 	move_press(data, key);
 	return (EXIT_SUCCESS);
 }

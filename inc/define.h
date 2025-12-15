@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 10:35:02 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/13 16:51:03 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 typedef enum e_thing_type
 {
 	THING_COLLECT,
+	THING_BULLET,
 	THING_PROPS,
 	THING_Y_KEY,
 	THING_R_KEY,

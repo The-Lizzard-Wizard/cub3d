@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/09 17:31:51 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 13:45:10 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ int	main(int argc, char **argv)
 	pos.y = 2;
 	add_thing(&data, data.textures.tex_r_key, pos, THING_R_KEY);
 	update_sprite_info(&data);
-	t_thing *random_thing = get_thing_by_id(data.thing_list, 0);
-	printf("%f %f\n", random_thing->pos.x, random_thing->pos.y);
 	update_minimap(&data);
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);

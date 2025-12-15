@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/12 18:22:20 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:22:01 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_textures
 	t_cub_img	*tex_g_door;
 	t_cub_img	*tex_b_door;
 	t_cub_img	*tex_door;
+	t_cub_img	*tex_magic_shoot;
 } t_textures;
 
 typedef struct s_vec2
@@ -115,6 +116,8 @@ typedef struct s_player
 typedef struct s_thing
 {
 	t_vec2			pos;
+	t_vec2			vel;
+	int				del;
 	int				type;
 	t_cub_img		*texture;
 	struct s_thing	*next;
@@ -207,6 +210,7 @@ typedef struct s_data
 	t_ui			ui;
 	t_game_state	game_state;
 	t_thing			*thing_list;
+	t_thing			*things_to_del; //ne sert pas pour le moment
 	int				nb_thing;
 	int				*sprite_order;
 	double			*sprite_distance;
@@ -225,17 +229,19 @@ void mouse_camera(t_data *data);
 //////////// GAMEPLAY /////////////
 
 t_thing	*get_last_thing(t_thing *thing_list);
-int		add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
+t_thing	*add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
 void	del_thing(t_data *data, t_thing *thing_to_del);
-int		collide_with_thing(t_data *data);
+int		update_thing(t_data *data);
 void	take_y_key(t_data *data, t_thing *to_del);
 void	take_b_key(t_data *data, t_thing *to_del);
 void	take_g_key(t_data *data, t_thing *to_del);
 void	take_r_key(t_data *data, t_thing *to_del);
-void		door_interact(t_data *data);
-int	get_nb_things(t_thing *list);
-int	update_sprite_info(t_data *data);
+void	door_interact(t_data *data);
+int		get_nb_things(t_thing *list);
+int		update_sprite_info(t_data *data);
 t_thing	*get_thing_by_id(t_thing *list, int id);
+int	shoot(t_data *data);
+void	bullet_life(t_data *data, t_thing *bullet_thing);
 
 //////////// GRAPHICS /////////////
 
@@ -289,6 +295,7 @@ int get_tablen(char **tab);
 size_t get_long_line_in_array(char **array);
 void print_char_array(char **array);
 void	itoa_buff(int n, char *buff);
+int	is_out_of_bounds(t_data *data);
 
 ////////////// ERROR //////////////
 

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/10 16:23:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/12 18:36:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int draw_hud(t_data *data)
 	t_modify	mod;
 
 	init_modify(&mod);
-	mod.sc_x = 3;
-	mod.sc_y = 3;
+	mod.sc_x = 5;
+	mod.sc_y = 5;
 	mod.x = 0;
 	mod.y = WIN_H - (16 * mod.sc_y);
 	if (data->player.yellow_key == 1)

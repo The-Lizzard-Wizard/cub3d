@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/08 13:55:43 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 13:44:38 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int check_tex(t_data *data)
 	if (!data->textures.tex_y_door)
 		return (EXIT_FAILURE);
 	if (!data->textures.tex_door)
-		return (EXIT_FAILURE);	
+		return (EXIT_FAILURE);
+	if (!data->textures.tex_magic_shoot)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -46,6 +48,7 @@ int	load_textures(t_data *data)
 	data->textures.tex_b_door = new_xpm_img(data, "textures/door_b.xpm");
 	data->textures.tex_y_door = new_xpm_img(data, "textures/door_y.xpm");
 	data->textures.tex_door = new_xpm_img(data, "textures/door.xpm");
+	data->textures.tex_magic_shoot = new_xpm_img(data, "textures/magic_shoot.xpm");
 	if (check_tex(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -67,6 +70,8 @@ int	init_data(t_data *data)
 	data->player.blue_key = 0;
 	data->player.green_key = 0;
 	data->player.yellow_key = 0;
+	data->thing_list = NULL;
+	data->things_to_del = NULL;
 	data->sprite_distance = NULL;
 	data->sprite_order = NULL;
 	load_textures(data);

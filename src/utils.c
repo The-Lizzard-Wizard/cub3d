@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:04:07 by authomas          #+#    #+#             */
-/*   Updated: 2025/12/03 15:57:17 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:21:35 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 #include <stdlib.h>
 #include "../inc/cub3d.h"
 #include "../libft/libft.h"
+
+int	is_out_of_bounds(t_data *data)
+{
+	if (data->player.pos.x <= 0 || data->player.pos.y <= 0 ||
+		data->player.pos.x > (double)data->map.width ||
+		data->player.pos.y > (double)data->map.height)
+	{
+		return (1);
+	}
+	return (0);
+}
 
 int	get_tablen(char **tab)
 {
