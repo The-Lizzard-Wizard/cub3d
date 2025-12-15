@@ -64,26 +64,16 @@ int	main(int argc, char **argv)
 		return (EXIT_SUCCESS);
 	}
 	data.thing_list = NULL;
+	init_data(&data);
 	if (init_mlx(&data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_textures(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (pars(&data, argv) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (init_ui(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	init_data(&data);
-	t_vec2 pos;
-	pos.x = 2.5;
-	pos.y = 2.5;
-	add_thing(&data, data.textures.tex_y_key, pos, THING_Y_KEY);
-	pos.x = 3;
-	pos.y = 2;
-	add_thing(&data, data.textures.tex_b_key, pos, THING_B_KEY);
-	pos.x = 5;
-	pos.y = 2;
-	add_thing(&data, data.textures.tex_g_key, pos, THING_G_KEY);
-	pos.x = 6;
-	pos.y = 2;
-	add_thing(&data, data.textures.tex_r_key, pos, THING_R_KEY);
+	
 	update_sprite_info(&data);
 	update_minimap(&data);
 	event_listener(&data);

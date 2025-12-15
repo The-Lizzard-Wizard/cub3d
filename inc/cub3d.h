@@ -274,6 +274,7 @@ int pars(t_data *data, char **argv);
 int init_mini_map(t_data *data);
 int init_ui(t_data *data);
 int init_data(t_data *data);
+int	load_textures(t_data *data);
 
 /////////////// FREE //////////////
 

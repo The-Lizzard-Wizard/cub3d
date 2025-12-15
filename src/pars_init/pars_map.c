@@ -14,20 +14,23 @@
 #include <fcntl.h>
 #include "../../inc/pars.h"
 
-//leak chiant de map_inline
-//il est join avec lui meme et ne dois surment pas etre free dans le join
 char *get_map(t_pars *pars, int map_fd)
 {
 	char *map_inline;
+	char *tmp;
 
 	map_inline = ft_strdup(pars->line);
 	free(pars->line);
 	pars->line = get_next_line(map_fd);
 	while (pars->line)
 	{
-		map_inline = ft_strjoin(map_inline, pars->line);
-		if (!map_inline)
+		tmp = ft_strjoin(map_inline, pars->line);
+		free(map_inline);
+		if (!tmp)
+		{
 			return (NULL);
+		}
+		map_inline = tmp;
 		free(pars->line);
 		pars->line = get_next_line(map_fd);
 	}
@@ -48,7 +51,8 @@ void	print_char_array(char **array)
 
 int is_valid_adj(char adj_to_check)
 {
-	if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'|| adj_to_check == 'G' || adj_to_check == 'R')
+	if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'y' || adj_to_check == 'r' || adj_to_check == 'g' || adj_to_check == 'b'
+		|| adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'|| adj_to_check == 'G' || adj_to_check == 'R')
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
@@ -84,12 +88,40 @@ int map_check(char **map)
 	return (EXIT_SUCCESS);
 }
 
-int get_player(t_pars *pars, char *map)
+void init_things(t_vec2 pos, char *tile, t_data *data)
+{
+	if (*tile == 'y')
+	{
+		add_thing(data, data->textures.tex_y_key, pos, THING_Y_KEY);
+		*tile = '0';
+	}
+	else if (*tile == 'r')
+	{
+		add_thing(data, data->textures.tex_r_key, pos, THING_R_KEY);
+		*tile = '0';
+	}
+	else if (*tile == 'g')
+	{
+		add_thing(data, data->textures.tex_g_key, pos, THING_G_KEY);
+		*tile = '0';
+	}
+	else if (*tile == 'b')
+	{
+		add_thing(data, data->textures.tex_b_key, pos, THING_B_KEY);
+		*tile = '0';
+	}
+	else
+		return ;
+	update_sprite_info(data);
+}
+
+int get_player_and_things(t_pars *pars, char *map, t_data *data)
 {
 	int i;
 	int player_flag;
 	size_t x;
 	size_t y;
+	t_vec2 pos;
 
 	i = 0;
 	player_flag = 0;
@@ -105,6 +137,12 @@ int get_player(t_pars *pars, char *map)
 			pars->player->pos.y = (double)y + 0.5;
 			player_flag += 1;
 		}
+		else if (map[i] != '0' && map[i] != '1')
+		{
+			pos.x = x + 0.5;
+			pos.y = y + 0.5;
+			init_things(pos, &map[i], data);
+		}
 		if (map[i] == '\n')
 		{
 			y++;
@@ -118,22 +156,21 @@ int get_player(t_pars *pars, char *map)
 	return (EXIT_FAILURE);
 }
 
-int pars_map(t_pars *pars, int map_fd)
+int pars_map(t_pars *pars, int map_fd, t_data *data)
 {
 	char *map_inline;
 
 	map_inline = get_map(pars, map_fd);
-	if (!map_inline || get_player(pars, map_inline) == EXIT_FAILURE)
-	{
+	if (!map_inline || get_player_and_things(pars, map_inline, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	}
 	pars->map = ft_split(map_inline, '\n');
 	free(map_inline);
 	if (!pars->map)
 		return (EXIT_FAILURE);
-	print_char_array(pars->map);
-	printf("player view: %c\npos_x: %f\npos_y: %f\n", pars->player_view, pars->player->pos.x, pars->player->pos.y);
 	if (map_check(pars->map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	print_char_array(pars->map);
+	printf("player view: %c\npos_x: %f\npos_y: %f\n", pars->player_view, pars->player->pos.x, pars->player->pos.y);
+	
 	return (EXIT_SUCCESS);
 }

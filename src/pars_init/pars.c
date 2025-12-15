@@ -109,7 +109,7 @@ int	pars(t_data *data, char **argv)
 		print_error(ER_MAP_NO_TEX_FOUND);
 		return (EXIT_FAILURE);
 	}
-	if (pars_map(&pars, map_fd) == EXIT_FAILURE)
+	if (pars_map(&pars, map_fd, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	printf("F: %d\nC: %d\nNO: %s\nSO: %s\nWE: %s\nEA: %s\n", *(pars.floor_color), *(pars.ceiling_color), pars.tex_path_no, pars.tex_path_so
 	, pars.tex_path_we, pars.tex_path_ea);

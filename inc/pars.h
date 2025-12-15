@@ -37,6 +37,6 @@ int	pars_textures(t_pars *pars, int map_fd);
 int get_color_c(t_pars *pars, char *line);
 int get_color_f(t_pars *pars, char *line);
 void get_id(char *id, char *line);
-int pars_map(t_pars *pars, int map_fd);
+int pars_map(t_pars *pars, int map_fd, t_data *data);
 
 #endif

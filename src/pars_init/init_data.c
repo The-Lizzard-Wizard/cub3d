@@ -74,6 +74,5 @@ int	init_data(t_data *data)
 	data->things_to_del = NULL;
 	data->sprite_distance = NULL;
 	data->sprite_order = NULL;
-	load_textures(data);
 	return (EXIT_SUCCESS);
 }
