@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/02 17:00:18 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:10:39 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,11 @@ void init_things(t_vec2 pos, char *tile, t_data *data)
 	else if (*tile == 'b')
 	{
 		add_thing(data, data->textures.tex_b_key, pos, THING_B_KEY);
+		*tile = '0';
+	}
+	else if (*tile == 'm')
+	{
+		add_thing(data, data->textures.tex_magic_rod, pos, THING_MAGIC_ROD);
 		*tile = '0';
 	}
 	else

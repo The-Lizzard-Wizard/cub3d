@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:14:18 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 15:22:14 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:56:41 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	mouse_camera(t_data *data)
 		data->player.camera_plane, ((double)deg_to_rad(1) * motion) / 20);
 	if (pos[0] >= WIN_W || pos[0] <= 0)
 	{
-		mlx_mouse_move(data->mlx_ptr, data->mlx_win, WIN_W / 2, WIN_H);
+		mlx_mouse_move(data->mlx_ptr, data->mlx_win, WIN_W / 2, WIN_H / 2);
 		old_mouse_x = (WIN_W / 2);
 	}
 	else

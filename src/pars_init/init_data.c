@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/15 13:44:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:11:31 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int check_tex(t_data *data)
 		return (EXIT_FAILURE);
 	if (!data->textures.tex_magic_shoot)
 		return (EXIT_FAILURE);
+	if (!data->textures.tex_magic_rod)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -49,6 +51,7 @@ int	load_textures(t_data *data)
 	data->textures.tex_y_door = new_xpm_img(data, "textures/door_y.xpm");
 	data->textures.tex_door = new_xpm_img(data, "textures/door.xpm");
 	data->textures.tex_magic_shoot = new_xpm_img(data, "textures/magic_shoot.xpm");
+	data->textures.tex_magic_rod = new_xpm_img(data, "textures/tex_magic_rod.xpm");
 	if (check_tex(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -62,6 +65,7 @@ int	init_data(t_data *data)
 	data->player.control.move_a = 0;
 	data->player.control.move_left = 0;
 	data->player.control.move_right = 0;
+	data->player.magic_rod = 0;
 	data->game_state.toggle_collide = 1;
 	data->game_state.toggle_minimap = 1;
 	data->game_state.camera_ctrl_type = 1;

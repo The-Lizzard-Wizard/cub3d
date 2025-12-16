@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:42:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/12 18:33:03 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:48:24 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,14 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 		j = i + 1;
 		while (j < data->nb_thing)
 		{
-			if (data->sprite_distance[j] > data->sprite_distance[i])
-				swap_order(data, i, j);
+			if (raycast.dir.y >= 0)
+			{
+				if (data->sprite_distance[j] < data->sprite_distance[i])
+					swap_order(data, i, j);
+			}
+			else
+				if (data->sprite_distance[j] > data->sprite_distance[i])
+					swap_order(data, i, j);
 			j++;
 		}
 		i++;
@@ -68,7 +74,7 @@ void	init_sprite_cast(t_sprite_cast *sprite_cast, t_raycast *raycast, t_thing *t
 	sprite_cast->sprite_h = (int)sprite_cast->size_factor;
 	sprite_cast->sprite_w = (int)sprite_cast->size_factor;
 	sprite_cast->sp_start_y =  -sprite_cast->sprite_h / 2 + WIN_H / 2;
-if (sprite_cast->sp_start_y < 0)
+	if (sprite_cast->sp_start_y < 0)
 		sprite_cast->sp_start_y = 0;
 	sprite_cast->sp_end_y = sprite_cast->sprite_h / 2 + WIN_H / 2;
 	if (sprite_cast->sp_end_y >= WIN_H)

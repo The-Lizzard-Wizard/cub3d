@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/15 14:22:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:32:23 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,8 @@ int	keypresse(int key, t_data *data)
 	if (key == K_M)
 		switch_int(&data->game_state.camera_ctrl_type);
 	if (is_out_of_bounds(data) == 0)
-	{
 		if (key == K_SPACE)
 			door_interact(data);
-		if (key == K_SPACE)
-		{
-			shoot(data);
-		}
-	}
 	move_press(data, key);
 	return (EXIT_SUCCESS);
 }
@@ -53,10 +47,20 @@ int	keyrelease(int key, t_data *data)
 	return (1);
 }
 
+int	mouse_presse(int key, int x, int y, t_data *data)
+{
+	(void)x;
+	(void)y;
+	if (key == LMB)
+		if (data->player.magic_rod == 1)
+			shoot(data);
+	return (1);
+}
+
 void	event_listener(t_data *data)
 {
 	mlx_hook(data->mlx_win, 2, (1L << 0), keypresse, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, keyrelease, data);
-	mlx_hook(data->mlx_win, DestroyNotify,
-	KeyPressMask, free_and_exit, data);
+	mlx_hook(data->mlx_win, DestroyNotify, KeyPressMask, free_and_exit, data);
+	mlx_mouse_hook(data->mlx_win, mouse_presse, data);
 }

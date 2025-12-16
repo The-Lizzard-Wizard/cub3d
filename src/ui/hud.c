@@ -6,11 +6,25 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/12 18:36:38 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:54:39 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	draw_magic_rod(t_data *data)
+{
+	t_modify	mod;
+
+	init_modify(&mod);
+	mod.sc_x = 5;
+	mod.sc_y = 5;
+	mod.x = (WIN_W / 2) - ((data->ui.magic_rod_0->size_x * mod.sc_x) / 2);
+	mod.y = (WIN_H) - (data->ui.magic_rod_0->size_y * mod.sc_y);
+	if (data->player.magic_rod == 1)
+		draw_img_on_img(data->screen_img, data->ui.magic_rod_0, mod);
+	return (EXIT_SUCCESS);
+}
 
 int draw_hud(t_data *data)
 {
@@ -32,5 +46,6 @@ int draw_hud(t_data *data)
 	mod.x += (16 * mod.sc_x);
 	if (data->player.red_key == 1)
 		draw_img_on_img(data->screen_img, data->ui.tex_r_key, mod);
+	draw_magic_rod(data);
 	return (EXIT_SUCCESS);
 }

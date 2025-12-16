@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/15 14:41:24 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:14:41 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 			take_g_key(data, thing);
 		else if (thing->type == THING_R_KEY)
 			take_r_key(data, thing);
+		else if (thing->type == THING_MAGIC_ROD)
+			take_magic_rod(data, thing);
 	}
 	return (EXIT_SUCCESS);
 }

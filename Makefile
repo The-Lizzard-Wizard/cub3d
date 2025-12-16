@@ -25,7 +25,7 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/gameplay/thing.c src/ui/hud.c \
 	src/gameplay/thing_key.c src/gameplay/door.c \
 	src/ui/update_minimap.c src/raycaster/raycast_sprites.c \
-	src/gameplay/weapon.c
+	src/gameplay/magic_rod.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a

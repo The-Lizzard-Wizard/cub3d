@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/15 14:22:01 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:14:41 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_textures
 	t_cub_img	*tex_b_door;
 	t_cub_img	*tex_door;
 	t_cub_img	*tex_magic_shoot;
+	t_cub_img	*tex_magic_rod;
 } t_textures;
 
 typedef struct s_vec2
@@ -111,6 +112,7 @@ typedef struct s_player
 	int			yellow_key;
 	int			blue_key;
 	int			green_key;
+	int			magic_rod;
 } t_player;
 
 typedef struct s_thing
@@ -143,6 +145,8 @@ typedef struct s_ui
 	t_cub_img	*floor_img;
 	t_cub_img	*font;
 	t_cub_img	*thing;
+	t_cub_img	*magic_rod_0;
+	t_cub_img	*magic_rod_1;
 	char		number_buffer[13];
 } t_ui;
 
@@ -240,8 +244,9 @@ void	door_interact(t_data *data);
 int		get_nb_things(t_thing *list);
 int		update_sprite_info(t_data *data);
 t_thing	*get_thing_by_id(t_thing *list, int id);
-int	shoot(t_data *data);
+int		shoot(t_data *data);
 void	bullet_life(t_data *data, t_thing *bullet_thing);
+void	take_magic_rod(t_data *data, t_thing *rod);
 
 //////////// GRAPHICS /////////////
 

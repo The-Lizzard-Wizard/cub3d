@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/13 16:51:03 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:07:02 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@
 #define FILL 1
 #define LINE 2
 
+#define	FOG 5;
+
 // thing
 typedef enum e_thing_type
 {
 	THING_COLLECT,
 	THING_BULLET,
 	THING_PROPS,
+	THING_BANANA,
+	THING_MAGIC_ROD,
 	THING_Y_KEY,
 	THING_R_KEY,
 	THING_B_KEY,

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:09:54 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/01 11:53:06 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:22:40 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	collide(t_data *data, t_vec2 pos, int xy)
 	if (xy == 1)
 	{
 		tile = data->map.grid[(int)data->player.pos.y][(int)pos.x];
-		if (tile == '1' || tile == 'Y' || tile == 'B' || tile == 'G' || tile == 'R')
+		if (tile == '1' || tile == 'Y' || tile == 'B' || tile == 'G' || tile == 'R' || tile == 'D')
 			coll = 1;
 	}
 	else if (xy == 2)
 	{
 		tile = data->map.grid[(int)pos.y][(int)data->player.pos.x];
-		if (tile == '1' || tile == 'Y' || tile == 'B' || tile == 'G' || tile == 'R')
+		if (tile == '1' || tile == 'Y' || tile == 'B' || tile == 'G' || tile == 'R' || tile == 'D')
 			coll = 1;
 	}
 	return (coll);

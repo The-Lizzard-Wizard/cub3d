@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   weapon.c                                           :+:      :+:    :+:   */
+/*   magic_rod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:56:45 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/15 14:23:45 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:14:41 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "../../inc/define.h"
+
+void	take_magic_rod(t_data *data, t_thing *rod)
+{
+	data->player.magic_rod = 1;
+	rod->del = 1;
+}
 
 void	bullet_life(t_data *data, t_thing *bullet_thing)
 {
@@ -26,7 +32,11 @@ void	bullet_life(t_data *data, t_thing *bullet_thing)
 int	shoot(t_data *data)
 {
 	t_thing	*bullet;
-	bullet = add_thing(data, data->textures.tex_magic_shoot, data->player.pos, THING_BULLET);
+	t_vec2	spawn_pos;
+
+	spawn_pos.x = data->player.pos.x + (data->player.view_angle.x / 2);
+	spawn_pos.y = data->player.pos.y + (data->player.view_angle.y / 2);
+	bullet = add_thing(data, data->textures.tex_magic_shoot, spawn_pos, THING_BULLET);
 	bullet->vel.x = data->player.view_angle.x / 5;
 	bullet->vel.y = data->player.view_angle.y / 5;
 	return (EXIT_SUCCESS);
