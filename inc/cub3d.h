@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:38:56 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:37:08 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_cub_img
 typedef	struct s_cub_anime
 {
 	t_cub_img	*img_curr; // the frame current (t_cub_img->frames[img_curr]), give this pointer to the draw functions
-	t_cub_img	*frames; // the img list
+	t_cub_img	**frames; // the img list
 	int			frame_curr; // the frame id
 	int			nb_frame; // numbers of frames
 	int			speed; //the numbers of fps between the next frame and the current
@@ -71,6 +71,7 @@ typedef struct s_textures
 	t_cub_img	*tex_door;
 	t_cub_img	*tex_magic_shoot;
 	t_cub_img	*tex_magic_rod;
+	t_cub_anime	*anime_tex_banana;
 } t_textures;
 
 typedef struct s_vec2
@@ -298,6 +299,7 @@ int free_too_and_exit(void *ptr1, void *ptr2, int code);
 int free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
 int	free_array(char **tab, int code);
 int	free_thing_list(t_data *data, int code);
+void	free_ptr(void *ptr);
 
 //////////////// MAP //////////////
 
@@ -312,6 +314,7 @@ size_t get_long_line_in_array(char **array);
 void print_char_array(char **array);
 void	itoa_buff(int n, char *buff);
 int	is_out_of_bounds(t_data *data);
+size_t	array_len(char **array);
 
 ////////////// ERROR //////////////
 

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:47:56 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	free_img(t_data *data)
 
 	free_thing_list(data, EXIT_SUCCESS);
 
-	free(data->sprite_order);
-	free(data->sprite_distance);
+	free_ptr(data->sprite_order);
+	free_ptr(data->sprite_distance);
 
 	free_array(data->map.grid, EXIT_SUCCESS);
 }
@@ -108,6 +108,6 @@ int	main(int argc, char **argv)
 	free_img(&data);
 	mlx_destroy_window(
 		data.mlx_ptr, data.mlx_win);
-	free(data.mlx_ptr);
+	free_ptr(data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

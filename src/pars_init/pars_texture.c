@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:15 by authomas          #+#    #+#             */
-/*   Updated: 2025/10/25 17:49:55 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int pars_textures(t_pars *pars, int map_fd)
                 return (EXIT_FAILURE);
 			}
 		}
-        free(pars->line);
+        free_ptr(pars->line);
         pars->line = get_next_line(map_fd);
     }
 	return (EXIT_FAILURE);

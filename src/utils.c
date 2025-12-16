@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:04:07 by authomas          #+#    #+#             */
-/*   Updated: 2025/12/15 14:21:35 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:14:08 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ int	get_tablen(char **tab)
 	if (tab)
 		while (tab[i])
 			i++;
+	return (i);
+}
+
+size_t	array_len(char **array)
+{
+	size_t	i;
+
+	i = 0;
+	while (array[i])
+		i++;
 	return (i);
 }
 

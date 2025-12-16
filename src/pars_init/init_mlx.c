@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:37:18 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/31 11:22:33 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_mlx(t_data *data)
 	data->screen_img = new_img(data, WIN_W, WIN_H);
 	if (!data->screen_img)
 	{
-		free(data->mlx_ptr);
+		free_ptr(data->mlx_ptr);
 		print_error(ER_INIT_SC_IMG);
 		return (EXIT_FAILURE);
 	}
@@ -33,7 +33,7 @@ int	init_mlx(t_data *data)
 	if (data->mlx_win == NULL)
 	{
 		free_cub_img(data, data->screen_img, EXIT_FAILURE);
-		free(data->mlx_ptr);
+		free_ptr(data->mlx_ptr);
 		print_error(ER_INIT_WIN);
 		return (EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:45:11 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	update_sprite_info(t_data *data)
 {
 	data->nb_thing = get_nb_things(data->thing_list);
 	if (data->sprite_distance)
-		free(data->sprite_distance);
+		free_ptr(data->sprite_distance);
 	if (data->sprite_order)
-		free(data->sprite_order);
+		free_ptr(data->sprite_order);
 	data->sprite_distance = ft_calloc(data->nb_thing, sizeof(double));
 	if (!data->sprite_distance)
 		return (EXIT_FAILURE);
@@ -129,7 +129,7 @@ void	del_thing(t_data *data, t_thing *thing_to_del)
 	}
 	else
 		data->thing_list = NULL;
-	free(thing_to_del);
+	free_ptr(thing_to_del);
 	update_sprite_info(data);
 }
 

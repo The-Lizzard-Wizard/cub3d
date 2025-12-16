@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:10:39 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ char *get_map(t_pars *pars, int map_fd)
 	char *tmp;
 
 	map_inline = ft_strdup(pars->line);
-	free(pars->line);
+	free_ptr(pars->line);
 	pars->line = get_next_line(map_fd);
 	while (pars->line)
 	{
 		tmp = ft_strjoin(map_inline, pars->line);
-		free(map_inline);
+		free_ptr(map_inline);
 		if (!tmp)
 		{
 			return (NULL);
 		}
 		map_inline = tmp;
-		free(pars->line);
+		free_ptr(pars->line);
 		pars->line = get_next_line(map_fd);
 	}
 	return (map_inline);
@@ -169,7 +169,7 @@ int pars_map(t_pars *pars, int map_fd, t_data *data)
 	if (!map_inline || get_player_and_things(pars, map_inline, data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	pars->map = ft_split(map_inline, '\n');
-	free(map_inline);
+	free_ptr(map_inline);
 	if (!pars->map)
 		return (EXIT_FAILURE);
 	if (map_check(pars->map) == EXIT_FAILURE)
