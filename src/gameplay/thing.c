@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:14:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:45:11 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,28 @@ void	del_thing(t_data *data, t_thing *thing_to_del)
 		data->thing_list = NULL;
 	free(thing_to_del);
 	update_sprite_info(data);
+}
+
+int	free_thing_list(t_data *data, int code)
+{
+	t_thing	*curr_thing;
+	t_thing	*next_thing;
+
+	curr_thing = NULL;
+	next_thing = NULL;
+	if (!data->thing_list)
+		return (code);
+	curr_thing = data->thing_list;
+	while (curr_thing != NULL)
+	{
+		if (curr_thing->next)
+			next_thing = curr_thing->next;
+		else
+			next_thing = NULL;
+		del_thing(data, curr_thing);
+		curr_thing = next_thing;
+	}
+	return (code);
 }
 
 int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)

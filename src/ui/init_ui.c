@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:01:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 14:30:25 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:31:40 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	init_ui(t_data *data)
 	data->ui.door_open = new_xpm_img(data, "textures/door_open.xpm");
 	data->ui.mimp_frame = new_xpm_img(data, "textures/minimap_frame.xpm");
 	data->ui.font = new_xpm_img(data, "textures/font.xpm");
-	data->ui.thing = new_xpm_img(data, "textures/thing.xpm");
 	data->ui.tex_y_key = new_xpm_img(data, "textures/ui_yellow_key.xpm");
 	data->ui.tex_b_key = new_xpm_img(data, "textures/ui_blue_key.xpm");
 	data->ui.tex_g_key = new_xpm_img(data, "textures/ui_green_key.xpm");

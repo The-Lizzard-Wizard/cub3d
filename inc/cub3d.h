@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:14:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:38:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ typedef struct s_cub_img
 	int pixels_bits;
 	int size_line;
 } t_cub_img;
+
+typedef	struct s_cub_anime
+{
+	t_cub_img	*img_curr; // the frame current (t_cub_img->frames[img_curr]), give this pointer to the draw functions
+	t_cub_img	*frames; // the img list
+	int			frame_curr; // the frame id
+	int			nb_frame; // numbers of frames
+	int			speed; //the numbers of fps between the next frame and the current
+	int			time_bf; // the current time between the current frame and the next
+} t_cub_anime;
 
 typedef struct s_textures
 {
@@ -144,7 +154,6 @@ typedef struct s_ui
 	t_cub_img	*mimp_frame;
 	t_cub_img	*floor_img;
 	t_cub_img	*font;
-	t_cub_img	*thing;
 	t_cub_img	*magic_rod_0;
 	t_cub_img	*magic_rod_1;
 	char		number_buffer[13];
@@ -288,6 +297,7 @@ int free_one_and_exit(void *ptr, int code);
 int free_too_and_exit(void *ptr1, void *ptr2, int code);
 int free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
 int	free_array(char **tab, int code);
+int	free_thing_list(t_data *data, int code);
 
 //////////////// MAP //////////////
 

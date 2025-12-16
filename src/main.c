@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/15 13:45:10 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:47:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,44 @@ void	free_img(t_data *data)
 	free_cub_img(data, data->textures.tex_g_key, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_r_key, EXIT_SUCCESS);
 
+	free_cub_img(data, data->textures.tex_r_door, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_y_door, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_g_door, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_b_door, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_door, EXIT_SUCCESS);
+	
+	free_cub_img(data, data->textures.tex_magic_shoot, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_magic_rod, EXIT_SUCCESS);
+
 	free_cub_img(data, data->ui.wall_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.y_door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.b_door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.g_door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.r_door, EXIT_SUCCESS);
+
+	free_cub_img(data, data->ui.door, EXIT_SUCCESS);
+	free_cub_img(data, data->ui.door_open, EXIT_SUCCESS);
+
+	free_cub_img(data, data->ui.tex_y_key, EXIT_SUCCESS);
+	free_cub_img(data, data->ui.tex_g_key, EXIT_SUCCESS);
+	free_cub_img(data, data->ui.tex_b_key, EXIT_SUCCESS);
+	free_cub_img(data, data->ui.tex_r_key, EXIT_SUCCESS);
+
 	free_cub_img(data, data->ui.minimap_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.pl_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.mimp_frame, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.floor_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.font, EXIT_SUCCESS);
 
+	free_cub_img(data, data->ui.magic_rod_0, EXIT_SUCCESS);
+	free_cub_img(data, data->ui.magic_rod_1, EXIT_SUCCESS);
+
 	free_cub_img(data, data->screen_img, EXIT_SUCCESS);
+
+	free_thing_list(data, EXIT_SUCCESS);
+
+	free(data->sprite_order);
+	free(data->sprite_distance);
 
 	free_array(data->map.grid, EXIT_SUCCESS);
 }
@@ -80,7 +106,8 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);
 	free_img(&data);
-	mlx_destroy_window(data.mlx_ptr, data.mlx_win);
+	mlx_destroy_window(
+		data.mlx_ptr, data.mlx_win);
 	free(data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
