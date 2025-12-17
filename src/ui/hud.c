@@ -6,11 +6,29 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 14:54:39 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:57:47 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	draw_state(t_data *data)
+{
+	t_modify	mod;
+	char		str[16];
+
+	init_modify(&mod);
+	mod.sc_x = 4;
+	mod.sc_y = 4;
+	mod.y = WIN_H - 200;
+	mod.x = -10;
+	draw_img_on_img(data->screen_img, data->textures.anime_tex_banana->img_curr, mod);
+	itoa_buff(data->player.banana, str);
+	mod.x = 90;
+	mod.y += 20;
+	put_text_on_img(data->screen_img, data->ui.font, str, mod);
+	return (EXIT_SUCCESS);
+}
 
 int	draw_magic_rod(t_data *data)
 {
@@ -47,5 +65,6 @@ int draw_hud(t_data *data)
 	if (data->player.red_key == 1)
 		draw_img_on_img(data->screen_img, data->ui.tex_r_key, mod);
 	draw_magic_rod(data);
+	draw_state(data);
 	return (EXIT_SUCCESS);
 }

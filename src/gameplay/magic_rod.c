@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:56:45 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:14:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:41:51 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	shoot(t_data *data)
 
 	spawn_pos.x = data->player.pos.x + (data->player.view_angle.x / 2);
 	spawn_pos.y = data->player.pos.y + (data->player.view_angle.y / 2);
-	bullet = add_thing(data, data->textures.tex_magic_shoot, spawn_pos, THING_BULLET);
+	bullet = add_thing(data, &data->textures.anime_tex_magic_shoot->img_curr, spawn_pos, THING_BULLET);
 	bullet->vel.x = data->player.view_angle.x / 5;
 	bullet->vel.y = data->player.view_angle.y / 5;
 	return (EXIT_SUCCESS);

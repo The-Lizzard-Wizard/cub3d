@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:18:25 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,32 @@ void init_things(t_vec2 pos, char *tile, t_data *data)
 {
 	if (*tile == 'y')
 	{
-		add_thing(data, data->textures.tex_y_key, pos, THING_Y_KEY);
+		add_thing(data, &data->textures.tex_y_key, pos, THING_Y_KEY);
 		*tile = '0';
 	}
 	else if (*tile == 'r')
 	{
-		add_thing(data, data->textures.tex_r_key, pos, THING_R_KEY);
+		add_thing(data, &data->textures.tex_r_key, pos, THING_R_KEY);
 		*tile = '0';
 	}
 	else if (*tile == 'g')
 	{
-		add_thing(data, data->textures.tex_g_key, pos, THING_G_KEY);
+		add_thing(data, &data->textures.tex_g_key, pos, THING_G_KEY);
 		*tile = '0';
 	}
 	else if (*tile == 'b')
 	{
-		add_thing(data, data->textures.tex_b_key, pos, THING_B_KEY);
+		add_thing(data, &data->textures.tex_b_key, pos, THING_B_KEY);
 		*tile = '0';
 	}
 	else if (*tile == 'm')
 	{
-		add_thing(data, data->textures.tex_magic_rod, pos, THING_MAGIC_ROD);
+		add_thing(data, &data->textures.tex_magic_rod, pos, THING_MAGIC_ROD);
+		*tile = '0';
+	}
+	else if (*tile == 'c')
+	{
+		add_thing(data, &data->textures.anime_tex_banana->img_curr, pos, THING_BANANA);
 		*tile = '0';
 	}
 	else

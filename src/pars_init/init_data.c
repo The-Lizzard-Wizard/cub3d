@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 15:11:31 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:48:34 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int check_tex(t_data *data)
 		return (EXIT_FAILURE);
 	if (!data->textures.tex_door)
 		return (EXIT_FAILURE);
-	if (!data->textures.tex_magic_shoot)
-		return (EXIT_FAILURE);
+	//if (!data->textures.tex_magic_shoot)
+		//return (EXIT_FAILURE);
 	if (!data->textures.tex_magic_rod)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -41,6 +41,17 @@ int check_tex(t_data *data)
 
 int	load_textures(t_data *data)
 {
+	char banana_path[] = "textures/banana_frame_0.xpm;\
+textures/banana_frame_1.xpm;\
+textures/banana_frame_2.xpm;\
+textures/banana_frame_3.xpm;\
+textures/banana_frame_4.xpm;\
+textures/banana_frame_5.xpm;\
+textures/banana_frame_6.xpm;\
+textures/banana_frame_7.xpm;";
+	char magic_shoot_path[] = "textures/magic_shoot.xpm;\
+textures/magic_shoot_1.xpm";
+
 	data->textures.tex_y_key = new_xpm_img(data, "textures/yellow_key.xpm");
 	data->textures.tex_b_key = new_xpm_img(data, "textures/blue_key.xpm");
 	data->textures.tex_g_key = new_xpm_img(data, "textures/green_key.xpm");
@@ -50,8 +61,9 @@ int	load_textures(t_data *data)
 	data->textures.tex_b_door = new_xpm_img(data, "textures/door_b.xpm");
 	data->textures.tex_y_door = new_xpm_img(data, "textures/door_y.xpm");
 	data->textures.tex_door = new_xpm_img(data, "textures/door.xpm");
-	data->textures.tex_magic_shoot = new_xpm_img(data, "textures/magic_shoot.xpm");
 	data->textures.tex_magic_rod = new_xpm_img(data, "textures/tex_magic_rod.xpm");
+	data->textures.anime_tex_banana = new_anime(data, banana_path, 10);
+	data->textures.anime_tex_magic_shoot = new_anime(data, magic_shoot_path, 5);
 	if (check_tex(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -69,7 +81,7 @@ int	init_data(t_data *data)
 	data->game_state.toggle_collide = 1;
 	data->game_state.toggle_minimap = 1;
 	data->game_state.camera_ctrl_type = 1;
-	data->player.score = 0;
+	data->player.banana = 0;
 	data->player.red_key = 0;
 	data->player.blue_key = 0;
 	data->player.green_key = 0;

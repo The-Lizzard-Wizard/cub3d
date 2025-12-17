@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 16:36:17 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:48:22 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_thing	*get_last_thing(t_thing *thing_list)
 	return (curr_thing);
 }
 
-t_thing	*add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type)
+t_thing	*add_thing(t_data *data, t_cub_img **texture, t_vec2 pos, int type)
 {
 	t_thing	*new_thing;
 	t_thing	*last_thing;
@@ -177,6 +177,8 @@ int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 			take_r_key(data, thing);
 		else if (thing->type == THING_MAGIC_ROD)
 			take_magic_rod(data, thing);
+		else if (thing->type == THING_BANANA)
+			take_banana(data, thing);
 	}
 	return (EXIT_SUCCESS);
 }

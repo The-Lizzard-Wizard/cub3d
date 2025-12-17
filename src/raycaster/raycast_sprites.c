@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:42:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 14:48:24 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:14:47 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 	int		i;
 	int		j;
 	t_thing	*thing_curr;
+	t_vec2	dxy;
 
 	i = 0;
 	while (i < data->nb_thing)
 	{
 		thing_curr = get_thing_by_id(data->thing_list, i);
 		data->sprite_order[i] = i;
-		data->sprite_distance[i] = ((raycast.pos.x - thing_curr->pos.x) * (raycast.pos.x - thing_curr->pos.x) + (raycast.pos.y - thing_curr->pos.y) * raycast.pos.y - thing_curr->pos.y);
+		dxy.x = raycast.pos.x - thing_curr->pos.x;
+		dxy.y = raycast.pos.y - thing_curr->pos.y;
+
+		data->sprite_distance[i] = dxy.x * dxy.x + dxy.y * dxy.y;
 		i++;
 	}
 	i = 0;
@@ -48,14 +52,8 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 		j = i + 1;
 		while (j < data->nb_thing)
 		{
-			if (raycast.dir.y >= 0)
-			{
-				if (data->sprite_distance[j] < data->sprite_distance[i])
-					swap_order(data, i, j);
-			}
-			else
-				if (data->sprite_distance[j] > data->sprite_distance[i])
-					swap_order(data, i, j);
+			if (data->sprite_distance[j] > data->sprite_distance[i])
+				swap_order(data, j, i);
 			j++;
 		}
 		i++;
@@ -105,7 +103,7 @@ void	darw_sprite(t_data *data, t_sprite_cast *sprite_cast, t_raycast *raycast, t
 			{
 				sprite_cast->b_factor = (y) * 256 - WIN_H * 128 + sprite_cast->sprite_h * 128;
 				sprite_cast->tex_y = (int)sprite_cast->tex_pos;
-				color = get_pixel(thing_curr->texture, sprite_cast->tex_x, sprite_cast->tex_y);
+				color = get_pixel((*thing_curr->texture), sprite_cast->tex_x, sprite_cast->tex_y);
 				if (color != NONE_COLOR_XPM)
 					set_pixel(data->screen_img, sprite_cast->stripe, y, color);
 				sprite_cast->tex_pos += sprite_cast->tex_step_y;
@@ -128,8 +126,8 @@ void	sprite_casting(t_data *data, t_raycast *raycast)
 	{
 		thing_curr = get_thing_by_id(data->thing_list, data->sprite_order[i]);
 		init_sprite_cast(&sprite_cast, raycast, thing_curr);
-		sprite_cast.tex_step_x = (double)thing_curr->texture->size_x / sprite_cast.sprite_w;
-		sprite_cast.tex_step_y = (double)thing_curr->texture->size_y / sprite_cast.sprite_h;
+		sprite_cast.tex_step_x = (double)(*thing_curr->texture)->size_x / sprite_cast.sprite_w;
+		sprite_cast.tex_step_y = (double)(*thing_curr->texture)->size_y / sprite_cast.sprite_h;
 		sprite_cast.tex_pos = (sprite_cast.sp_start_y - WIN_H/2 + sprite_cast.sprite_h/2) * sprite_cast.tex_step_y;
 		darw_sprite(data, &sprite_cast, raycast, thing_curr);
 		i++;

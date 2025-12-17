@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 16:37:08 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:47:14 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ typedef struct s_textures
 	t_cub_img	*tex_g_door;
 	t_cub_img	*tex_b_door;
 	t_cub_img	*tex_door;
-	t_cub_img	*tex_magic_shoot;
 	t_cub_img	*tex_magic_rod;
 	t_cub_anime	*anime_tex_banana;
+	t_cub_anime	*anime_tex_magic_shoot;
 } t_textures;
 
 typedef struct s_vec2
@@ -118,7 +118,7 @@ typedef struct s_player
 	t_vec2		view_angle;
 	t_vec2		camera_plane;
 	t_control	control;
-	int			score;
+	int			banana;
 	int			red_key;
 	int			yellow_key;
 	int			blue_key;
@@ -132,7 +132,7 @@ typedef struct s_thing
 	t_vec2			vel;
 	int				del;
 	int				type;
-	t_cub_img		*texture;
+	t_cub_img		**texture;
 	struct s_thing	*next;
 	struct s_thing	*prev;
 }	t_thing;
@@ -243,7 +243,7 @@ void mouse_camera(t_data *data);
 //////////// GAMEPLAY /////////////
 
 t_thing	*get_last_thing(t_thing *thing_list);
-t_thing	*add_thing(t_data *data, t_cub_img *texture, t_vec2 pos, int type);
+t_thing	*add_thing(t_data *data, t_cub_img **texture, t_vec2 pos, int type);
 void	del_thing(t_data *data, t_thing *thing_to_del);
 int		update_thing(t_data *data);
 void	take_y_key(t_data *data, t_thing *to_del);
@@ -257,6 +257,7 @@ t_thing	*get_thing_by_id(t_thing *list, int id);
 int		shoot(t_data *data);
 void	bullet_life(t_data *data, t_thing *bullet_thing);
 void	take_magic_rod(t_data *data, t_thing *rod);
+void	take_banana(t_data *data, t_thing *banana);
 
 //////////// GRAPHICS /////////////
 
@@ -275,6 +276,8 @@ void init_modify(t_modify *mod);
 void raycaster(t_data *data);
 void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
 void	sprite_casting(t_data *data, t_raycast *raycast);
+t_cub_anime	*new_anime(t_data *data, char *frames, int speed);
+void	update_anime(t_cub_anime *anime);
 
 /////////////// UI ///////////////
 
