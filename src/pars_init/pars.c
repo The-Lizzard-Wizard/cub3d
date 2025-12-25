@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2025/11/19 15:22:55 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/25 13:14:53 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,48 @@ int set_player_view(t_vec2 *p_view_angle, t_vec2 *p_plane, char player_view)
 	return (EXIT_SUCCESS);
 }
 
+char **normalize_map(char **map, size_t map_width, size_t map_height)
+{
+	char **n_map;
+	size_t y;
+	size_t x;
+
+	n_map = malloc(sizeof(char *) * map_height);
+	if (!n_map)
+		return(NULL);
+	y = 0;
+	while(map[y])
+	{
+		x = 0;
+		n_map[y] = malloc(sizeof(char) * map_width + 1);
+		if (!n_map[y])
+			return(NULL);
+		while(map[y][x])
+		{
+			n_map[y][x] = map[y][x];
+			x++;
+		}
+		while(x < map_width)
+		{
+			n_map[y][x] = '?';
+			x++;
+		}
+		n_map[y][x] = '\0';
+		y++;
+	}
+	n_map[y] = NULL;
+	print_char_array(n_map);
+	free_array(map, EXIT_SUCCESS);
+	return(n_map);
+}
+
 int pars_to_data(t_data *data, t_pars *pars)
 {
-	data->map.grid = pars->map;
 	data->map.width = get_long_line_in_array(pars->map);
 	data->map.height = get_tablen(pars->map);
+	data->map.grid = normalize_map(pars->map, data->map.width, data->map.height + 1);
+	if (!data->map.grid)
+		return (EXIT_FAILURE);
 	data->textures.tex_east = new_xpm_img(data, pars->tex_path_ea);
 	data->textures.tex_west = new_xpm_img(data, pars->tex_path_we);
 	data->textures.tex_north = new_xpm_img(data, pars->tex_path_no);
