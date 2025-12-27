@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:50:06 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/10/22 15:50:07 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:36:54 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@
 # define K_TAB		65289
 # define K_LSHIFT	65505
 # define K_RSHIFT	65506
+# define K_CTRL		65507
 
 // Key arrow
 

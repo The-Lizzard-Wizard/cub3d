@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/16 14:32:23 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:42:01 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int	keypresse(int key, t_data *data)
 	if (is_out_of_bounds(data) == 0)
 		if (key == K_SPACE)
 			door_interact(data);
+	if (key == K_CTRL)
+		if (is_out_of_bounds(data) == 0)
+			if (data->player.magic_rod == 1)
+				shoot(data);
 	move_press(data, key);
 	return (EXIT_SUCCESS);
 }
@@ -52,8 +56,9 @@ int	mouse_presse(int key, int x, int y, t_data *data)
 	(void)x;
 	(void)y;
 	if (key == LMB)
-		if (data->player.magic_rod == 1)
-			shoot(data);
+		if (is_out_of_bounds(data) == 0)
+			if (data->player.magic_rod == 1)
+				shoot(data);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:48:34 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:59:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ int check_tex(t_data *data)
 
 int	load_textures(t_data *data)
 {
-	char banana_path[] = "textures/banana_frame_0.xpm;\
-textures/banana_frame_1.xpm;\
-textures/banana_frame_2.xpm;\
-textures/banana_frame_3.xpm;\
-textures/banana_frame_4.xpm;\
-textures/banana_frame_5.xpm;\
-textures/banana_frame_6.xpm;\
-textures/banana_frame_7.xpm;";
-	char magic_shoot_path[] = "textures/magic_shoot.xpm;\
-textures/magic_shoot_1.xpm";
-
 	data->textures.tex_y_key = new_xpm_img(data, "textures/yellow_key.xpm");
 	data->textures.tex_b_key = new_xpm_img(data, "textures/blue_key.xpm");
 	data->textures.tex_g_key = new_xpm_img(data, "textures/green_key.xpm");
@@ -62,8 +51,17 @@ textures/magic_shoot_1.xpm";
 	data->textures.tex_y_door = new_xpm_img(data, "textures/door_y.xpm");
 	data->textures.tex_door = new_xpm_img(data, "textures/door.xpm");
 	data->textures.tex_magic_rod = new_xpm_img(data, "textures/tex_magic_rod.xpm");
-	data->textures.anime_tex_banana = new_anime(data, banana_path, 10);
-	data->textures.anime_tex_magic_shoot = new_anime(data, magic_shoot_path, 5);
+	
+	data->textures.anime_tex_banana = new_anime(data, "textures/banana_frame_0.xpm;\
+textures/banana_frame_1.xpm;\
+textures/banana_frame_2.xpm;\
+textures/banana_frame_3.xpm;\
+textures/banana_frame_4.xpm;\
+textures/banana_frame_5.xpm;\
+textures/banana_frame_6.xpm;\
+textures/banana_frame_7.xpm;", 5);
+	data->textures.anime_tex_magic_shoot = new_anime(data, "textures/magic_shoot.xpm;\
+textures/magic_shoot_1.xpm", 5);
 	if (check_tex(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -77,7 +75,7 @@ int	init_data(t_data *data)
 	data->player.control.move_a = 0;
 	data->player.control.move_left = 0;
 	data->player.control.move_right = 0;
-	data->player.magic_rod = 0;
+	data->player.magic_rod = 1;
 	data->game_state.toggle_collide = 1;
 	data->game_state.toggle_minimap = 1;
 	data->game_state.camera_ctrl_type = 1;
