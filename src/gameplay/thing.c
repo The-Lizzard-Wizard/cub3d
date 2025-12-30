@@ -6,13 +6,14 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:48:22 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:58:43 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "../../inc/define.h"
 #include <stdio.h>
+#include <math.h>
 
 int	get_nb_things(t_thing *list)
 {
@@ -157,11 +158,13 @@ int	free_thing_list(t_data *data, int code)
 
 int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 {
-	(void)data;
+	t_vec2 old_pos;
+	
+	old_pos = thing->pos;
 	thing->pos.x += thing->vel.x;
 	thing->pos.y += thing->vel.y;
 	if (thing->type == THING_BULLET)
-			bullet_life(data, thing);
+		bullet_life(data, thing);
 	if (pos.x >= thing->pos.x - THING_BOX_W / 2
 		&& pos.x <= thing->pos.x + THING_BOX_W / 2
 		&& pos.y >= thing->pos.y - THING_BOX_H / 2
@@ -179,6 +182,8 @@ int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 			take_magic_rod(data, thing);
 		else if (thing->type == THING_BANANA)
 			take_banana(data, thing);
+		else if (thing->type == THING_CHICKEN)
+			take_chicken(data, thing);
 	}
 	return (EXIT_SUCCESS);
 }

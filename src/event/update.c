@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 10:36:00 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:42:14 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:32:10 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	update(t_data *data)
 		data->player.pos = next_move;
 	update_anime(data->textures.anime_tex_banana);
 	update_anime(data->textures.anime_tex_magic_shoot);
+	update_anime(data->textures.anike_tex_kiwi);
 	update_thing(data);
 	update_minimap(data);
 	render(data);

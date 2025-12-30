@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/25 13:03:57 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2025/12/30 13:32:10 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,11 @@ void init_things(t_vec2 pos, char *tile, t_data *data)
 	else if (*tile == 'c')
 	{
 		add_thing(data, &data->textures.anime_tex_banana->img_curr, pos, THING_BANANA);
+		*tile = '0';
+	}
+	else if (*tile == 'k')
+	{
+		add_thing(data, &data->textures.anike_tex_kiwi->img_curr, pos, THING_KIWI);
 		*tile = '0';
 	}
 	else

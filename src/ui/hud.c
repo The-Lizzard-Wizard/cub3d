@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:57:47 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:51:53 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,18 @@ int	draw_state(t_data *data)
 	mod.x = -10;
 	draw_img_on_img(data->screen_img, data->textures.anime_tex_banana->img_curr, mod);
 	itoa_buff(data->player.banana, str);
-	mod.x = 90;
+	mod.x = 130;
+	mod.y += 20;
+	put_text_on_img(data->screen_img, data->ui.font, str, mod);
+	mod.y = WIN_H - 300;
+	mod.x = 5;
+	mod.sc_x = 1;
+	mod.sc_y = 1;
+	draw_img_on_img(data->screen_img, data->textures.anike_tex_kiwi->img_curr, mod);
+	itoa_buff(data->player.kiwi, str);
+	mod.sc_x = 4;
+	mod.sc_y = 4;
+	mod.x = 130;
 	mod.y += 20;
 	put_text_on_img(data->screen_img, data->ui.font, str, mod);
 	return (EXIT_SUCCESS);

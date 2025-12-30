@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:47:14 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:59:00 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ typedef struct s_textures
 	t_cub_img	*tex_b_door;
 	t_cub_img	*tex_door;
 	t_cub_img	*tex_magic_rod;
+	t_cub_img	*tex_chicken;
 	t_cub_anime	*anime_tex_banana;
 	t_cub_anime	*anime_tex_magic_shoot;
+	t_cub_anime	*anike_tex_kiwi;
 } t_textures;
 
 typedef struct s_vec2
@@ -119,6 +121,7 @@ typedef struct s_player
 	t_vec2		camera_plane;
 	t_control	control;
 	int			banana;
+	int			kiwi;
 	int			red_key;
 	int			yellow_key;
 	int			blue_key;
@@ -258,6 +261,7 @@ int		shoot(t_data *data);
 void	bullet_life(t_data *data, t_thing *bullet_thing);
 void	take_magic_rod(t_data *data, t_thing *rod);
 void	take_banana(t_data *data, t_thing *banana);
+void	take_chicken(t_data *data, t_thing *kiwi);
 
 //////////// GRAPHICS /////////////
 
