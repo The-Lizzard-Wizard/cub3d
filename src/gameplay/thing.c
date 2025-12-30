@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 13:58:43 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:37:01 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,24 @@ int	free_thing_list(t_data *data, int code)
 	return (code);
 }
 
+void	take_thing(t_data *data, t_thing *thing)
+{
+	if (thing->type == THING_Y_KEY)
+		take_y_key(data, thing);
+	else if (thing->type == THING_B_KEY)
+		take_b_key(data, thing);
+	else if (thing->type == THING_G_KEY)
+		take_g_key(data, thing);
+	else if (thing->type == THING_R_KEY)
+		take_r_key(data, thing);
+	else if (thing->type == THING_MAGIC_ROD)
+		take_magic_rod(data, thing);
+	else if (thing->type == THING_BANANA)
+		take_banana(data, thing);
+	else if (thing->type == THING_CHICKEN)
+		take_chicken(data, thing);
+}
+
 int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 {
 	t_vec2 old_pos;
@@ -166,25 +184,10 @@ int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 	if (thing->type == THING_BULLET)
 		bullet_life(data, thing);
 	if (pos.x >= thing->pos.x - THING_BOX_W / 2
-		&& pos.x <= thing->pos.x + THING_BOX_W / 2
-		&& pos.y >= thing->pos.y - THING_BOX_H / 2
-		&& pos.y <= thing->pos.y + THING_BOX_H / 2)
-	{
-		if (thing->type == THING_Y_KEY)
-			take_y_key(data, thing);
-		else if (thing->type == THING_B_KEY)
-			take_b_key(data, thing);
-		else if (thing->type == THING_G_KEY)
-			take_g_key(data, thing);
-		else if (thing->type == THING_R_KEY)
-			take_r_key(data, thing);
-		else if (thing->type == THING_MAGIC_ROD)
-			take_magic_rod(data, thing);
-		else if (thing->type == THING_BANANA)
-			take_banana(data, thing);
-		else if (thing->type == THING_CHICKEN)
-			take_chicken(data, thing);
-	}
+			&& pos.x <= thing->pos.x + THING_BOX_W / 2
+			&& pos.y >= thing->pos.y - THING_BOX_H / 2
+			&& pos.y <= thing->pos.y + THING_BOX_H / 2)
+		take_thing(data, thing);
 	return (EXIT_SUCCESS);
 }
 

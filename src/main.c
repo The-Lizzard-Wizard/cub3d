@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:40:09 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:03:37 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	free_img(t_data *data)
 	free_cub_img(data, data->ui.font, EXIT_SUCCESS);
 
 	free_cub_img(data, data->ui.magic_rod_0, EXIT_SUCCESS);
-	free_cub_img(data, data->ui.magic_rod_1, EXIT_SUCCESS);
 
 	free_cub_img(data, data->screen_img, EXIT_SUCCESS);
 

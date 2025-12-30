@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 13:59:00 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:03:18 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,6 @@ typedef struct s_ui
 	t_cub_img	*floor_img;
 	t_cub_img	*font;
 	t_cub_img	*magic_rod_0;
-	t_cub_img	*magic_rod_1;
 	char		number_buffer[13];
 } t_ui;
 
