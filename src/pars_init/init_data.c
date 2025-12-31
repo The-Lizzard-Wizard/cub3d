@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 13:47:20 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	init_data(t_data *data)
 	data->player.yellow_key = 0;
 	data->thing_list = NULL;
 	data->things_to_del = NULL;
-	data->sprite_distance = NULL;
-	data->sprite_order = NULL;
+	data->sp_distance = NULL;
+	data->sp_order = NULL;
 	return (EXIT_SUCCESS);
 }

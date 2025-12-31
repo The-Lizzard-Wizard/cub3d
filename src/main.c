@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 15:03:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	free_img(t_data *data)
 
 	free_thing_list(data, EXIT_SUCCESS);
 
-	free_ptr(data->sprite_order);
-	free_ptr(data->sprite_distance);
+	free_ptr(data->sp_order);
+	free_ptr(data->sp_distance);
 
 	free_array(data->map.grid, EXIT_SUCCESS);
 }
@@ -99,7 +99,7 @@ int	main(int argc, char **argv)
 	if (init_ui(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	
-	update_sprite_info(&data);
+	update_sp_info(&data);
 	update_minimap(&data);
 	event_listener(&data);
 	mlx_loop_hook(data.mlx_ptr, update, &data);

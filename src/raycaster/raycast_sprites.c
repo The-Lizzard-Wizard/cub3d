@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_sprites.c                                  :+:      :+:    :+:   */
+/*   raycast_sps.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:42:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 16:14:47 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:14:35 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	swap_order(t_data *data, int i, int j)
 	int		tmp;
 	double	dtmp;
 
-	tmp = data->sprite_order[i];
-	dtmp = data->sprite_distance[i];
-	data->sprite_order[i] = data->sprite_order[j];
-	data->sprite_order[j] = tmp;
-	data->sprite_distance[i] = data->sprite_distance[j];
-	data->sprite_distance[j] = dtmp;
+	tmp = data->sp_order[i];
+	dtmp = data->sp_distance[i];
+	data->sp_order[i] = data->sp_order[j];
+	data->sp_order[j] = tmp;
+	data->sp_distance[i] = data->sp_distance[j];
+	data->sp_distance[j] = dtmp;
 }
 
-void	sort_sprite(t_data *data, t_raycast raycast)
+void	sort_sp(t_data *data, t_raycast raycast)
 {
 	int		i;
 	int		j;
@@ -38,11 +38,11 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 	while (i < data->nb_thing)
 	{
 		thing_curr = get_thing_by_id(data->thing_list, i);
-		data->sprite_order[i] = i;
+		data->sp_order[i] = i;
 		dxy.x = raycast.pos.x - thing_curr->pos.x;
 		dxy.y = raycast.pos.y - thing_curr->pos.y;
 
-		data->sprite_distance[i] = dxy.x * dxy.x + dxy.y * dxy.y;
+		data->sp_distance[i] = dxy.x * dxy.x + dxy.y * dxy.y;
 		i++;
 	}
 	i = 0;
@@ -52,7 +52,7 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 		j = i + 1;
 		while (j < data->nb_thing)
 		{
-			if (data->sprite_distance[j] > data->sprite_distance[i])
+			if (data->sp_distance[j] > data->sp_distance[i])
 				swap_order(data, j, i);
 			j++;
 		}
@@ -60,76 +60,87 @@ void	sort_sprite(t_data *data, t_raycast raycast)
 	}
 }
 
-void	init_sprite_cast(t_sprite_cast *sprite_cast, t_raycast *raycast, t_thing *thing_curr)
+void	init_sp_cast_2(t_sp_cast *sp_cast)
 {
-	sprite_cast->sprite_pos.x = thing_curr->pos.x - raycast->pos.x;
-	sprite_cast->sprite_pos.y = thing_curr->pos.y - raycast->pos.y;
-	sprite_cast->inv_det = 1.0 / (raycast->plane.x * raycast->dir.y - raycast->dir.x * raycast->plane.y);
-	sprite_cast->transform.x = sprite_cast->inv_det * (raycast->dir.y * sprite_cast->sprite_pos.x - raycast->dir.x * sprite_cast->sprite_pos.y);
-	sprite_cast->transform.y = sprite_cast->inv_det * (-raycast->plane.y * sprite_cast->sprite_pos.x + raycast->plane.x * sprite_cast->sprite_pos.y);
-	sprite_cast->sprite_sreen_x = (int)((WIN_W / 2) * (1 + sprite_cast->transform.x / sprite_cast->transform.y));
-	sprite_cast->size_factor = WIN_H / sprite_cast->transform.y;
-	sprite_cast->sprite_h = (int)sprite_cast->size_factor;
-	sprite_cast->sprite_w = (int)sprite_cast->size_factor;
-	sprite_cast->sp_start_y =  -sprite_cast->sprite_h / 2 + WIN_H / 2;
-	if (sprite_cast->sp_start_y < 0)
-		sprite_cast->sp_start_y = 0;
-	sprite_cast->sp_end_y = sprite_cast->sprite_h / 2 + WIN_H / 2;
-	if (sprite_cast->sp_end_y >= WIN_H)
-		sprite_cast->sp_end_y = WIN_H - 1;
-	sprite_cast->sp_start_x = sprite_cast->sprite_sreen_x - sprite_cast->sprite_w / 2;
-	if (sprite_cast->sp_start_x < 0)
-		sprite_cast->sp_start_x = 0;
-	sprite_cast->sp_end_x = sprite_cast->sprite_sreen_x + sprite_cast->sprite_w / 2;
-	if (sprite_cast->sp_end_x >= WIN_W)
-		sprite_cast->sp_end_x = WIN_W - 1;
-	sprite_cast->stripe = sprite_cast->sp_start_x;
+	if (sp_cast->sp_start_y < 0)
+		sp_cast->sp_start_y = 0;
+	sp_cast->sp_end_y = sp_cast->sp_h / 2 + WIN_H / 2;
+	if (sp_cast->sp_end_y >= WIN_H)
+		sp_cast->sp_end_y = WIN_H - 1;
+	sp_cast->sp_start_x = sp_cast->sp_sc_x - sp_cast->sp_w / 2;
+	if (sp_cast->sp_start_x < 0)
+		sp_cast->sp_start_x = 0;
+	sp_cast->sp_end_x = sp_cast->sp_sc_x + sp_cast->sp_w / 2;
+	if (sp_cast->sp_end_x >= WIN_W)
+		sp_cast->sp_end_x = WIN_W - 1;
+	sp_cast->stripe = sp_cast->sp_start_x;
 }
 
-void	darw_sprite(t_data *data, t_sprite_cast *sprite_cast, t_raycast *raycast, t_thing *thing_curr)
+void	init_sp_cast(t_sp_cast *sp_cast,
+			t_raycast *raycast, t_thing *thing_curr)
+{
+	sp_cast->sp_pos.x = thing_curr->pos.x - raycast->pos.x;
+	sp_cast->sp_pos.y = thing_curr->pos.y - raycast->pos.y;
+	sp_cast->inv_det = 1.0 / (raycast->plane.x * raycast->dir.y - \
+		raycast->dir.x * raycast->plane.y);
+	sp_cast->transform.x = sp_cast->inv_det * (raycast->dir.y * \
+		sp_cast->sp_pos.x - raycast->dir.x * sp_cast->sp_pos.y);
+	sp_cast->transform.y = sp_cast->inv_det * (-raycast->plane.y * \
+		sp_cast->sp_pos.x + raycast->plane.x * sp_cast->sp_pos.y);
+	sp_cast->sp_sc_x = (int)((WIN_W / 2) * (1 + sp_cast->transform.x / \
+		sp_cast->transform.y));
+	sp_cast->size_factor = WIN_H / sp_cast->transform.y;
+	sp_cast->sp_h = (int)sp_cast->size_factor;
+	sp_cast->sp_w = (int)sp_cast->size_factor;
+	sp_cast->sp_start_y =  -sp_cast->sp_h / 2 + WIN_H / 2;
+}
+
+void	darw_sp(t_data *data, t_sp_cast *sp_cast,
+			t_raycast *raycast, t_thing *thing_curr)
 {
 	int		y;
 	t_color	color;
 
 	y = 0;
-	while (sprite_cast->stripe < sprite_cast->sp_end_x)
+	while (sp_cast->stripe < sp_cast->sp_end_x)
 	{
-		sprite_cast->tex_x = (int)(sprite_cast->tex_step_x * (sprite_cast->stripe - (sprite_cast->sprite_sreen_x - sprite_cast->sprite_w / 2)));
-		if (sprite_cast->transform.y > 0 && sprite_cast->stripe > 0 && sprite_cast->stripe <= WIN_W && sprite_cast->transform.y < raycast->z_buffer[sprite_cast->stripe])
+		sp_cast->tex_x = (int)(sp_cast->tex_step_x * (sp_cast->stripe - (sp_cast->sp_sc_x - sp_cast->sp_w / 2)));
+		if (sp_cast->transform.y > 0 && sp_cast->stripe > 0 && sp_cast->stripe <= WIN_W && sp_cast->transform.y < raycast->z_buffer[sp_cast->stripe])
 		{
-			sprite_cast->tex_pos = (sprite_cast->sp_start_y - WIN_H/2 + sprite_cast->sprite_h/2) * sprite_cast->tex_step_y;
-			y = sprite_cast->sp_start_y;
-			while (y < sprite_cast->sp_end_y)
+			sp_cast->tex_pos = (sp_cast->sp_start_y - WIN_H/2 + sp_cast->sp_h/2) * sp_cast->tex_step_y;
+			y = sp_cast->sp_start_y;
+			while (y < sp_cast->sp_end_y)
 			{
-				sprite_cast->b_factor = (y) * 256 - WIN_H * 128 + sprite_cast->sprite_h * 128;
-				sprite_cast->tex_y = (int)sprite_cast->tex_pos;
-				color = get_pixel((*thing_curr->texture), sprite_cast->tex_x, sprite_cast->tex_y);
+				sp_cast->b_factor = (y) * 256 - WIN_H * 128 + sp_cast->sp_h * 128;
+				sp_cast->tex_y = (int)sp_cast->tex_pos;
+				color = get_pixel((*thing_curr->texture), sp_cast->tex_x, sp_cast->tex_y);
 				if (color != NONE_COLOR_XPM)
-					set_pixel(data->screen_img, sprite_cast->stripe, y, color);
-				sprite_cast->tex_pos += sprite_cast->tex_step_y;
+					set_pixel(data->screen_img, sp_cast->stripe, y, color);
+				sp_cast->tex_pos += sp_cast->tex_step_y;
 				y++;
 			}
 		}
-		sprite_cast->stripe++;
+		sp_cast->stripe++;
 	}
 }
 
-void	sprite_casting(t_data *data, t_raycast *raycast)
+void	sp_casting(t_data *data, t_raycast *raycast)
 {
 	int	i;
 	t_thing *thing_curr;
-	t_sprite_cast	sprite_cast;
+	t_sp_cast	sp_cast;
 
-	sort_sprite(data, *raycast);
+	sort_sp(data, *raycast);
 	i = 0;
 	while (i < data->nb_thing)
 	{
-		thing_curr = get_thing_by_id(data->thing_list, data->sprite_order[i]);
-		init_sprite_cast(&sprite_cast, raycast, thing_curr);
-		sprite_cast.tex_step_x = (double)(*thing_curr->texture)->size_x / sprite_cast.sprite_w;
-		sprite_cast.tex_step_y = (double)(*thing_curr->texture)->size_y / sprite_cast.sprite_h;
-		sprite_cast.tex_pos = (sprite_cast.sp_start_y - WIN_H/2 + sprite_cast.sprite_h/2) * sprite_cast.tex_step_y;
-		darw_sprite(data, &sprite_cast, raycast, thing_curr);
+		thing_curr = get_thing_by_id(data->thing_list, data->sp_order[i]);
+		init_sp_cast(&sp_cast, raycast, thing_curr);
+		init_sp_cast_2(&sp_cast);
+		sp_cast.tex_step_x = (double)(*thing_curr->texture)->size_x / sp_cast.sp_w;
+		sp_cast.tex_step_y = (double)(*thing_curr->texture)->size_y / sp_cast.sp_h;
+		sp_cast.tex_pos = (sp_cast.sp_start_y - WIN_H/2 + sp_cast.sp_h/2) * sp_cast.tex_step_y;
+		darw_sp(data, &sp_cast, raycast, thing_curr);
 		i++;
 	}
 }

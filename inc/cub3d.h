@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 15:03:18 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,14 +191,14 @@ typedef struct s_raycast
 	double	z_buffer[WIN_W];
 } t_raycast;
 
-typedef struct s_sprite_cast
+typedef struct s_sp_cast
 {
-	t_vec2	sprite_pos;
+	t_vec2	sp_pos;
 	double	inv_det;
 	t_vec2 	transform;
-	int sprite_sreen_x;
-	int sprite_h;
-	int sprite_w;
+	int sp_sc_x;
+	int sp_h;
+	int sp_w;
 	int	sp_start_x;
 	int	sp_end_x;
 	int	sp_start_y;
@@ -211,7 +211,7 @@ typedef struct s_sprite_cast
 	double tex_step_y;
 	double tex_pos;
 	double size_factor;
-}	t_sprite_cast;
+}	t_sp_cast;
 
 typedef struct s_data
 {
@@ -228,8 +228,8 @@ typedef struct s_data
 	t_thing			*thing_list;
 	t_thing			*things_to_del; //ne sert pas pour le moment
 	int				nb_thing;
-	int				*sprite_order;
-	double			*sprite_distance;
+	int				*sp_order;
+	double			*sp_distance;
 } t_data;
 
 ////////////// EVENT //////////////
@@ -254,7 +254,7 @@ void	take_g_key(t_data *data, t_thing *to_del);
 void	take_r_key(t_data *data, t_thing *to_del);
 void	door_interact(t_data *data);
 int		get_nb_things(t_thing *list);
-int		update_sprite_info(t_data *data);
+int		update_sp_info(t_data *data);
 t_thing	*get_thing_by_id(t_thing *list, int id);
 int		shoot(t_data *data);
 void	bullet_life(t_data *data, t_thing *bullet_thing);
@@ -278,7 +278,7 @@ void render(t_data *data);
 void init_modify(t_modify *mod);
 void raycaster(t_data *data);
 void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
-void	sprite_casting(t_data *data, t_raycast *raycast);
+void	sp_casting(t_data *data, t_raycast *raycast);
 t_cub_anime	*new_anime(t_data *data, char *frames, int speed);
 void	update_anime(t_cub_anime *anime);
 

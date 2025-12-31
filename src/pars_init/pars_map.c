@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 13:32:10 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void init_things(t_vec2 pos, char *tile, t_data *data)
 	}
 	else
 		return ;
-	update_sprite_info(data);
+	update_sp_info(data);
 }
 
 int get_player_and_things(t_pars *pars, char *map, t_data *data)

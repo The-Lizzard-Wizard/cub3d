@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/12 18:22:20 by gchauvet         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:13:45 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	raycaster(t_data *data)
 		draw_line(data, x, line_height, raycast);
 		raycast.z_buffer[x] = raycast.dist_to_plane;
 	}
-	sprite_casting(data, &raycast);
+	sp_casting(data, &raycast);
 }
 
 
