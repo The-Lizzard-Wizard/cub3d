@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 13:51:53 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/02 17:03:59 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	draw_state(t_data *data)
 	mod.x = 5;
 	mod.sc_x = 1;
 	mod.sc_y = 1;
-	draw_img_on_img(data->screen_img, data->textures.anike_tex_kiwi->img_curr, mod);
+	draw_img_on_img(data->screen_img, data->textures.anime_tex_kiwi->img_curr, mod);
 	itoa_buff(data->player.kiwi, str);
 	mod.sc_x = 4;
 	mod.sc_y = 4;

@@ -6,11 +6,28 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:05:02 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/17 15:48:43 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/02 17:06:14 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	free_cub_anime(t_data *data, t_cub_anime *anime, int code)
+{
+	int	i;
+
+	i = 0;
+	if (!anime)
+		return (code);
+	while (i < anime->nb_frame)
+	{
+		free_cub_img(data, anime->frames[i], 1);
+		i++;
+	}
+	free_ptr(anime->frames);
+	free_ptr(anime);
+	return (code);
+}
 
 t_cub_anime	*new_anime(t_data *data, char *frames, int speed)
 {
@@ -32,7 +49,7 @@ t_cub_anime	*new_anime(t_data *data, char *frames, int speed)
 	new_anime->frames = ft_calloc(sizeof(t_cub_anime), new_anime->nb_frame);
 	if (!new_anime->frames)
 	{
-		free_ptr(frames_paths);
+		free_array(frames_paths, EXIT_FAILURE);
 		free_ptr(new_anime);
 		return (NULL);
 	}
@@ -44,11 +61,11 @@ t_cub_anime	*new_anime(t_data *data, char *frames, int speed)
 		//add error gestion here
 		i++;
 	}
+	free_array(frames_paths, EXIT_FAILURE);
 	new_anime->speed = speed;
 	new_anime->time_bf = 0;
 	new_anime->frame_curr = 0;
 	new_anime->img_curr = new_anime->frames[0];
-	printf("anime ptr %p\n", new_anime->img_curr);
 	return (new_anime);
 }
 

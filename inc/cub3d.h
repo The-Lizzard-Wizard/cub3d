@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/02 17:03:59 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ typedef struct s_textures
 	t_cub_img	*tex_g_door;
 	t_cub_img	*tex_b_door;
 	t_cub_img	*tex_door;
-	t_cub_img	*tex_magic_rod;
+	t_cub_img	*tex_magic;
 	t_cub_img	*tex_chicken;
 	t_cub_anime	*anime_tex_banana;
 	t_cub_anime	*anime_tex_magic_shoot;
-	t_cub_anime	*anike_tex_kiwi;
+	t_cub_anime	*anime_tex_kiwi;
 } t_textures;
 
 typedef struct s_vec2
@@ -281,6 +281,7 @@ void draw_line(t_data *data, int x, int line_height, t_raycast raycast);
 void	sp_casting(t_data *data, t_raycast *raycast);
 t_cub_anime	*new_anime(t_data *data, char *frames, int speed);
 void	update_anime(t_cub_anime *anime);
+int	free_cub_anime(t_data *data, t_cub_anime *anime, int code);
 
 /////////////// UI ///////////////
 

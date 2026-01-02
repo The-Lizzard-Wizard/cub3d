@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/02 17:16:47 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	free_img(t_data *data)
 	free_cub_img(data, data->textures.tex_b_door, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_door, EXIT_SUCCESS);
 	
-	//free_cub_img(data, data->textures.tex_magic_shoot, EXIT_SUCCESS);
-	free_cub_img(data, data->textures.tex_magic_rod, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_magic, EXIT_SUCCESS);
+	free_cub_img(data, data->textures.tex_chicken, EXIT_SUCCESS);
 
 	free_cub_img(data, data->ui.wall_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.y_door, EXIT_SUCCESS);
@@ -64,6 +64,10 @@ void	free_img(t_data *data)
 	free_cub_img(data, data->ui.mimp_frame, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.floor_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.font, EXIT_SUCCESS);
+
+	free_cub_anime(data, data->textures.anime_tex_kiwi, EXIT_SUCCESS);
+	free_cub_anime(data, data->textures.anime_tex_banana, EXIT_SUCCESS);
+	free_cub_anime(data, data->textures.anime_tex_magic_shoot, EXIT_SUCCESS);
 
 	free_cub_img(data, data->ui.magic_rod_0, EXIT_SUCCESS);
 
@@ -93,11 +97,26 @@ int	main(int argc, char **argv)
 	if (init_mlx(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (load_textures(&data) == EXIT_FAILURE)
+	{
+		free_img(&data);
+		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
+		free_ptr(data.mlx_ptr);
 		return (EXIT_FAILURE);
+	}
 	if (pars(&data, argv) == EXIT_FAILURE)
+	{
+		free_img(&data);
+		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
+		free_ptr(data.mlx_ptr);
 		return (EXIT_FAILURE);
+	}
 	if (init_ui(&data) == EXIT_FAILURE)
+	{
+		free_img(&data);
+		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
+		free_ptr(data.mlx_ptr);
 		return (EXIT_FAILURE);
+	}
 	
 	update_sp_info(&data);
 	update_minimap(&data);
@@ -105,8 +124,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx_ptr, update, &data);
 	mlx_loop(data.mlx_ptr);
 	free_img(&data);
-	mlx_destroy_window(
-		data.mlx_ptr, data.mlx_win);
+	mlx_destroy_window(data.mlx_ptr, data.mlx_win);
 	free_ptr(data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 15:15:12 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/02 17:03:59 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void init_things(t_vec2 pos, char *tile, t_data *data)
 	}
 	else if (*tile == 'm')
 	{
-		add_thing(data, &data->textures.tex_magic_rod, pos, THING_MAGIC_ROD);
+		add_thing(data, &data->textures.tex_magic, pos, THING_MAGIC_ROD);
 		*tile = '0';
 	}
 	else if (*tile == 'c')
@@ -122,7 +122,7 @@ void init_things(t_vec2 pos, char *tile, t_data *data)
 	}
 	else if (*tile == 'k')
 	{
-		add_thing(data, &data->textures.anike_tex_kiwi->img_curr, pos, THING_KIWI);
+		add_thing(data, &data->textures.anime_tex_kiwi->img_curr, pos, THING_KIWI);
 		*tile = '0';
 	}
 	else
