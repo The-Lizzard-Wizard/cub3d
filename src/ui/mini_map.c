@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:58:38 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/03 16:06:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 12:29:06 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	init_mini_map(t_data *data)
 	if (!data->ui.wall_img)
 		return (EXIT_FAILURE);
 	data->ui.minimap_img = new_img(data,
-		(data->map.width + 1) * data->ui.wall_img->size_x,
-		(data->map.height + 1) * data->ui.wall_img->size_y);
+			(data->map.width + 1) * data->ui.wall_img->size_x,
+			(data->map.height + 1) * data->ui.wall_img->size_y);
 	if (!data->ui.minimap_img)
 		return (EXIT_FAILURE);
 	update_minimap(data);
@@ -40,17 +40,31 @@ int	draw_player_pos(t_data *data)
 	put_text_on_img(data->screen_img, data->ui.font, "(x:  y:  )", mod);
 	mod.x = 32 * 2;
 	itoa_buff(data->player.pos.x, data->ui.number_buffer);
-	put_text_on_img(data->screen_img, data->ui.font, data->ui.number_buffer, mod);
+	put_text_on_img(data->screen_img, data->ui.font,
+		data->ui.number_buffer, mod);
 	mod.x = 32 * 5;
 	itoa_buff(data->player.pos.y, data->ui.number_buffer);
-	put_text_on_img(data->screen_img, data->ui.font, data->ui.number_buffer, mod);
+	put_text_on_img(data->screen_img,
+		data->ui.font, data->ui.number_buffer, mod);
 	return (EXIT_SUCCESS);
+}
+
+void	draw_player_on_minimap(t_data *data, t_modify mod)
+{
+	mod.x = ((data->ui.mimp_frame->size_x / 2\
+) - data->ui.pl_img->size_x / 2) * mod.sc_x;
+	mod.y = ((data->ui.mimp_frame->size_y / 2\
+) - data->ui.pl_img->size_y / 2) * mod.sc_y;
+	draw_img_on_img(data->screen_img, data->ui.pl_img, mod);
+	mod.x += data->player.view_angle.x * 10;
+	mod.y += data->player.view_angle.y * 10;
+	draw_img_on_img(data->screen_img, data->ui.pl_img, mod);
 }
 
 void	draw_minimap(t_data *data, int map_size)
 {
-	t_modify mod;
-	int pld[2];
+	t_modify	mod;
+	int			pld[2];
 
 	init_modify(&mod);
 	mod.sc_x = 4;
@@ -59,22 +73,15 @@ void	draw_minimap(t_data *data, int map_size)
 	mod.quad_sy = data->ui.mimp_frame->size_y / mod.sc_y * map_size;
 	pld[0] = (extract_decimal(data->player.pos.x) / 12);
 	pld[1] = (extract_decimal(data->player.pos.y) / 12);
-	mod.quad_x = pld[0] + ((int)data->player.pos.x * data->ui.wall_img->size_x)\
-		- (((data->ui.mimp_frame->size_x * map_size) / 2) / mod.sc_x);
-	mod.quad_y = pld[1] + ((int)data->player.pos.y * data->ui.wall_img->size_y)\
-		- (((data->ui.mimp_frame->size_y * map_size) / 2) / mod.sc_y);
+	mod.quad_x = pld[0] + ((int)data->player.pos.x * data->ui.wall_img->size_x\
+) - (((data->ui.mimp_frame->size_x * map_size) / 2) / mod.sc_x);
+	mod.quad_y = pld[1] + ((int)data->player.pos.y * data->ui.wall_img->size_y\
+) - (((data->ui.mimp_frame->size_y * map_size) / 2) / mod.sc_y);
 	draw_img_on_img(data->screen_img, data->ui.minimap_img, mod);
 	init_modify(&mod);
 	mod.sc_x = map_size;
 	mod.sc_y = map_size;
 	draw_img_on_img(data->screen_img, data->ui.mimp_frame, mod);
-	mod.x = ((data->ui.mimp_frame->size_x / 2)\
-		- data->ui.pl_img->size_x / 2) * mod.sc_x;
-	mod.y = ((data->ui.mimp_frame->size_y / 2)\
-		- data->ui.pl_img->size_y / 2) * mod.sc_y;
-	draw_img_on_img(data->screen_img, data->ui.pl_img, mod);
-	mod.x += data->player.view_angle.x * 10;
-	mod.y += data->player.view_angle.y * 10;
-	draw_img_on_img(data->screen_img, data->ui.pl_img, mod);
+	draw_player_on_minimap(data, mod);
 	draw_player_pos(data);
 }

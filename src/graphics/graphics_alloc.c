@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:01:01 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:01:07 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 11:56:11 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int	free_cub_img(t_data *data, t_cub_img *img, int code)
 {
-	//free_ptr(img->addr);
 	if (!img)
 		return (code);
 	mlx_destroy_image(data->mlx_ptr, img->mlx_img);

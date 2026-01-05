@@ -6,11 +6,27 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:11:29 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:03:59 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 12:36:13 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+void	draw_kiwi_state(t_data *data, t_modify mod, char str[16])
+{
+	mod.y = WIN_H - 300;
+	mod.x = 5;
+	mod.sc_x = 1;
+	mod.sc_y = 1;
+	draw_img_on_img(data->screen_img,
+		data->textures.anime_tex_kiwi->img_curr, mod);
+	itoa_buff(data->player.kiwi, str);
+	mod.sc_x = 4;
+	mod.sc_y = 4;
+	mod.x = 130;
+	mod.y += 20;
+	put_text_on_img(data->screen_img, data->ui.font, str, mod);
+}
 
 int	draw_state(t_data *data)
 {
@@ -22,22 +38,13 @@ int	draw_state(t_data *data)
 	mod.sc_y = 4;
 	mod.y = WIN_H - 200;
 	mod.x = -10;
-	draw_img_on_img(data->screen_img, data->textures.anime_tex_banana->img_curr, mod);
+	draw_img_on_img(data->screen_img,
+		data->textures.anime_tex_banana->img_curr, mod);
 	itoa_buff(data->player.banana, str);
 	mod.x = 130;
 	mod.y += 20;
 	put_text_on_img(data->screen_img, data->ui.font, str, mod);
-	mod.y = WIN_H - 300;
-	mod.x = 5;
-	mod.sc_x = 1;
-	mod.sc_y = 1;
-	draw_img_on_img(data->screen_img, data->textures.anime_tex_kiwi->img_curr, mod);
-	itoa_buff(data->player.kiwi, str);
-	mod.sc_x = 4;
-	mod.sc_y = 4;
-	mod.x = 130;
-	mod.y += 20;
-	put_text_on_img(data->screen_img, data->ui.font, str, mod);
+	draw_kiwi_state(data, mod, str);
 	return (EXIT_SUCCESS);
 }
 
@@ -55,7 +62,7 @@ int	draw_magic_rod(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-int draw_hud(t_data *data)
+int	draw_hud(t_data *data)
 {
 	t_modify	mod;
 
