@@ -35,24 +35,24 @@ void	init_sp_cast(t_sp_cast *sp_cast,
 {
 	sp_cast->sp_pos.x = thing_curr->pos.x - raycast->pos.x;
 	sp_cast->sp_pos.y = thing_curr->pos.y - raycast->pos.y;
-	sp_cast->inv_det = 1.0 / (raycast->plane.x * raycast->dir.y - \
-		raycast->dir.x * raycast->plane.y);
-	sp_cast->transform.x = sp_cast->inv_det * (raycast->dir.y * \
-		sp_cast->sp_pos.x - raycast->dir.x * sp_cast->sp_pos.y);
-	sp_cast->transform.y = sp_cast->inv_det * (-raycast->plane.y * \
-		sp_cast->sp_pos.x + raycast->plane.x * sp_cast->sp_pos.y);
-	sp_cast->sp_sc_x = (int)((WIN_W / 2) * (1 + sp_cast->transform.x / \
-		sp_cast->transform.y));
+	sp_cast->inv_det = 1.0 / (\
+raycast->plane.x * raycast->dir.y - raycast->dir.x * raycast->plane.y);
+	sp_cast->transform.x = sp_cast->inv_det * (\
+raycast->dir.y * sp_cast->sp_pos.x - raycast->dir.x * sp_cast->sp_pos.y);
+	sp_cast->transform.y = sp_cast->inv_det * (\
+-raycast->plane.y * sp_cast->sp_pos.x + raycast->plane.x * sp_cast->sp_pos.y);
+	sp_cast->sp_sc_x = (int)(\
+(WIN_W / 2) * (1 + sp_cast->transform.x / sp_cast->transform.y));
 	sp_cast->size_factor = WIN_H / sp_cast->transform.y;
 	sp_cast->sp_h = (int)sp_cast->size_factor;
 	sp_cast->sp_w = (int)sp_cast->size_factor;
-	sp_cast->sp_start_y =  -sp_cast->sp_h / 2 + WIN_H / 2;
+	sp_cast->sp_start_y = -sp_cast->sp_h / 2 + WIN_H / 2;
 }
 
 void	sp_casting(t_data *data, t_raycast *raycast)
 {
-	int	i;
-	t_thing *thing_curr;
+	int			i;
+	t_thing		*thing_curr;
 	t_sp_cast	sp_cast;
 
 	sort_sp(data, *raycast);
@@ -72,4 +72,3 @@ sp_cast.sp_start_y - WIN_H / 2 + sp_cast.sp_h / 2) * sp_cast.tex_step_y;
 		i++;
 	}
 }
-
