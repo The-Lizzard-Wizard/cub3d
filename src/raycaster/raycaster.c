@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 15:13:45 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 13:10:44 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	raycaster(t_data *data)
 {
 	t_raycast raycast;
 	int x;
-	int is_hit;// is the wall hit? very explicit
+	int is_hit;
 	int line_height;
 
 	x = -1;

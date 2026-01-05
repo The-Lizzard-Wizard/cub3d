@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:03:59 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 13:03:31 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,9 @@ void	sp_casting(t_data *data, t_raycast *raycast);
 t_cub_anime	*new_anime(t_data *data, char *frames, int speed);
 void	update_anime(t_cub_anime *anime);
 int	free_cub_anime(t_data *data, t_cub_anime *anime, int code);
+void	draw_sp(t_data *data, t_sp_cast *sp_cast,
+			t_raycast *raycast, t_thing *thing_curr);
+void	sort_sp(t_data *data, t_raycast raycast);
 
 /////////////// UI ///////////////
 
