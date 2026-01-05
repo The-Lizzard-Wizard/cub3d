@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:35:14 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:18:40 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 13:26:27 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	load_textures(t_data *data)
 	data->textures.tex_magic = new_xpm_img(data, "textures/tex_magic_rod.xpm");
 	data->textures.tex_chicken = new_xpm_img(data, "textures/chicken.xpm");
 	load_anime(data);
-	if (check_tex(data) == EXIT_FAILURE)
+	if (check_tex(data) == EXIT_FAILURE || check_anime(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

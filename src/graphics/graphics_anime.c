@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:05:02 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:06:14 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/05 13:53:39 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,37 @@ int	free_cub_anime(t_data *data, t_cub_anime *anime, int code)
 	return (code);
 }
 
+int	new_anime_core(t_data *data, t_cub_anime *new_anime, char **frames_paths)
+{
+	size_t	i;
+
+	i = 0;
+	new_anime->frames = ft_calloc(sizeof(t_cub_anime), new_anime->nb_frame);
+	if (!new_anime->frames)
+	{
+		free_array(frames_paths, EXIT_FAILURE);
+		free_ptr(new_anime);
+		return (EXIT_FAILURE);
+	}
+	while ((int)i < new_anime->nb_frame)
+	{
+		new_anime->frames[i] = new_xpm_img(data, frames_paths[i]);
+		if (new_anime->frames[i] == NULL)
+		{
+			free_cub_anime(data, new_anime, EXIT_FAILURE);
+			free_array(frames_paths, EXIT_FAILURE);
+			return (EXIT_FAILURE);
+		}
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
 t_cub_anime	*new_anime(t_data *data, char *frames, int speed)
 {
 	t_cub_anime	*new_anime;
 	char		**frames_paths;
-	size_t		i;
 
-	i = 0;
 	new_anime = ft_calloc(sizeof(t_cub_anime), 1);
 	if (!new_anime)
 		return (NULL);
@@ -46,21 +70,8 @@ t_cub_anime	*new_anime(t_data *data, char *frames, int speed)
 		return (NULL);
 	}
 	new_anime->nb_frame = array_len(frames_paths);
-	new_anime->frames = ft_calloc(sizeof(t_cub_anime), new_anime->nb_frame);
-	if (!new_anime->frames)
-	{
-		free_array(frames_paths, EXIT_FAILURE);
-		free_ptr(new_anime);
+	if (new_anime_core(data, new_anime, frames_paths) == EXIT_FAILURE)
 		return (NULL);
-	}
-	while ((int)i < new_anime->nb_frame)
-	{
-		new_anime->frames[i] = new_xpm_img(data, frames_paths[i]);
-		if (new_anime->frames[i] == NULL)
-			ft_printf("%s\n", frames_paths[i]);
-		//add error gestion here
-		i++;
-	}
 	free_array(frames_paths, EXIT_FAILURE);
 	new_anime->speed = speed;
 	new_anime->time_bf = 0;
