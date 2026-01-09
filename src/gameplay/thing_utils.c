@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thing_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 16:57:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/31 17:01:05 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:57:35 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	get_nb_things(t_thing *list)
 {
 	t_thing	*curr_thing;
-	int	nb;
+	int		nb;
 
 	nb = 1;
 	if (list == NULL)

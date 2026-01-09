@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:09:54 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/31 16:53:40 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:40:40 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	move_release(t_data *data, int key)
 
 int	collide(t_data *data, t_vec2 pos, int xy)
 {
-	int coll;
+	int		coll;
 	char	tile;
 
 	if (is_out_of_bounds(data) == 1)
@@ -57,15 +57,15 @@ int	collide(t_data *data, t_vec2 pos, int xy)
 	if (xy == 1)
 	{
 		tile = data->map.grid[(int)data->player.pos.y][(int)pos.x];
-		if (tile == '1' || tile == 'Y' || tile == 'B' ||
-				tile == 'G' || tile == 'R' || tile == 'D')
+		if (tile == '1' || tile == 'Y' || tile == 'B'
+			|| tile == 'G' || tile == 'R' || tile == 'D')
 			coll = 1;
 	}
 	else if (xy == 2)
 	{
 		tile = data->map.grid[(int)pos.y][(int)data->player.pos.x];
-		if (tile == '1' || tile == 'Y' || tile == 'B' ||
-				tile == 'G' || tile == 'R' || tile == 'D')
+		if (tile == '1' || tile == 'Y' || tile == 'B'
+			|| tile == 'G' || tile == 'R' || tile == 'D')
 			coll = 1;
 	}
 	return (coll);
@@ -75,17 +75,17 @@ void	keyboard_camera(t_data *data)
 {
 	if (data->player.control.move_right == 1)
 	{
-		data->player.view_angle = vect_rot(\
-			data->player.view_angle, (double)deg_to_rad(1));
-		data->player.camera_plane = vect_rot(\
-			data->player.camera_plane, (double)deg_to_rad(1));
+		data->player.view_angle = vect_rot(data->player.view_angle,
+				(double)deg_to_rad(1));
+		data->player.camera_plane = vect_rot(data->player.camera_plane,
+				(double)deg_to_rad(1));
 	}
 	if (data->player.control.move_left == 1)
 	{
-		data->player.view_angle = vect_rot(\
-			data->player.view_angle, (double)deg_to_rad(-1));
-		data->player.camera_plane = vect_rot(\
-			data->player.camera_plane, (double)deg_to_rad(-1));
+		data->player.view_angle = vect_rot(data->player.view_angle,
+				(double)deg_to_rad(-1));
+		data->player.camera_plane = vect_rot(data->player.camera_plane,
+				(double)deg_to_rad(-1));
 	}
 }
 

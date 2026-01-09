@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2025/12/01 13:42:16 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:54:20 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pars.h"
 #include "../../inc/cub3d.h"
 
-t_color rgba_to_int_color(unsigned char r, unsigned char g,
+t_color	rgba_to_int_color(unsigned char r, unsigned char g,
 	unsigned char b, unsigned char a)
 {
-	t_color color;
+	t_color	color;
 
 	color = (a << 24) + (r << 16) + (g << 8) + b;
 	return (color);
 }
 
-int get_color_c(t_pars *pars, char *line)
+int	get_color_c(t_pars *pars, char *line)
 {
-	size_t r;
-	size_t g;
-	size_t b;
-	char **raw;
+	size_t	r;
+	size_t	g;
+	size_t	b;
+	char	**raw;
 
 	raw = ft_split(line, ',');
 	if (!raw)
@@ -48,12 +48,12 @@ int get_color_c(t_pars *pars, char *line)
 	return (EXIT_FAILURE);
 }
 
-int get_color_f(t_pars *pars, char *line)
+int	get_color_f(t_pars *pars, char *line)
 {
-	size_t r;
-	size_t g;
-	size_t b;
-	char **raw;
+	size_t	r;
+	size_t	g;
+	size_t	b;
+	char	**raw;
 
 	raw = ft_split(line, ',');
 	if (!raw)
@@ -63,7 +63,7 @@ int get_color_f(t_pars *pars, char *line)
 		r = ft_atoi(raw[0]);
 		g = ft_atoi(raw[1]);
 		b = ft_atoi(raw[2]);
-		if (r > 255|| g > 255 || b > 255)
+		if (r > 255 || g > 255 || b > 255)
 			return (EXIT_FAILURE);
 		*(pars->floor_color) = rgba_to_int_color(r, g, b, 0);
 		pars->f_color_check = 1;
@@ -74,7 +74,7 @@ int get_color_f(t_pars *pars, char *line)
 	return (EXIT_FAILURE);
 }
 
-void get_id(char *id, char *line)
+void	get_id(char *id, char *line)
 {
 	if (*line == 'F' && ft_isspace(*(line + 1)))
 		*id = 'F';

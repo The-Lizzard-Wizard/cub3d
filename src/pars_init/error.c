@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/11 16:11:27 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:01:33 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	init_error(char *er_list[NB_ERROR_CODE])
 
 int	print_error(int code)
 {
-	char *er_list[NB_ERROR_CODE];
-	
+	char	*er_list[NB_ERROR_CODE];
+
 	init_error(er_list);
 	ft_dprintf(2, "\e[1;31merror\e[0m : %s\n", er_list[code]);
 	return (code);

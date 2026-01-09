@@ -3,36 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/12/30 13:36:34 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 17:23:53 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
-#define DEFINE_H
+# define DEFINE_H
 
 //==========================================================
 
 //windows size
-#define WIN_W 1920
-#define WIN_H 1080
+# define WIN_W 1920
+# define WIN_H 1080
 
 // r:0 g:0 b:0 a:255
-#define NONE_COLOR_XPM 4278190080
+# define NONE_COLOR_XPM 4278190080
 
-#define FONT_CHAR_SIZE 16
-
-// FOV
-
-#define FOV PI / 4
+# define FONT_CHAR_SIZE 16
 
 //draw type for shapes
-#define FILL 1
-#define LINE 2
+# define FILL 1
+# define LINE 2
 
-#define	FOG 5;
+# define FOG 5
 
 // thing
 typedef enum e_thing_type
@@ -50,8 +46,8 @@ typedef enum e_thing_type
 	THING_G_KEY
 }	t_thing_type;
 
-#define THING_BOX_W 0.3
-#define THING_BOX_H 0.3
+# define THING_BOX_W 0.3
+# define THING_BOX_H 0.3
 
 //================
 //= error messages
@@ -64,26 +60,26 @@ typedef enum e_thing_type
 //=
 //================
 
-#define NB_ERROR_CODE 15
+# define NB_ERROR_CODE 15
 
 //init error
-#define RM_INIT_TEX "MLX : Failed to load textures."
-#define RM_INIT_MLX "MLX : Failed to initialize MLX."
-#define RM_INIT_WIN "MLX : Failed to load window."
-#define RM_INIT_SC_IMG "MLX : Failed to load screen image."
-#define RM_INIT_UI_IMG "UI : Failed to load images."
-#define RM_INIT_UI_MIMP "UI : Failed to initialize the minimap."
+# define RM_INIT_TEX "MLX : Failed to load textures."
+# define RM_INIT_MLX "MLX : Failed to initialize MLX."
+# define RM_INIT_WIN "MLX : Failed to load window."
+# define RM_INIT_SC_IMG "MLX : Failed to load screen image."
+# define RM_INIT_UI_IMG "UI : Failed to load images."
+# define RM_INIT_UI_MIMP "UI : Failed to initialize the minimap."
 
 //map and info parsing
-#define RM_WRONG_MAP_FILE "Wrong arg : map argument not found."
-#define RM_WRONG_ARG "Wrong arg : try : ./cub3D <map path>"
-#define RM_MAP_TEX_PATH "Map : The path of the textures is not valid."
-#define RM_MAP_COLOR "Map : The colors for the ceiling or the floor are not valid."
-#define RM_MAP_DONT_CLOSE "Map : The map is not closed."
-#define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
-#define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected characher found in the map."
-#define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
-#define RM_MAP_NO_COLOR_FOUND "Map : Color are missing for the ciling or the floor."//15
+# define RM_WRONG_MAP_FILE "Wrong arg : map argument not found."
+# define RM_WRONG_ARG "Wrong arg : try : ./cub3D <map path>"
+# define RM_MAP_TEX_PATH "Map : The path of the textures is not valid."
+# define RM_MAP_COLOR "Map : Invalid floor or ceiling color."
+# define RM_MAP_DONT_CLOSE "Map : The map is not closed."
+# define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
+# define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected characher found in the map."
+# define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
+# define RM_MAP_NO_COLOR_FOUND "Map : Missing color on ceiling or floor."
 
 typedef enum e_error_code
 {
@@ -102,10 +98,6 @@ typedef enum e_error_code
 	ER_MAP_NO_COLOR_FOUND,
 	ER_INIT_UI_IMG,
 	ER_INIT_UI_MIMP
-} t_error_code;
-
-//================
-
-//==========================================================
+}	t_error_code;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics_display.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:46:10 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/12 14:20:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:58:31 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod)
 	while (i[0] < mod.quad_sx && mod.x + (i[0] * mod.sc_x) <= to_img->size_x)
 	{
 		i[1] = 0;
-		while (i[1] < mod.quad_sy && mod.y + (\
-i[1] * mod.sc_y) <= to_img->size_y)
+		while (i[1] < mod.quad_sy && mod.y + (i[1] * mod.sc_y)
+			<= to_img->size_y)
 		{
 			pxd++;
 			px = get_pixel(img, i[0] + mod.quad_x, i[1] + mod.quad_y);

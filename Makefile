@@ -16,8 +16,8 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/event/event.c \
 	src/event/update.c src/graphics/render.c \
 	src/graphics/graphics_alloc.c src/pars_init/error.c \
-	src/graphics/graphics_display.c src/pars_init/pars.c \
-	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c \
+	src/graphics/graphics_display.c src/pars_init/pars.c src/pars_init/pars_utils.c\
+	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c src/pars_init/get_map.c\
 	src/utils.c src/raycaster/math.c src/raycaster/raycaster.c src/raycaster/raycast_draw.c\
 	src/ui/mini_map.c src/ui/init_ui.c \
 	src/free.c src/graphics/graphics_shapes.c src/pars_init/init_data.c \
@@ -29,7 +29,7 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/gameplay/thing_banana.c src/gameplay/thing_kiwi.c \
 	src/gameplay/thing_utils.c src/pars_init/load_textures.c \
 	src/utils_2.c src/raycaster/raycast_sprites_draw.c \
-	src/raycaster/raycast_sprites_sort.c
+	src/raycaster/raycast_sprites_sort.c src/raycaster/raycast_utils.c
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a

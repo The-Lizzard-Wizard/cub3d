@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:16:47 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/09 17:01:05 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,67 +17,58 @@
 #include "../inc/cub_math.h"
 #include "../minilibx-linux/mlx.h"
 
-int free_and_exit(t_data *data)
+int	free_and_exit(t_data *data)
 {
-	(void)data;
 	mlx_loop_end(data->mlx_ptr);
 	return (EXIT_SUCCESS);
 }
 
-void	free_img(t_data *data)
+void	free_more_img(t_data *data)
 {
 	free_cub_img(data, data->textures.tex_east, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_north, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_south, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_west, EXIT_SUCCESS);
-
 	free_cub_img(data, data->textures.tex_y_key, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_b_key, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_g_key, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_r_key, EXIT_SUCCESS);
-
 	free_cub_img(data, data->textures.tex_r_door, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_y_door, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_g_door, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_b_door, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_door, EXIT_SUCCESS);
-	
 	free_cub_img(data, data->textures.tex_magic, EXIT_SUCCESS);
 	free_cub_img(data, data->textures.tex_chicken, EXIT_SUCCESS);
-
 	free_cub_img(data, data->ui.wall_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.y_door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.b_door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.g_door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.r_door, EXIT_SUCCESS);
-
 	free_cub_img(data, data->ui.door, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.door_open, EXIT_SUCCESS);
+}
 
+void	free_img(t_data *data)
+{
+	free_more_img(data);
 	free_cub_img(data, data->ui.tex_y_key, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.tex_g_key, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.tex_b_key, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.tex_r_key, EXIT_SUCCESS);
-
 	free_cub_img(data, data->ui.minimap_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.pl_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.mimp_frame, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.floor_img, EXIT_SUCCESS);
 	free_cub_img(data, data->ui.font, EXIT_SUCCESS);
-
 	free_cub_anime(data, data->textures.anime_tex_kiwi, EXIT_SUCCESS);
 	free_cub_anime(data, data->textures.anime_tex_banana, EXIT_SUCCESS);
 	free_cub_anime(data, data->textures.anime_tex_magic_shoot, EXIT_SUCCESS);
-
 	free_cub_img(data, data->ui.magic_rod_0, EXIT_SUCCESS);
-
 	free_cub_img(data, data->screen_img, EXIT_SUCCESS);
-
 	free_thing_list(data, EXIT_SUCCESS);
-
 	free_ptr(data->sp_order);
 	free_ptr(data->sp_distance);
-
 	free_array(data->map.grid, EXIT_SUCCESS);
 }
 
@@ -117,7 +108,6 @@ int	main(int argc, char **argv)
 		free_ptr(data.mlx_ptr);
 		return (EXIT_FAILURE);
 	}
-	
 	update_sp_info(&data);
 	update_minimap(&data);
 	event_listener(&data);
