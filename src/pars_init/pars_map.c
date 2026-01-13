@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 14:45:02 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 14:07:21 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 
 int	is_valid_adj(char adj_to_check)
 {
-	if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'y'
-		|| adj_to_check == 'r' || adj_to_check == 'g' || adj_to_check == 'b'
-		|| adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'
-		|| adj_to_check == 'G' || adj_to_check == 'R')
+	if (BONUS)
+	{
+		if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'y'
+			|| adj_to_check == 'r' || adj_to_check == 'g' || adj_to_check == 'b'
+			|| adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'
+			|| adj_to_check == 'G' || adj_to_check == 'R')
 		return (EXIT_SUCCESS);
+	}
+	else
+	{
+		if (adj_to_check == '0' || adj_to_check == '1')
+			return (EXIT_SUCCESS);
+	}
 	return (EXIT_FAILURE);
 }
 
@@ -74,7 +82,8 @@ int	get_player_and_things(t_pars *pars, char *map, t_data *data)
 		if (map[i] == 'N' || map[i] == 'S' || map[i] == 'E' || map[i] == 'W')
 			player_view_init(pars, &map[i], pos, &player_flag);
 		else if (map[i] != '0' && map[i] != '1')
-			init_things(pos, &map[i], data);
+			if (BONUS)
+				init_things(pos, &map[i], data);
 		if (map[i] == '\n')
 		{
 			pos.y++;
