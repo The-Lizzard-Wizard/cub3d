@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 17:26:46 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 14:24:34 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,7 +338,6 @@ int			load_textures(t_data *data);
 
 /////////////// FREE //////////////
 
-int			free_and_exit(t_data *data);
 int			free_one_and_exit(void *ptr, int code);
 int			free_too_and_exit(void *ptr1, void *ptr2, int code);
 int			free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);

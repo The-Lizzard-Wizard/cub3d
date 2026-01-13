@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:02:33 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:29:20 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 #include "../inc/cub3d.h"
 #include "../inc/cub_math.h"
 #include "../minilibx-linux/mlx.h"
-
-int	free_and_exit(t_data *data)
-{
-	mlx_loop_end(data->mlx_ptr);
-	return (EXIT_SUCCESS);
-}
 
 void	free_more_img(t_data *data)
 {
@@ -72,6 +66,35 @@ void	free_img(t_data *data)
 	free_array(data->map.grid, EXIT_SUCCESS);
 }
 
+int	init(t_data *data, char **argv)
+{
+	init_data(data);
+	if (init_mlx(data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (load_textures(data) == EXIT_FAILURE)
+	{
+		free_img(data);
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		free_ptr(data->mlx_ptr);
+		return (EXIT_FAILURE);
+	}
+	if (pars(data, argv) == EXIT_FAILURE)
+	{
+		free_img(data);
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		free_ptr(data->mlx_ptr);
+		return (EXIT_FAILURE);
+	}
+	if (init_ui(data) == EXIT_FAILURE)
+	{
+		free_img(data);
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		free_ptr(data->mlx_ptr);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -84,30 +107,8 @@ int	main(int argc, char **argv)
 		return (EXIT_SUCCESS);
 	}
 	data.thing_list = NULL;
-	init_data(&data);
-	if (init_mlx(&data) == EXIT_FAILURE)
+	if (init(&data, argv) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (load_textures(&data) == EXIT_FAILURE)
-	{
-		free_img(&data);
-		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
-		free_ptr(data.mlx_ptr);
-		return (EXIT_FAILURE);
-	}
-	if (pars(&data, argv) == EXIT_FAILURE)
-	{
-		free_img(&data);
-		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
-		free_ptr(data.mlx_ptr);
-		return (EXIT_FAILURE);
-	}
-	if (init_ui(&data) == EXIT_FAILURE)
-	{
-		free_img(&data);
-		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
-		free_ptr(data.mlx_ptr);
-		return (EXIT_FAILURE);
-	}
 	update_sp_info(&data);
 	update_minimap(&data);
 	event_listener(&data);

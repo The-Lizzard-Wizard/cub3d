@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 13:53:22 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:30:19 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	switch_int(int *toggle)
 int	keypresse(int key, t_data *data)
 {
 	if (key == K_ESC)
-		free_and_exit(data);
+		mlx_loop_end(data->mlx_ptr);
 	if (BONUS)
 	{
 		if (key == K_TAB)
@@ -69,6 +69,6 @@ void	event_listener(t_data *data)
 {
 	mlx_hook(data->mlx_win, 2, (1L << 0), keypresse, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, keyrelease, data);
-	mlx_hook(data->mlx_win, DestroyNotify, KeyPressMask, free_and_exit, data);
+	mlx_hook(data->mlx_win, DestroyNotify, KeyPressMask, mlx_loop_end, data->mlx_ptr);
 	mlx_mouse_hook(data->mlx_win, mouse_presse, data);
 }
