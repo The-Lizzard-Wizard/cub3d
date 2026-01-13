@@ -6,11 +6,27 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/02 17:14:06 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/13 13:54:49 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+void	init_toggle_bonus(t_data *data)
+{
+	if (BONUS)
+	{
+		data->game_state.toggle_collide = 1;
+		data->game_state.toggle_minimap = 1;
+		data->game_state.camera_ctrl_type = 0;
+	}
+	else
+	{
+		data->game_state.toggle_collide = 0;
+		data->game_state.toggle_minimap = 0;
+		data->game_state.camera_ctrl_type = 1;
+	}
+}
 
 int	init_data(t_data *data)
 {
@@ -21,9 +37,7 @@ int	init_data(t_data *data)
 	data->player.control.move_left = 0;
 	data->player.control.move_right = 0;
 	data->player.magic_rod = 0;
-	data->game_state.toggle_collide = 1;
-	data->game_state.toggle_minimap = 1;
-	data->game_state.camera_ctrl_type = 1;
+	init_toggle_bonus(data);
 	data->player.banana = 0;
 	data->player.kiwi = 0;
 	data->player.red_key = 0;

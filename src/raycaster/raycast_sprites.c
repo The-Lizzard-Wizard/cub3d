@@ -43,7 +43,7 @@ void	init_sp_cast(t_sp_cast *sp_cast,
 			* sp_cast->sp_pos.x + raycast->plane.x * sp_cast->sp_pos.y);
 	sp_cast->sp_sc_x = (int)((WIN_W / 2)
 			* (1 + sp_cast->transform.x / sp_cast->transform.y));
-	sp_cast->size_factor = WIN_W / sp_cast->transform.y;
+	sp_cast->size_factor = WIN_H / sp_cast->transform.y;
 	if (sp_cast->size_factor == INFINITY)
 		sp_cast->size_factor = 0;
 	sp_cast->sp_h = (int)sp_cast->size_factor;

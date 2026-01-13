@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 17:23:53 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 13:48:49 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 //windows size
 # define WIN_W 1920
 # define WIN_H 1080
+
+# define BONUS 0
 
 // r:0 g:0 b:0 a:255
 # define NONE_COLOR_XPM 4278190080

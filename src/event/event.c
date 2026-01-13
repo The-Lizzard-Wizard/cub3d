@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 13:36:50 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 13:53:22 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,22 @@ int	keypresse(int key, t_data *data)
 {
 	if (key == K_ESC)
 		free_and_exit(data);
-	if (key == K_TAB)
-		switch_int(&data->game_state.toggle_minimap);
-	if (key == K_C)
-		switch_int(&data->game_state.toggle_collide);
-	if (key == K_M)
-		switch_int(&data->game_state.camera_ctrl_type);
-	if (is_out_of_bounds(data) == 0)
-		if (key == K_SPACE)
-			door_interact(data);
-	if (key == K_CTRL)
+	if (BONUS)
+	{
+		if (key == K_TAB)
+			switch_int(&data->game_state.toggle_minimap);
+		if (key == K_C)
+			switch_int(&data->game_state.toggle_collide);
+		if (key == K_M)
+			switch_int(&data->game_state.camera_ctrl_type);
 		if (is_out_of_bounds(data) == 0)
-			if (data->player.magic_rod == 1)
-				shoot(data);
+			if (key == K_SPACE)
+				door_interact(data);
+		if (key == K_CTRL)
+			if (is_out_of_bounds(data) == 0)
+				if (data->player.magic_rod == 1)
+					shoot(data);
+	}
 	move_press(data, key);
 	return (EXIT_SUCCESS);
 }
