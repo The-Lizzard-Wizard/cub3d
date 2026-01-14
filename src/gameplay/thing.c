@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thing.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 13:47:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/14 16:20:56 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ t_thing	*add_thing(t_data *data, t_cub_img **texture, t_vec2 pos, int type)
 
 	new_thing = malloc(sizeof(t_thing));
 	if (!new_thing)
+	{
+		mlx_loop_end(data->mlx_ptr);
 		return (NULL);
+	}
 	new_thing->texture = texture;
 	new_thing->next = NULL;
 	new_thing->prev = NULL;

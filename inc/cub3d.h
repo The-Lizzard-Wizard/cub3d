@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:24:34 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/14 16:01:57 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,8 +339,6 @@ int			load_textures(t_data *data);
 /////////////// FREE //////////////
 
 int			free_one_and_exit(void *ptr, int code);
-int			free_too_and_exit(void *ptr1, void *ptr2, int code);
-int			free_three_and_exit(void *ptr1, void *ptr2, void *ptr3, int code);
 int			free_array(char **tab, int code);
 int			free_thing_list(t_data *data, int code);
 void		free_ptr(void *ptr);

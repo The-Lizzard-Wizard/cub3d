@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:35:14 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 17:32:35 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/14 15:54:39 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ int	load_textures(t_data *data)
 	data->textures.tex_chicken = new_xpm_img(data, "textures/chicken.xpm");
 	load_anime(data);
 	if (check_tex(data) == EXIT_FAILURE || check_anime(data) == EXIT_FAILURE)
+	{
+		print_error(ER_INIT_TEX);
 		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }

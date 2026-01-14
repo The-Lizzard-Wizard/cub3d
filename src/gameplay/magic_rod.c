@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   magic_rod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:56:45 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 13:45:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/14 16:20:10 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	shoot(t_data *data)
 	spawn_pos.y = data->player.pos.y + (data->player.view_angle.y / 2);
 	bullet = add_thing(data, &data->textures.anime_tex_magic_shoot->img_curr,
 			spawn_pos, THING_BULLET);
+	if (!bullet)
+		return (EXIT_FAILURE);
 	bullet->vel.x = data->player.view_angle.x / 5;
 	bullet->vel.y = data->player.view_angle.y / 5;
 	return (EXIT_SUCCESS);

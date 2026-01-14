@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:57:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/14 16:16:17 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WIN_H 1080
 
 # ifndef BINUS
-# define BONUS 0
+# define BONUS 1
 # endif
 // r:0 g:0 b:0 a:255
 # define NONE_COLOR_XPM 4278190080
