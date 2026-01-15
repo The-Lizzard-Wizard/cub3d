@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:11:53 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:17:27 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_valid_adj(char adj_to_check)
 			|| adj_to_check == 'r' || adj_to_check == 'g' || adj_to_check == 'b'
 			|| adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'
 			|| adj_to_check == 'G' || adj_to_check == 'R')
-		return (EXIT_SUCCESS);
+			return (EXIT_SUCCESS);
 	}
 	else
 	{
