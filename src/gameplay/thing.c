@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/14 16:20:56 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:15:21 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,14 @@ t_thing	*add_thing(t_data *data, t_cub_img **texture, t_vec2 pos, int type)
 	t_thing	*new_thing;
 	t_thing	*last_thing;
 
-	new_thing = malloc(sizeof(t_thing));
+	new_thing = ft_calloc(sizeof(t_thing), 1);
 	if (!new_thing)
 	{
 		mlx_loop_end(data->mlx_ptr);
 		return (NULL);
 	}
 	new_thing->texture = texture;
-	new_thing->next = NULL;
-	new_thing->prev = NULL;
 	new_thing->pos = pos;
-	new_thing->vel.x = 0;
-	new_thing->vel.y = 0;
-	new_thing->del = 0;
 	new_thing->type = type;
 	if (data->thing_list == NULL)
 	{
