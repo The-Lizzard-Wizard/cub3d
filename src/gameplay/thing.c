@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 13:55:25 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 13:47:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 15:01:24 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,6 @@ void	take_thing(t_data *data, t_thing *thing)
 
 int	check_thing(t_data *data, t_vec2 pos, t_thing *thing)
 {
-	t_vec2	old_pos;
-
-	old_pos = thing->pos;
 	thing->pos.x += thing->vel.x;
 	thing->pos.y += thing->vel.y;
 	if (thing->type == THING_BULLET)

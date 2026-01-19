@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/09 14:54:20 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 15:15:49 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_color_c(t_pars *pars, char *line)
 	raw = ft_split(line, ',');
 	if (!raw)
 		return (EXIT_FAILURE);
-	if (get_tablen(raw) == 3 && !pars->c_color_check)
+	if (array_len(raw) == 3 && !pars->c_color_check)
 	{
 		r = ft_atoi(raw[0]);
 		g = ft_atoi(raw[1]);
@@ -58,7 +58,7 @@ int	get_color_f(t_pars *pars, char *line)
 	raw = ft_split(line, ',');
 	if (!raw)
 		return (EXIT_FAILURE);
-	if (get_tablen(raw) == 3 && !pars->f_color_check)
+	if (array_len(raw) == 3 && !pars->f_color_check)
 	{
 		r = ft_atoi(raw[0]);
 		g = ft_atoi(raw[1]);

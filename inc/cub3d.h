@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:24:34 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:16:12 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,7 +353,6 @@ char		map_square_finder(t_data *data, int x, int y);
 
 ////////////// UTILS //////////////
 
-int			get_tablen(char **tab);
 size_t		get_long_line_in_array(char **array);
 void		print_char_array(char **array);
 void		itoa_buff(int n, char *buff);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:04:07 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/05 12:26:12 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:16:34 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #include "../inc/cub3d.h"
 #include "../libft/libft.h"
 
-int	get_tablen(char **tab)
+int	is_out_of_bounds(t_data *data)
 {
-	size_t	i;
-
-	i = 0;
-	if (tab)
-		while (tab[i])
-			i++;
-	return (i);
+	if (data->player.pos.x <= 0 || data->player.pos.y <= 0
+		|| data->player.pos.x > (double)data->map.width
+		|| data->player.pos.y > (double)data->map.height)
+	{
+		return (1);
+	}
+	return (0);
 }
 
 size_t	array_len(char **array)

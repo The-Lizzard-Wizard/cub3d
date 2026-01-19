@@ -28,7 +28,7 @@ SRCS=src/main.c src/pars_init/init_mlx.c \
 	src/gameplay/magic_rod.c src/graphics/graphics_anime.c \
 	src/gameplay/thing_banana.c src/gameplay/thing_kiwi.c \
 	src/gameplay/thing_utils.c src/pars_init/load_textures.c \
-	src/utils_2.c src/raycaster/raycast_sprites_draw.c \
+	src/raycaster/raycast_sprites_draw.c \
 	src/raycaster/raycast_sprites_sort.c src/raycaster/raycast_utils.c
 
 LIB= libft/libft.a
@@ -56,7 +56,6 @@ libmlx:
 $(NAME): $(OBJS) Makefile $(LIB)
 	$(CC) $(CC_FLAGS) $(OBJS) -L minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz $(LIB) $(MLX) -o $@
 	echo "$(BLUE)Your cub3D is ready $(END)"
-
 
 $(DIR_OBJS)/%.o: %.c Makefile 
 	mkdir -p $(dir $@) $(DIR_DEPS)/$(dir $*)

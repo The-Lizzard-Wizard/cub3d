@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:56:45 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 13:45:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 15:01:44 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void	take_magic_rod(t_data *data, t_thing *rod)
 void	destroy_kiwi(t_data *data, t_thing *bull)
 {
 	t_thing	*curr_thing;
-	t_thing	*next_thing;
 
 	if (!data->thing_list)
 		return ;
-	next_thing = NULL;
 	curr_thing = data->thing_list;
 	while (curr_thing != NULL)
 	{

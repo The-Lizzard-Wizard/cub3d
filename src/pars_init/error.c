@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 14:01:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/13 15:29:24 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ static void	init_error(char *er_list[NB_ERROR_CODE])
 	er_list[ER_INIT_TEX] = RM_INIT_TEX;
 	er_list[ER_INIT_WIN] = RM_INIT_WIN;
 	er_list[ER_INIT_SC_IMG] = RM_INIT_SC_IMG;
+	er_list[ER_MALLOC_ER] = RM_MALLOC_ER;
 	er_list[ER_WRONG_MAP_FILE] = RM_WRONG_MAP_FILE;
 	er_list[ER_WRONG_ARG] = RM_WRONG_ARG;
 	er_list[ER_MAP_TEX_PATH] = RM_MAP_TEX_PATH;
 	er_list[ER_MAP_COLOR] = RM_MAP_COLOR;
-	er_list[ER_MAP_DONT_CLOSE] = RM_MAP_DONT_CLOSE;
+	er_list[ER_MAP_NOT_CLOSE] = RM_MAP_NOT_CLOSE;
 	er_list[ER_MAP_NO_PLAYER_FOUND] = RM_MAP_NO_PLAYER_FOUND;
 	er_list[ER_MAP_UNEXPECTED_CHAR] = RM_MAP_UNEXPECTED_CHAR;
 	er_list[ER_MAP_NO_TEX_FOUND] = RM_MAP_NO_TEX_FOUND;

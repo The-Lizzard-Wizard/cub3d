@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:57:41 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:13:59 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define WIN_W 1920
 # define WIN_H 1080
 
-# ifndef BINUS
-# define BONUS 0
+# ifndef BONUS
+# define BONUS 1
 # endif
 // r:0 g:0 b:0 a:255
 # define NONE_COLOR_XPM 4278190080
@@ -63,7 +63,7 @@ typedef enum e_thing_type
 //=
 //================
 
-# define NB_ERROR_CODE 15
+# define NB_ERROR_CODE 16
 
 //init error
 # define RM_INIT_TEX "MLX : Failed to load textures."
@@ -74,13 +74,14 @@ typedef enum e_thing_type
 # define RM_INIT_UI_MIMP "UI : Failed to initialize the minimap."
 
 //map and info parsing
-# define RM_WRONG_MAP_FILE "Wrong arg : map argument not found."
+# define RM_MALLOC_ER "Error : Malloc error."
+# define RM_WRONG_MAP_FILE "Wrong arg : map not found."
 # define RM_WRONG_ARG "Wrong arg : try : ./cub3D <map path>"
 # define RM_MAP_TEX_PATH "Map : The path of the textures is not valid."
 # define RM_MAP_COLOR "Map : Invalid floor or ceiling color."
-# define RM_MAP_DONT_CLOSE "Map : The map is not closed."
+# define RM_MAP_NOT_CLOSE "Map : The map is not closed."
 # define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
-# define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected characher found in the map."
+# define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected character found in the map."
 # define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
 # define RM_MAP_NO_COLOR_FOUND "Map : Missing color on ceiling or floor."
 
@@ -90,11 +91,12 @@ typedef enum e_error_code
 	ER_INIT_MLX,
 	ER_INIT_WIN,
 	ER_INIT_SC_IMG,
+	ER_MALLOC_ER,
 	ER_WRONG_MAP_FILE,
 	ER_WRONG_ARG,
 	ER_MAP_TEX_PATH,
 	ER_MAP_COLOR,
-	ER_MAP_DONT_CLOSE,
+	ER_MAP_NOT_CLOSE,
 	ER_MAP_NO_PLAYER_FOUND,
 	ER_MAP_UNEXPECTED_CHAR,
 	ER_MAP_NO_TEX_FOUND,
