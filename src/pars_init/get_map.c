@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/13 15:52:16 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 17:31:53 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*get_map(t_pars *pars, int map_fd)
 	pars->line = get_next_line(map_fd);
 	while (pars->line)
 	{
-		printf("get map\n");
 		tmp = ft_strjoin(map_inline, pars->line);
 		free_ptr(map_inline);
 		if (!tmp)

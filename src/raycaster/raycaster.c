@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:43 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/09 16:55:22 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/19 17:34:23 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	raycaster(t_data *data)
 	int			line_height;
 
 	x = -1;
+	ft_bzero(&raycast, sizeof(t_raycast));
 	raycast_init_subs(&raycast, data);
 	while (++x < WIN_W)
 	{
