@@ -13,6 +13,8 @@ DIR_DEPS=.deps
 
 SRCS = \
 	src/main.c \
+	src/free.c \
+	src/utils.c \
 	\
 	src/pars_init/init_data.c \
 	src/pars_init/init_mlx.c \
@@ -54,6 +56,9 @@ SRCS = \
 	src/ui/hud.c \
 	\
 	src/event/event.c \
+	src/event/mouse.c \
+	src/event/move.c \
+	src/event/update.c \
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
