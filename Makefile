@@ -11,25 +11,49 @@ DIR_DEPS=.deps
 
 # /////////////////////////
 
-SRCS=src/main.c src/pars_init/init_mlx.c \
-	src/pars_init/pars_map.c src/graphics/graphics.c \
-	src/event/event.c \
-	src/event/update.c src/graphics/render.c \
-	src/graphics/graphics_alloc.c src/pars_init/error.c \
-	src/graphics/graphics_display.c src/pars_init/pars.c src/pars_init/pars_utils.c\
-	src/pars_init/pars_texture.c src/pars_init/pars_texture_utils.c src/pars_init/get_map.c\
-	src/utils.c src/raycaster/math.c src/raycaster/raycaster.c src/raycaster/raycast_draw.c\
-	src/ui/mini_map.c src/ui/init_ui.c \
-	src/free.c src/graphics/graphics_shapes.c src/pars_init/init_data.c \
-	src/event/move.c src/event/mouse.c \
-	src/gameplay/thing.c src/ui/hud.c \
-	src/gameplay/thing_key.c src/gameplay/door.c \
-	src/ui/update_minimap.c src/raycaster/raycast_sprites.c \
-	src/gameplay/magic_rod.c src/graphics/graphics_anime.c \
-	src/gameplay/thing_banana.c src/gameplay/thing_kiwi.c \
-	src/gameplay/thing_utils.c src/pars_init/load_textures.c \
+SRCS = \
+	src/main.c \
+	\
+	src/pars_init/init_data.c \
+	src/pars_init/init_mlx.c \
+	src/pars_init/pars.c \
+	src/pars_init/pars_map.c \
+	src/pars_init/pars_utils.c \
+	src/pars_init/pars_texture.c \
+	src/pars_init/pars_texture_utils.c \
+	src/pars_init/get_map.c \
+	src/pars_init/load_textures.c \
+	src/pars_init/error.c \
+	\
+	src/graphics/graphics.c \
+	src/graphics/graphics_alloc.c \
+	src/graphics/graphics_display.c \
+	src/graphics/graphics_shapes.c \
+	src/graphics/graphics_anime.c \
+	src/graphics/render.c \
+	\
+	src/raycaster/math.c \
+	src/raycaster/raycaster.c \
+	src/raycaster/raycast_draw.c \
+	src/raycaster/raycast_utils.c \
+	src/raycaster/raycast_sprites.c \
 	src/raycaster/raycast_sprites_draw.c \
-	src/raycaster/raycast_sprites_sort.c src/raycaster/raycast_utils.c
+	src/raycaster/raycast_sprites_sort.c \
+	\
+	src/gameplay/thing.c \
+	src/gameplay/thing_key.c \
+	src/gameplay/thing_utils.c \
+	src/gameplay/thing_banana.c \
+	src/gameplay/thing_kiwi.c \
+	src/gameplay/door.c \
+	src/gameplay/magic_rod.c \
+	\
+	src/ui/init_ui.c \
+	src/ui/mini_map.c \
+	src/ui/update_minimap.c \
+	src/ui/hud.c \
+	\
+	src/event/event.c \
 
 LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
