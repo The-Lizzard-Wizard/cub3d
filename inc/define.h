@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/19 17:08:28 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/20 16:06:52 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WIN_H 1080
 
 # ifndef BONUS
-# define BONUS 1
+#  define BONUS 0
 # endif
 // r:0 g:0 b:0 a:255
 # define NONE_COLOR_XPM 4278190080

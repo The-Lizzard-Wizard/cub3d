@@ -1,4 +1,5 @@
 NAME=cub3D
+NAME_BONUS=cub3D_bonus
 # /////////////////////////
 
 CC=cc
@@ -64,7 +65,9 @@ LIB= libft/libft.a
 MLX= minilibx-linux/libmlx.a
 INCS=inc/cub3d.h inc/key.h inc/define.h inc/pars.h inc/cub_math.h
 OBJS=$(SRCS:%.c=$(DIR_OBJS)/%.o)
+OBJS_BONUS=$(SRCS:%.c=$(DIR_OBJS)/%_bonus.o)
 DEPS=$(SRCS:%.c=$(DIR_DEPS)/%.d)
+DEPS_BONUS=$(SRCS:%.c=$(DIR_DEPS)/%_bonus.d)
 
 # /////////////////////////
 
@@ -90,6 +93,16 @@ $(DIR_OBJS)/%.o: %.c Makefile
 	mkdir -p $(dir $@) $(DIR_DEPS)/$(dir $*)
 	$(CC) $(CC_FLAGS) -I/inc -Imlx_linux -O3 -MMD -MP -MF $(DIR_DEPS)/$*.d -c -o $@ $<
 
+bonus: compile_start libft libmlx $(NAME_BONUS) compile_done
+
+$(NAME_BONUS): $(OBJS_BONUS) Makefile $(LIB)
+	$(CC) $(CC_FLAGS) $(OBJS_BONUS) -L minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz $(LIB) $(MLX) -o $@
+	echo "$(BLUE)Your cub3D is ready $(END)"
+
+$(DIR_OBJS)/%_bonus.o: %.c Makefile 
+	mkdir -p $(dir $@) $(DIR_DEPS)/$(dir $*)
+	$(CC) $(CC_FLAGS) -I/inc -Imlx_linux -O3 -MMD -MP -MF $(DIR_DEPS)/$*_bonus.d -c -o $@ $< -DBONUS=1
+
 # /////////////////////////
 
 clean:
@@ -103,6 +116,7 @@ fclean: clean
 	echo "$(RED)Removing executable... $(END)"
 	$(MAKE) --silent -C  ./libft fclean
 	$(MAKE) --silent -C  ./minilibx-linux clean
+	rm -rf $(NAME_BONUS)
 	rm -rf $(NAME)
 
 re: fclean all
@@ -116,7 +130,6 @@ END=\033[0m
 
 # /////////////////////////
 
--include $(DEPS)
+-include $(DEPS) $(DEPS_BONUS)
 
-.PHONY: all clean fclean re libft
-.SILENT:
+.PHONY: all clean fclean re libft bonus
