@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/21 14:09:44 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/21 14:20:22 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ int	get_color_f(t_pars *pars, char *line)
 		g = ft_atoi(raw[1]);
 		b = ft_atoi(raw[2]);
 		if (r > 255 || g > 255 || b > 255)
+		{
+			free_array(raw, EXIT_FAILURE);
 			return (EXIT_FAILURE);
+		}
 		*(pars->floor_color) = rgba_to_int_color(r, g, b, 0);
 		pars->f_color_check = 1;
 		free_array(raw, EXIT_SUCCESS);

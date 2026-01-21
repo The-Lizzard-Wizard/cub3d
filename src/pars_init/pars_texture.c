@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:15 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/09 14:52:12 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/21 14:24:35 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,20 @@ int	check_tex_line(t_pars *pars, char *line)
 int	check_var(t_pars *pars)
 {
 	if (!pars->c_color_check || !pars->f_color_check)
+	{
+		free_ptr(pars->line);
 		return (EXIT_FAILURE);
+	}
 	if (!*(pars->tex_path_ea) || !*(pars->tex_path_we))
+	{
+		free_ptr(pars->line);
 		return (EXIT_FAILURE);
+	}
 	if (!*(pars->tex_path_no) || !*(pars->tex_path_so))
+	{
+		free_ptr(pars->line);
 		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
