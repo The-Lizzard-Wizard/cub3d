@@ -133,3 +133,4 @@ END=\033[0m
 -include $(DEPS) $(DEPS_BONUS)
 
 .PHONY: all clean fclean re libft bonus
+.SILENT:
