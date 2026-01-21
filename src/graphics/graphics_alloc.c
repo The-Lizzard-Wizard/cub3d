@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 18:01:01 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/14 16:18:37 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/21 14:00:16 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ t_cub_img	*new_xpm_img(t_data *data, char *path)
 	img->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path,
 			&img->size_x, &img->size_y);
 	if (img->mlx_img == NULL)
+	{
+		free_ptr(img);
 		return (NULL);
+	}
 	img->addr = (int *)mlx_get_data_addr(img->mlx_img, &img->pixels_bits,
 			&img->size_line, &img->endian);
 	return (img);

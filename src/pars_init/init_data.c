@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/14 16:16:45 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:25:00 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	init_data(t_data *data)
 	data->player.control.move_a = 0;
 	data->player.control.move_left = 0;
 	data->player.control.move_right = 0;
-	data->player.magic_rod = 1;
+	data->player.magic_rod = 0;
 	init_toggle_bonus(data);
 	data->player.banana = 0;
 	data->player.kiwi = 0;

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 14:29:20 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:56:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	init(t_data *data, char **argv)
 	{
 		free_img(data);
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		mlx_destroy_display(data->mlx_ptr);
 		free_ptr(data->mlx_ptr);
 		return (EXIT_FAILURE);
 	}
@@ -82,6 +83,7 @@ int	init(t_data *data, char **argv)
 	{
 		free_img(data);
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		mlx_destroy_display(data->mlx_ptr);
 		free_ptr(data->mlx_ptr);
 		return (EXIT_FAILURE);
 	}
@@ -89,6 +91,7 @@ int	init(t_data *data, char **argv)
 	{
 		free_img(data);
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		mlx_destroy_display(data->mlx_ptr);
 		free_ptr(data->mlx_ptr);
 		return (EXIT_FAILURE);
 	}
@@ -116,6 +119,7 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx_ptr);
 	free_img(&data);
 	mlx_destroy_window(data.mlx_ptr, data.mlx_win);
+	mlx_destroy_display(data.mlx_ptr);
 	free_ptr(data.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
