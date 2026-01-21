@@ -1,7 +1,7 @@
-NO ./textures/backroom_wall.xpm
-SO ./textures/backroom_wall.xpm
-WE ./textures/backroom_wall.xpm
-EA ./textures/backroom_wall.xpm
+NO ./textures/banana_frame_0.xpm
+SO ./textures/door.xpm
+WE ./textures/kiwi_spin35.xpm
+EA ./textures/door_g.xpm
 
 F 220,30,0
 C 225,30,0
