@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/21 15:13:17 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:27:39 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	free_img(t_data *data)
 	free_array(data->map.grid, EXIT_SUCCESS);
 }
 
-void free_error(t_data *data)
+void	free_error(t_data *data)
 {
 	free_img(data);
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
