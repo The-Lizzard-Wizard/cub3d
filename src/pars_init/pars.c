@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:47 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/21 14:45:05 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:13:32 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	pars(t_data *data, char **argv)
 		return (EXIT_FAILURE);
 	}
 	if (pars_textures(&pars, map_fd) == EXIT_FAILURE)
-	{ 
+	{
 		print_error(ER_MAP_NO_TEX_FOUND);
 		return (EXIT_FAILURE);
 	}
