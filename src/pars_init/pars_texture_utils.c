@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/21 14:20:22 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/23 18:14:42 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,30 @@ t_color	rgba_to_int_color(unsigned char r, unsigned char g,
 	return (color);
 }
 
+int	value_check(int r, int g, int b, char **raw)
+{
+	char	*r_string;
+	char	*g_string;
+	char	*b_string;
+
+	r_string = ft_itoa(r);
+	g_string = ft_itoa(g);
+	b_string = ft_itoa(b);
+	if (ft_strncmp(r_string, raw[0], -1) != 0
+		|| ft_strncmp(g_string, raw[1], -1) != 0
+		|| ft_strncmp(b_string, raw[2], -1) != 0)
+	{
+		free_ptr(r_string);
+		free_ptr(g_string);
+		free_ptr(b_string);
+		return (EXIT_FAILURE);
+	}
+	free_ptr(r_string);
+	free_ptr(g_string);
+	free_ptr(b_string);
+	return (EXIT_SUCCESS);
+}
+
 int	get_color_c(t_pars *pars, char *line)
 {
 	size_t	r;
@@ -29,6 +53,7 @@ int	get_color_c(t_pars *pars, char *line)
 	size_t	b;
 	char	**raw;
 
+	line[ft_strlen(line) - 1] = 0;
 	raw = ft_split(line, ',');
 	if (!raw)
 		return (EXIT_FAILURE);
@@ -37,11 +62,9 @@ int	get_color_c(t_pars *pars, char *line)
 		r = ft_atoi(raw[0]);
 		g = ft_atoi(raw[1]);
 		b = ft_atoi(raw[2]);
-		if (r > 255 || g > 255 || b > 255)
-		{
-			free_array(raw, EXIT_FAILURE);
-			return (EXIT_FAILURE);
-		}
+		if (r > 255 || g > 255 || b > 255
+			|| value_check(r, g, b, raw) == EXIT_FAILURE)
+			return (free_array(raw, EXIT_FAILURE));
 		*(pars->ceiling_color) = rgba_to_int_color(r, g, b, 0);
 		pars->c_color_check = 1;
 		free_array(raw, EXIT_SUCCESS);

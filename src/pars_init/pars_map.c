@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/19 17:08:47 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/23 17:08:50 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	pars_map(t_pars *pars, int map_fd, t_data *data)
 	if (!map_inline
 		|| get_player_and_things(pars, map_inline, data) == EXIT_FAILURE)
 	{
+		free_ptr(map_inline);
 		print_error(ER_MAP_NO_PLAYER_FOUND);
 		return (EXIT_FAILURE);
 	}

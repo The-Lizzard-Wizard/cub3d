@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:13:50 by authomas          #+#    #+#             */
-/*   Updated: 2025/09/04 16:35:36 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:09:13 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isspace(int c)
 {
-	if ((c > 9 && c < 13) || c == 32)
+	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
