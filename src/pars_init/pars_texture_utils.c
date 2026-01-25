@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/25 14:42:42 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 14:59:55 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	get_color_f(t_pars *pars, char *line)
 	size_t	b;
 	char	**raw;
 
+	line[ft_strlen(line) - 1] = 0;
 	raw = ft_split(line, ',');
 	if (!raw)
 		return (EXIT_FAILURE);
