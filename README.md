@@ -15,47 +15,47 @@ In order to be able to launch the project on your machine, you must clone the re
 
 The machine must have the compiler **cc** linked to **clang 12.0.1 / gcc 13.3.0 or newer** for optimal compilation and the **build-essentials** apt package installed.
 
-You can install it with the command :
+You can install it with the command :  
 `sudo apt install build-essentials`
 
-And you can check your compiler version and the cc linkage with the commands:
+And you can check your compiler version and the cc linkage with the commands:  
 `cc -v `
 
 As the **minilibx** and the **libft** library directories are already included in the project files, there's no need to import them. They are also going to be compiled with the project using the Makefile provided.
 
-To compile an executable for the mandatory part, run the command:
+To compile an executable for the mandatory part, run the command:  
 `make`
 
-To compile an executable for the bonus part, run the command:
+To compile an executable for the bonus part, run the command:  
 `make bonus`
 
 Compiling both the mandatory part and the bonus part will give you two separate executables that can be launched independently, as the bonus one contains all the features of the mandatory one.
 
-To delete easily the compilation files, run the command:
+To delete easily the compilation files, run the command:  
 `make clean`
 
-To delete the executables, run the command:
+To delete the executables, run the command:  
 `make fclean`
 Careful, this will delete **both** executables.
 
-To recompile the whole project without worrying about removing the compilation files, run the command:
+To recompile the whole project without worrying about removing the compilation files, run the command:  
 `make re`
 
 ## Lauching the project
 
-Now that the project is compiled and ready to be launched, you can now run it:
-`./cub3D <path to a .cub> `
-or
+Now that the project is compiled and ready to be launched, you can now run it:  
+`./cub3D <path to a .cub> `  
+or  
 `./cub3D_bonus <path to a .cub> `
 
 (for .cub specification, cf. Feature list)
 ## RESSOURCES
 
 The ressources used for this projects are: 
-https://lodev.org/cgtutor/raycasting.html used as reference for the main raycasting part.
-https://lodev.org/cgtutor/raycasting2.html used as reference for the sprites display in the bonus part.
-https://fr.wikipedia.org/wiki/Rotation_vectorielle used as a tool to understand vectorial rotations and the equation.
-https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pythagore used as a complementary tool for the raycasting equations.
+* https://lodev.org/cgtutor/raycasting.html used as reference for the main raycasting part.  
+* https://lodev.org/cgtutor/raycasting2.html used as reference for the sprites display in the bonus part.  
+* https://fr.wikipedia.org/wiki/Rotation_vectorielle used as a tool to understand vectorial rotations and the equation.  
+* https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pythagore used as a complementary tool for the raycasting equations.  
 
 AI had a very minimal use in the project. It allowed us to have a quick access to documentation on functions (man), to make repetitive tasks like making lists of similar strings or sorting the source files for the Makefile.
 
@@ -116,7 +116,7 @@ As the walls must have a different texture depending of their orientation, 4 tex
 
 The floor and ceiling colors are inputed in the same way. There need to be 2 identifiers (C for ceiling and F for floor) followed by 3 numbers separated by commas. The numbers can't be above 255 because each component of RGB colors are encoded on 8 bits.
 
-There can be spaces between the identifier and the texture path/color path, but tabs are not processed as you can't know in advance the size of a tab, as it depends on the text editor/OS/system files used. 
+There can be spaces between the identifier and the texture path/color, but tabs are not processed as you can't know in advance the size of a tab, as it depends on the text editor/OS/system files used. 
 
 The map formatting varies depending on if you want to launch the map with the mandatory or bonus executable:
 
