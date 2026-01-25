@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/13 15:29:24 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 12:53:52 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_error(char *er_list[NB_ERROR_CODE])
 	er_list[ER_MAP_NO_COLOR_FOUND] = RM_MAP_NO_COLOR_FOUND;
 	er_list[ER_INIT_UI_IMG] = RM_INIT_UI_IMG;
 	er_list[ER_INIT_UI_MIMP] = RM_INIT_UI_MIMP;
+	er_list[ER_MAP_TOO_MANY_PLAYER] = RM_MAP_TOO_MANY_PLAYER;
 }
 
 int	print_error(int code)

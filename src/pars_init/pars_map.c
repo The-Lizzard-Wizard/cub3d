@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/23 17:08:50 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 14:18:21 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int	is_valid_adj(char adj_to_check)
 		if (adj_to_check == '0' || adj_to_check == '1')
 			return (EXIT_SUCCESS);
 	}
+	if (adj_to_check == ' ' || adj_to_check == '\0')
+		print_error(ER_MAP_NOT_CLOSE);
+	else
+		print_error(ER_MAP_UNEXPECTED_CHAR);
 	return (EXIT_FAILURE);
 }
 
@@ -92,21 +96,24 @@ int	get_player_and_things(t_pars *pars, char *map, t_data *data)
 		i++;
 		pos.x++;
 	}
-	return (!(player_flag == 1));
+	return (player_flag);
 }
 
 int	pars_map(t_pars *pars, int map_fd, t_data *data)
 {
 	char	*map_inline;
+	int		nb_player;
 
 	map_inline = get_map(pars, map_fd);
-	if (!map_inline
-		|| get_player_and_things(pars, map_inline, data) == EXIT_FAILURE)
-	{
-		free_ptr(map_inline);
-		print_error(ER_MAP_NO_PLAYER_FOUND);
+	if (!map_inline)
 		return (EXIT_FAILURE);
-	}
+	nb_player = get_player_and_things(pars, map_inline, data);
+	if (nb_player <= 0)
+		print_error(ER_MAP_NO_PLAYER_FOUND);
+	else if (nb_player > 1)
+		print_error(ER_MAP_TOO_MANY_PLAYER);
+	if (nb_player != 1)
+		return (free_one_and_exit(map_inline, EXIT_FAILURE));
 	pars->map = ft_split(map_inline, '\n');
 	free_ptr(map_inline);
 	if (!pars->map)
@@ -116,7 +123,6 @@ int	pars_map(t_pars *pars, int map_fd, t_data *data)
 	}
 	if (map_check(pars->map) == EXIT_FAILURE)
 	{
-		print_error(ER_MAP_UNEXPECTED_CHAR);
 		free_array(pars->map, EXIT_FAILURE);
 		return (EXIT_FAILURE);
 	}

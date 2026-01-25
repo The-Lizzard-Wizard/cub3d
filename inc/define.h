@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/20 16:06:52 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 12:54:04 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef enum e_thing_type
 //=
 //================
 
-# define NB_ERROR_CODE 16
+# define NB_ERROR_CODE 17
 
 //init error
 # define RM_INIT_TEX "MLX : Failed to load textures."
@@ -81,6 +81,7 @@ typedef enum e_thing_type
 # define RM_MAP_COLOR "Map : Invalid floor or ceiling color."
 # define RM_MAP_NOT_CLOSE "Map : The map is not closed."
 # define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
+# define RM_MAP_TOO_MANY_PLAYER "Map : Too many player found."
 # define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected character found in the map."
 # define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
 # define RM_MAP_NO_COLOR_FOUND "Map : Missing color on ceiling or floor."
@@ -102,7 +103,8 @@ typedef enum e_error_code
 	ER_MAP_NO_TEX_FOUND,
 	ER_MAP_NO_COLOR_FOUND,
 	ER_INIT_UI_IMG,
-	ER_INIT_UI_MIMP
+	ER_INIT_UI_MIMP,
+	ER_MAP_TOO_MANY_PLAYER
 }	t_error_code;
 
 #endif

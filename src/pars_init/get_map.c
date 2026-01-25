@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/23 18:04:49 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/25 14:29:34 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,29 @@ char	*get_map(t_pars *pars, int map_fd)
 	return (map_inline);
 }
 
+int	map_check_if(char **map, size_t x, size_t y)
+{
+	if (x == 0 || is_valid_adj(map[y][x - 1]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (is_valid_adj(map[y][x + 1]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (!map[y + 1] || ft_strlen(map[y + 1]) < x)
+	{
+		print_error(ER_MAP_NOT_CLOSE);
+		return (EXIT_FAILURE);
+	}
+	if (is_valid_adj(map[y + 1][x]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (y == 0 || ft_strlen(map[y - 1]) < x)
+	{
+		print_error(ER_MAP_NOT_CLOSE);
+		return (EXIT_FAILURE);
+	}
+	if (is_valid_adj(map[y - 1][x]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int	map_check(char **map)
 {
 	size_t	x;
@@ -52,21 +75,9 @@ int	map_check(char **map)
 	{
 		x = -1;
 		while (map[y][++x])
-		{
 			if (map[y][x] == '0')
-			{
-				if (x == 0 || is_valid_adj(map[y][x - 1]) == EXIT_FAILURE)
+				if (map_check_if(map, x, y) == EXIT_FAILURE)
 					return (EXIT_FAILURE);
-				if (is_valid_adj(map[y][x + 1]) == EXIT_FAILURE)
-					return (EXIT_FAILURE);
-				if (!map[y + 1] || ft_strlen(map[y + 1]) < x
-					|| is_valid_adj(map[y + 1][x]) == EXIT_FAILURE)
-					return (EXIT_FAILURE);
-				if (y == 0 || ft_strlen(map[y - 1]) < x
-					|| is_valid_adj(map[y - 1][x]) == EXIT_FAILURE)
-					return (EXIT_FAILURE);
-			}
-		}
 	}
 	return (EXIT_SUCCESS);
 }
