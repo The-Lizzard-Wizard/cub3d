@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/26 14:30:53 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 14:41:55 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*move_buff(char *buff)
 		j--;
 	if (ft_isspace(buff[j + 1]))
 		buff[j + 1] = '\0';
-	ft_printf("--%s--\n", buff + i);
 	return (buff + i);
 }
 

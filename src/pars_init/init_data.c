@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:00:19 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/20 14:25:00 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:59:14 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	init_toggle_bonus(t_data *data)
 	{
 		data->game_state.toggle_collide = 1;
 		data->game_state.toggle_minimap = 1;
-		data->game_state.camera_ctrl_type = 0;
+		data->game_state.camera_ctrl_type = 1;
 	}
 	else
 	{
 		data->game_state.toggle_collide = 0;
 		data->game_state.toggle_minimap = 0;
-		data->game_state.camera_ctrl_type = 1;
+		data->game_state.camera_ctrl_type = 0;
 	}
 }
 

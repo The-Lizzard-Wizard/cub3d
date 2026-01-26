@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/26 14:15:19 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 14:59:36 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,7 @@ void		mouse_camera(t_data *data);
 
 //////////// GAMEPLAY /////////////
 
+void		print_info(void);
 t_thing		*get_last_thing(t_thing *thing_list);
 t_thing		*add_thing(t_data *data, t_cub_img **texture, t_vec2 pos, int type);
 void		del_thing(t_data *data, t_thing *thing_to_del);

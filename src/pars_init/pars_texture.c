@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:15 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/26 14:34:34 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 15:34:24 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,19 @@ int	check_var(t_pars *pars)
 {
 	if (!pars->c_color_check || !pars->f_color_check)
 	{
+		print_error(ER_MAP_NO_COLOR_FOUND);
 		free_ptr(pars->line);
 		return (EXIT_FAILURE);
 	}
 	if (!*(pars->tex_path_ea) || !*(pars->tex_path_we))
 	{
+		print_error(ER_MAP_NO_TEX_FOUND);
 		free_ptr(pars->line);
 		return (EXIT_FAILURE);
 	}
 	if (!*(pars->tex_path_no) || !*(pars->tex_path_so))
 	{
+		print_error(ER_MAP_NO_TEX_FOUND);
 		free_ptr(pars->line);
 		return (EXIT_FAILURE);
 	}

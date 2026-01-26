@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/25 14:18:21 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:48:55 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,6 @@ int	pars_map(t_pars *pars, int map_fd, t_data *data)
 		return (EXIT_FAILURE);
 	}
 	if (map_check(pars->map) == EXIT_FAILURE)
-	{
-		free_array(pars->map, EXIT_FAILURE);
-		return (EXIT_FAILURE);
-	}
+		return (free_array(pars->map, EXIT_FAILURE));
 	return (EXIT_SUCCESS);
 }

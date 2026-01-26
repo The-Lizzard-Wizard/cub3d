@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/26 14:11:46 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:58:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int	main(int argc, char **argv)
 	data.thing_list = NULL;
 	if (init(&data, argv) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	if (BONUS)
+		print_info();
 	update_sp_info(&data);
 	update_minimap(&data);
 	event_listener(&data);

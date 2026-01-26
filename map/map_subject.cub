@@ -1,10 +1,10 @@
-NO ./textures/banana_frame_0.xpm
-SO ./textures/door.xpm
-WE ./textures/kiwi_spin35.xpm
+NO ./textures/door_y.xpm
+SO ./textures/door_r.xpm
+WE ./textures/door_b.xpm
 EA ./textures/door_g.xpm
 
-F 220,0,0
 C 225,30,0
+F 200,100,0
 
         1111111111111111111111111
         1000000000110000000000001

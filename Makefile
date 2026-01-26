@@ -50,6 +50,7 @@ SRCS = \
 	src/gameplay/thing_kiwi.c \
 	src/gameplay/door.c \
 	src/gameplay/magic_rod.c \
+	src/gameplay/gameplay_info.c \
 	\
 	src/ui/init_ui.c \
 	src/ui/mini_map.c \

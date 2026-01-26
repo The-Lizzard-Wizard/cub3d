@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/26 14:35:29 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 14:47:49 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_color_c(t_pars *pars, char *line)
 	size_t	b;
 	char	**raw;
 
-	if(line[ft_strlen(line) - 1] == ',')
+	if (line[ft_strlen(line) - 1] == ',')
 		return (EXIT_FAILURE);
 	raw = ft_split(line, ',');
 	if (!raw)
@@ -82,7 +82,7 @@ int	get_color_f(t_pars *pars, char *line)
 	size_t	b;
 	char	**raw;
 
-	if(line[ft_strlen(line) - 1] == ',')
+	if (line[ft_strlen(line) - 1] == ',')
 		return (EXIT_FAILURE);
 	raw = ft_split(line, ',');
 	if (!raw)
