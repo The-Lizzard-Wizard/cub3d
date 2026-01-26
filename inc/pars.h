@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:12:05 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/09 17:24:43 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 14:15:37 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		pars_textures(t_pars *pars, int map_fd);
 int		get_color_c(t_pars *pars, char *line);
 int		get_color_f(t_pars *pars, char *line);
 void	get_id(char *id, char *line);
+char	*move_buff(char *buff);
 int		map_check(char **map);
 int		is_valid_adj(char adj_to_check);
 char	*get_map(t_pars *pars, int map_fd);

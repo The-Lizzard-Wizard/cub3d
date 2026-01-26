@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/25 14:59:55 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 14:35:29 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	value_check(int r, int g, int b, char **raw)
 	r_string = ft_itoa(r);
 	g_string = ft_itoa(g);
 	b_string = ft_itoa(b);
-	if (ft_strncmp(r_string, raw[0], -1) != 0
-		|| ft_strncmp(g_string, raw[1], -1) != 0
-		|| ft_strncmp(b_string, raw[2], -1) != 0)
+	if (ft_strncmp(r_string, move_buff(raw[0]), -1) != 0
+		|| ft_strncmp(g_string, move_buff(raw[1]), -1) != 0
+		|| ft_strncmp(b_string, move_buff(raw[2]), -1) != 0)
 	{
 		free_ptr(r_string);
 		free_ptr(g_string);
@@ -53,7 +53,8 @@ int	get_color_c(t_pars *pars, char *line)
 	size_t	b;
 	char	**raw;
 
-	line[ft_strlen(line) - 1] = 0;
+	if(line[ft_strlen(line) - 1] == ',')
+		return (EXIT_FAILURE);
 	raw = ft_split(line, ',');
 	if (!raw)
 		return (EXIT_FAILURE);
@@ -81,7 +82,8 @@ int	get_color_f(t_pars *pars, char *line)
 	size_t	b;
 	char	**raw;
 
-	line[ft_strlen(line) - 1] = 0;
+	if(line[ft_strlen(line) - 1] == ',')
+		return (EXIT_FAILURE);
 	raw = ft_split(line, ',');
 	if (!raw)
 		return (EXIT_FAILURE);

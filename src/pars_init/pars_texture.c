@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:15 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/25 14:58:33 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/01/26 14:34:34 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ int	get_path_by_id(t_pars *pars, char id, char *line)
 
 	i = 0;
 	if (id == 'F')
+	{
+		line[ft_strlen(line) - 1] = 0;
 		return (get_color_f(pars, line));
+	}
 	else if (id == 'C')
+	{
+		line[ft_strlen(line) - 1] = 0;
 		return (get_color_c(pars, line));
+	}
 	while (!ft_isspace(line[i]))
 		i++;
 	if (id == 'N' && !*(pars->tex_path_no))

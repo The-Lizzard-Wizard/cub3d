@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/26 14:08:51 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:30:53 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 #include <fcntl.h>
 #include "../../inc/pars.h"
 
-void	move_buff(char *buff)
+char	*move_buff(char *buff)
 {
 	size_t	i;
+	size_t	j;
 	size_t	len;
 
 	i = 0;
 	len = ft_strlen(buff);
 	while (buff[i] && ft_isspace(buff[i]))
 		i++;
-	if (i > 0)
-		ft_memcpy(buff, buff + i, len - i);
-	i = 0;
-	while (buff[i] && !ft_isspace(buff[i]))
-		i++;
-	if (ft_isspace(buff[i]))
-		ft_bzero(buff + i, len - i);
+	j = len - 1;
+	while (buff[j] && ft_isspace(buff[j]))
+		j--;
+	if (ft_isspace(buff[j + 1]))
+		buff[j + 1] = '\0';
+	ft_printf("--%s--\n", buff + i);
+	return (buff + i);
 }
 
 char	*get_map(t_pars *pars, int map_fd)
