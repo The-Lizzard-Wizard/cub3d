@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:59:21 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/25 12:54:04 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:11:15 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef enum e_thing_type
 # define RM_MAP_NO_PLAYER_FOUND "Map : Player not found."
 # define RM_MAP_TOO_MANY_PLAYER "Map : Too many player found."
 # define RM_MAP_UNEXPECTED_CHAR "Map : Unexpected character found in the map."
-# define RM_MAP_NO_TEX_FOUND "Map : A texture are missing."
+# define RM_MAP_NO_TEX_FOUND "Map : A texture is missing."
 # define RM_MAP_NO_COLOR_FOUND "Map : Missing color on ceiling or floor."
 
 typedef enum e_error_code

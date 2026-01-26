@@ -6,13 +6,31 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/25 14:29:34 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:08:51 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
 #include "../../inc/pars.h"
+
+void	move_buff(char *buff)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = ft_strlen(buff);
+	while (buff[i] && ft_isspace(buff[i]))
+		i++;
+	if (i > 0)
+		ft_memcpy(buff, buff + i, len - i);
+	i = 0;
+	while (buff[i] && !ft_isspace(buff[i]))
+		i++;
+	if (ft_isspace(buff[i]))
+		ft_bzero(buff + i, len - i);
+}
 
 char	*get_map(t_pars *pars, int map_fd)
 {

@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/25 13:13:58 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:07:12 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,6 +356,7 @@ void		print_char_array(char **array);
 void		itoa_buff(int n, char *buff);
 int			is_out_of_bounds(t_data *data);
 size_t		array_len(char **array);
+void		move_buff(char *buff);
 
 ////////////// ERROR //////////////
 
