@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gameplay_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:52:10 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/26 15:57:30 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:45:27 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

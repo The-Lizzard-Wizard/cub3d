@@ -13,10 +13,14 @@ In conclusion, cub3D is a remarkable playground to explore the playful practical
 ### Compiling and installation
 In order to be able to launch the project on your machine, you must clone the repository from github or the vogosphere.
 
-The machine must have the compiler **cc** linked to **clang 12.0.1 / gcc 13.3.0 or newer** for optimal compilation and the **build-essentials** apt package installed.
+The machine must have the compiler **cc** linked to **clang 12.0.1 / gcc 13.3.0 or newer** for optimal compilation and the **build-essentials** apt package installed. MiniLibX for Linux requires **xorg, x11 and zlib**, therefore you will need to install the following dependencies: **xorg, libxext-dev and zlib1g-dev**.
 
-You can install it with the command :  
-`sudo apt install build-essentials`
+You can install said packages with the command :  
+```
+sudo apt install build-essentials
+sudo apt-get update
+sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+```
 
 And you can check your compiler version and the cc linkage with the commands:  
 `cc -v `

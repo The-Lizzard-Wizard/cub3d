@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/26 14:48:55 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:53:10 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,7 @@ int	pars_map(t_pars *pars, int map_fd, t_data *data)
 	pars->map = ft_split(map_inline, '\n');
 	free_ptr(map_inline);
 	if (!pars->map)
-	{
-		print_error(ER_MALLOC_ER);
 		return (EXIT_FAILURE);
-	}
 	if (map_check(pars->map) == EXIT_FAILURE)
 		return (free_array(pars->map, EXIT_FAILURE));
 	return (EXIT_SUCCESS);

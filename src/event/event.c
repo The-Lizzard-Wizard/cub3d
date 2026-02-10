@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:49:16 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/15 16:17:46 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:46:09 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	switch_int(int *toggle)
 		*toggle = 1;
 }
 
-int	keypresse(int key, t_data *data)
+int	keypress(int key, t_data *data)
 {
 	if (key == K_ESC)
 		mlx_loop_end(data->mlx_ptr);
@@ -54,7 +54,7 @@ int	keyrelease(int key, t_data *data)
 	return (1);
 }
 
-int	mouse_presse(int key, int x, int y, t_data *data)
+int	mouse_press(int key, int x, int y, t_data *data)
 {
 	(void)x;
 	(void)y;
@@ -67,9 +67,9 @@ int	mouse_presse(int key, int x, int y, t_data *data)
 
 void	event_listener(t_data *data)
 {
-	mlx_hook(data->mlx_win, 2, (1L << 0), keypresse, data);
+	mlx_hook(data->mlx_win, 2, (1L << 0), keypress, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, keyrelease, data);
 	mlx_hook(data->mlx_win, DestroyNotify, KeyPressMask,
 		mlx_loop_end, data->mlx_ptr);
-	mlx_mouse_hook(data->mlx_win, mouse_presse, data);
+	mlx_mouse_hook(data->mlx_win, mouse_press, data);
 }

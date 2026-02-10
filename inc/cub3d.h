@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/27 15:03:39 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:44:22 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ t_cub_img	*new_xpm_img(t_data *data, char *path);
 t_cub_img	*new_img(t_data *data, int sx, int sy);
 int			draw_img(t_data *data, t_cub_img *img, int x, int y);
 int			draw_img_on_img(t_cub_img *to_img, t_cub_img *img, t_modify mod);
-void		draw_recangle(t_cub_img *to_img, t_color color,
+void		draw_rectangle(t_cub_img *to_img, t_color color,
 				int fill, t_modify mod);
 t_color		get_pixel(t_cub_img *img, int x, int y);
 t_color		rgba_to_int_color(unsigned char r, unsigned char g,

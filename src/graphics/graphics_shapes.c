@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   graphics_shapes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:25:36 by gchauvet          #+#    #+#             */
-/*   Updated: 2025/11/12 14:20:18 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:44:25 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 #include "../../inc/define.h"
 
-void	draw_recangle(t_cub_img *to_img, t_color color, int fill, t_modify mod)
+void	draw_rectangle(t_cub_img *to_img, t_color color, int fill, t_modify mod)
 {
 	int	x;
 	int	y;

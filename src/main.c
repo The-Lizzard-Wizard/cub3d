@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:31:20 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/27 15:02:31 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:37:32 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 
 	(void)argv;
 	(void)argc;
-	if (argc == 1)
+	if (argc != 2)
 	{
 		print_error(ER_WRONG_ARG);
 		return (EXIT_SUCCESS);

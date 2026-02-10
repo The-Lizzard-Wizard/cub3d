@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_minimap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:06:28 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/05 12:36:24 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:44:38 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	draw_tile_type(t_data *data, size_t x, size_t y, t_modify mod)
 	{
 		mod.sc_x = 8;
 		mod.sc_y = 8;
-		draw_recangle(data->ui.minimap_img, 0, FILL, mod);
+		draw_rectangle(data->ui.minimap_img, 0, FILL, mod);
 		mod.sc_x = 1;
 		mod.sc_y = 1;
 	}
@@ -59,13 +59,13 @@ void	draw_thing_on_minimap(t_data *data, t_modify mod)
 	{
 		mod.x = ((curr_thing->pos.x) * 8) - 1;
 		mod.y = ((curr_thing->pos.y) * 8) - 1;
-		draw_recangle(data->ui.minimap_img,
+		draw_rectangle(data->ui.minimap_img,
 			rgba_to_int_color(255, 0, 255, 0), FILL, mod);
 		curr_thing = curr_thing->next;
 	}
 	mod.x = ((curr_thing->pos.x) * 8) - 1;
 	mod.y = ((curr_thing->pos.y) * 8) - 1;
-	draw_recangle(data->ui.minimap_img,
+	draw_rectangle(data->ui.minimap_img,
 		rgba_to_int_color(255, 0, 255, 0), FILL, mod);
 }
 
