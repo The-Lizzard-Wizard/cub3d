@@ -44,8 +44,9 @@ void	init_sp_cast(t_sp_cast *sp_cast,
 	sp_cast->sp_sc_x = (int)((WIN_W / 2)
 			* (1 + sp_cast->transform.x / sp_cast->transform.y));
 	sp_cast->size_factor = WIN_H / sp_cast->transform.y;
-	if (sp_cast->size_factor == INFINITY)
+	if (sp_cast->size_factor >= INT_MAX || sp_cast->size_factor <= INT_MIN)
 		sp_cast->size_factor = 0;
+	printf("%f\n", sp_cast->size_factor);
 	sp_cast->sp_h = (int)sp_cast->size_factor;
 	sp_cast->sp_w = (int)sp_cast->size_factor;
 	sp_cast->sp_start_y = -sp_cast->sp_h / 2 + WIN_H / 2;
