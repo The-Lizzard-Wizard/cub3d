@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   magic_rod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:56:45 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/19 17:08:39 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 13:50:20 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	take_magic_rod(t_data *data, t_thing *rod)
 void	destroy_kiwi(t_data *data, t_thing *bull)
 {
 	t_thing	*curr_thing;
+	t_thing	*chicken;
 
 	if (!data->thing_list)
 		return ;
@@ -35,8 +36,10 @@ void	destroy_kiwi(t_data *data, t_thing *bull)
 		{
 			if (curr_thing->type == THING_KIWI)
 			{
-				add_thing(data, &data->textures.tex_chicken,
+				chicken = add_thing(data, &data->textures.tex_chicken,
 					curr_thing->pos, THING_CHICKEN);
+				if (!chicken)
+					print_error(ER_MALLOC_ER);
 				curr_thing->del = 1;
 				bull->del = 1;
 			}
@@ -69,7 +72,10 @@ int	shoot(t_data *data)
 	bullet = add_thing(data, &data->textures.anime_tex_magic_shoot->img_curr,
 			spawn_pos, THING_BULLET);
 	if (!bullet)
+	{
+		print_error(ER_MALLOC_ER);
 		return (EXIT_FAILURE);
+	}
 	bullet->vel.x = data->player.view_angle.x / 5;
 	bullet->vel.y = data->player.view_angle.y / 5;
 	return (EXIT_SUCCESS);
