@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/02/10 14:15:47 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 14:38:06 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ int	map_check_if(char **map, size_t x, size_t y)
 {
 	if (x == 0 || is_valid_adj(map[y][x - 1]) == EXIT_FAILURE)
 		return (print_map_not_close());
-	if (is_valid_adj(map[y][x + 1]) == EXIT_FAILURE)
+	else if (is_valid_adj(map[y][x + 1]) == EXIT_FAILURE)
 		return (print_map_not_close());
-	if (!map[y + 1] || ft_strlen(map[y + 1]) < x)
+	else if (!map[y + 1] || ft_strlen(map[y + 1]) < x)
 		return (print_map_not_close());
-	if (is_valid_adj(map[y + 1][x]) == EXIT_FAILURE)
+	else if (is_valid_adj(map[y + 1][x]) == EXIT_FAILURE)
 		return (print_map_not_close());
-	if (y == 0 || ft_strlen(map[y - 1]) < x)
+	else if (y == 0 || ft_strlen(map[y - 1]) < x)
 		return (print_map_not_close());
-	if (is_valid_adj(map[y - 1][x]) == EXIT_FAILURE)
+	else if (is_valid_adj(map[y - 1][x]) == EXIT_FAILURE)
 		return (print_map_not_close());
 	return (EXIT_SUCCESS);
 }

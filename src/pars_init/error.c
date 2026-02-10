@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/01/26 15:33:46 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:41:26 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@ static void	init_error(char *er_list[NB_ERROR_CODE])
 
 int	print_error(int code)
 {
-	char	*er_list[NB_ERROR_CODE];
+	static int	nb_er = 0;
+	char		*er_list[NB_ERROR_CODE];
 
-	init_error(er_list);
-	ft_dprintf(2, "\e[1;31merror\e[0m : %s\n", er_list[code]);
+	if (nb_er == 0)
+	{
+		init_error(er_list);
+		ft_dprintf(2, "\e[1;31merror\e[0m : %s\n", er_list[code]);
+	}
+	nb_er++;
 	return (code);
 }
