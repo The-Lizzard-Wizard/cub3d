@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:56:45 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/02/10 13:50:20 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:30:28 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	destroy_kiwi(t_data *data, t_thing *bull)
 			if (curr_thing->type == THING_KIWI)
 			{
 				chicken = add_thing(data, &data->textures.tex_chicken,
-					curr_thing->pos, THING_CHICKEN);
+						curr_thing->pos, THING_CHICKEN);
 				if (!chicken)
 					print_error(ER_MALLOC_ER);
 				curr_thing->del = 1;
