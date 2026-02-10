@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/02/10 14:06:57 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:28:42 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,10 @@
 #include <fcntl.h>
 #include "../../inc/pars.h"
 
-int	is_valid_adj(char adj_to_check)
-{
-	if (BONUS)
-	{
-		if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'y'
-			|| adj_to_check == 'r' || adj_to_check == 'g' || adj_to_check == 'b'
-			|| adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'
-			|| adj_to_check == 'G' || adj_to_check == 'R')
-			return (EXIT_SUCCESS);
-	}
-	else
-	{
-		if (adj_to_check == '0' || adj_to_check == '1')
-			return (EXIT_SUCCESS);
-	}
-	if (adj_to_check == ' ' || adj_to_check == '\0')
-		print_error(ER_MAP_NOT_CLOSE);
-	else
-		print_error(ER_MAP_UNEXPECTED_CHAR);
-	return (EXIT_FAILURE);
-}
-
-int	init_things(t_vec2 pos, char *tile, t_data *data)
+void	*init_keythings(t_vec2 pos, char *tile, t_data *data)
 {
 	t_thing *thing;
-	
-	pos.x += 0.5;
-	pos.y += 0.5;
+
 	thing = NULL;
 	if (*tile == 'y')
 		thing = add_thing(data, &data->textures.tex_y_key, pos, THING_Y_KEY);
@@ -51,14 +27,27 @@ int	init_things(t_vec2 pos, char *tile, t_data *data)
 		thing = add_thing(data, &data->textures.tex_g_key, pos, THING_G_KEY);
 	else if (*tile == 'b')
 		thing = add_thing(data, &data->textures.tex_b_key, pos, THING_B_KEY);
+	return (thing);
+}
+
+int	init_things(t_vec2 pos, char *tile, t_data *data)
+{
+	t_thing	*thing;
+
+	pos.x += 0.5;
+	pos.y += 0.5;
+	thing = NULL;
+	if (*tile == 'y' || *tile == 'r' || *tile == 'g' || *tile == 'b')
+		thing = init_keythings(pos, tile, data);
 	else if (*tile == 'm')
-		thing = add_thing(data, &data->textures.tex_magic, pos, THING_MAGIC_ROD);
+		thing = add_thing(data, &data->textures.tex_magic, pos,
+				THING_MAGIC_ROD);
 	else if (*tile == 'c')
 		thing = add_thing(data, &data->textures.anime_tex_banana->img_curr, pos,
-			THING_BANANA);
+				THING_BANANA);
 	else if (*tile == 'k')
 		thing = add_thing(data, &data->textures.anime_tex_kiwi->img_curr, pos,
-			THING_KIWI);
+				THING_KIWI);
 	else
 		return (EXIT_SUCCESS);
 	if (!thing)

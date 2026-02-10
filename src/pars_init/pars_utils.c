@@ -6,13 +6,13 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:33:39 by authomas          #+#    #+#             */
-/*   Updated: 2026/02/10 13:23:41 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 14:17:29 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pars.h"
 
-void *map_dup_error(char **map, char **n_map)
+void	*map_dup_error(char **map, char **n_map)
 {
 	free_array(map, EXIT_FAILURE);
 	free_array(n_map, EXIT_FAILURE);
@@ -45,6 +45,28 @@ char	**normalize_map(char **map, size_t map_width, size_t map_height)
 	}
 	free_array(map, EXIT_SUCCESS);
 	return (n_map);
+}
+
+int	is_valid_adj(char adj_to_check)
+{
+	if (BONUS)
+	{
+		if (adj_to_check == '0' || adj_to_check == '1' || adj_to_check == 'y'
+			|| adj_to_check == 'r' || adj_to_check == 'g' || adj_to_check == 'b'
+			|| adj_to_check == 'D' || adj_to_check == 'Y' || adj_to_check == 'B'
+			|| adj_to_check == 'G' || adj_to_check == 'R')
+			return (EXIT_SUCCESS);
+	}
+	else
+	{
+		if (adj_to_check == '0' || adj_to_check == '1')
+			return (EXIT_SUCCESS);
+	}
+	if (adj_to_check == ' ' || adj_to_check == '\0')
+		print_error(ER_MAP_NOT_CLOSE);
+	else
+		print_error(ER_MAP_UNEXPECTED_CHAR);
+	return (EXIT_FAILURE);
 }
 
 int	file_checking(char *file_name)

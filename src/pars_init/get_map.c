@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:12:30 by authomas          #+#    #+#             */
-/*   Updated: 2026/02/05 19:46:51 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:15:47 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*get_map(t_pars *pars, int map_fd)
 	return (map_inline);
 }
 
-int	print_map_not_close()
+int	print_map_not_close(void)
 {
 	print_error(ER_MAP_NOT_CLOSE);
 	return (EXIT_FAILURE);
