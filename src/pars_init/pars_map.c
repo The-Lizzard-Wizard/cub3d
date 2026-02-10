@@ -6,7 +6,7 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/02/10 12:53:10 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 13:53:35 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,33 @@ int	is_valid_adj(char adj_to_check)
 	return (EXIT_FAILURE);
 }
 
-void	init_things(t_vec2 pos, char *tile, t_data *data)
+int	init_things(t_vec2 pos, char *tile, t_data *data)
 {
+	t_thing *thing;
+	
 	pos.x += 0.5;
 	pos.y += 0.5;
 	if (*tile == 'y')
-		add_thing(data, &data->textures.tex_y_key, pos, THING_Y_KEY);
+		thing = add_thing(data, &data->textures.tex_y_key, pos, THING_Y_KEY);
 	else if (*tile == 'r')
-		add_thing(data, &data->textures.tex_r_key, pos, THING_R_KEY);
+		thing = add_thing(data, &data->textures.tex_r_key, pos, THING_R_KEY);
 	else if (*tile == 'g')
-		add_thing(data, &data->textures.tex_g_key, pos, THING_G_KEY);
+		thing = add_thing(data, &data->textures.tex_g_key, pos, THING_G_KEY);
 	else if (*tile == 'b')
-		add_thing(data, &data->textures.tex_b_key, pos, THING_B_KEY);
+		thing = add_thing(data, &data->textures.tex_b_key, pos, THING_B_KEY);
 	else if (*tile == 'm')
-		add_thing(data, &data->textures.tex_magic, pos, THING_MAGIC_ROD);
+		thing = add_thing(data, &data->textures.tex_magic, pos, THING_MAGIC_ROD);
 	else if (*tile == 'c')
-		add_thing(data, &data->textures.anime_tex_banana->img_curr, pos,
+		thing = add_thing(data, &data->textures.anime_tex_banana->img_curr, pos,
 			THING_BANANA);
 	else if (*tile == 'k')
-		add_thing(data, &data->textures.anime_tex_kiwi->img_curr, pos,
+		thing = add_thing(data, &data->textures.anime_tex_kiwi->img_curr, pos,
 			THING_KIWI);
-	else
-		return ;
+	if (!thing)
+		return (EXIT_FAILURE);
 	*tile = '0';
 	update_sp_info(data);
+	return (EXIT_SUCCESS);
 }
 
 void	player_view_init(t_pars *pars, char *tile, t_vec2 pos, int *player_flag)
@@ -87,7 +90,8 @@ int	get_player_and_things(t_pars *pars, char *map, t_data *data)
 			player_view_init(pars, &map[i], pos, &player_flag);
 		else if (map[i] != '0' && map[i] != '1')
 			if (BONUS)
-				init_things(pos, &map[i], data);
+				if (!init_things(pos, &map[i], data))
+					return (-1);
 		if (map[i] == '\n')
 		{
 			pos.y++;
@@ -108,8 +112,10 @@ int	pars_map(t_pars *pars, int map_fd, t_data *data)
 	if (!map_inline)
 		return (EXIT_FAILURE);
 	nb_player = get_player_and_things(pars, map_inline, data);
-	if (nb_player <= 0)
+	if (nb_player == 0)
 		print_error(ER_MAP_NO_PLAYER_FOUND);
+	else if (nb_player < 0)
+		print_error(ER_MALLOC_ER);
 	else if (nb_player > 1)
 		print_error(ER_MAP_TOO_MANY_PLAYER);
 	if (nb_player != 1)

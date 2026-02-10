@@ -6,11 +6,18 @@
 /*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:33:39 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/09 16:35:41 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 13:23:41 by authomas         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pars.h"
+
+void *map_dup_error(char **map, char **n_map)
+{
+	free_array(map, EXIT_FAILURE);
+	free_array(n_map, EXIT_FAILURE);
+	return (NULL);
+}
 
 char	**normalize_map(char **map, size_t map_width, size_t map_height)
 {
@@ -27,7 +34,7 @@ char	**normalize_map(char **map, size_t map_width, size_t map_height)
 		x = -1;
 		n_map[y] = ft_calloc(sizeof(char), map_width + 1);
 		if (!n_map[y])
-			return (NULL);
+			return (map_dup_error(map, n_map));
 		while (map[y][++x])
 			n_map[y][x] = map[y][x];
 		while (x < map_width)
