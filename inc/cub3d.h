@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:06:33 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/02/10 11:44:22 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 15:08:58 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,5 +363,7 @@ size_t		array_len(char **array);
 ////////////// ERROR //////////////
 
 int			print_error(int code);
+int			print_error_exit(int code, int exit_code);
+void		*print_error_rptr(int code, void *ptr);
 
 #endif

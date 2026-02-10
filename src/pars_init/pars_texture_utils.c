@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:03:43 by authomas          #+#    #+#             */
-/*   Updated: 2026/01/26 14:47:49 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:05:13 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	get_color_c(t_pars *pars, char *line)
 		return (EXIT_FAILURE);
 	raw = ft_split(line, ',');
 	if (!raw)
-		return (EXIT_FAILURE);
+		return (print_error_exit(ER_MALLOC_ER, EXIT_FAILURE));
 	if (array_len(raw) == 3 && !pars->c_color_check)
 	{
 		r = ft_atoi(raw[0]);
@@ -86,7 +86,7 @@ int	get_color_f(t_pars *pars, char *line)
 		return (EXIT_FAILURE);
 	raw = ft_split(line, ',');
 	if (!raw)
-		return (EXIT_FAILURE);
+		return (print_error_exit(ER_MALLOC_ER, EXIT_FAILURE));
 	if (array_len(raw) == 3 && !pars->f_color_check)
 	{
 		r = ft_atoi(raw[0]);

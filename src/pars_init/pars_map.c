@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:05:15 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/02/10 14:30:50 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:54:59 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ int	pars_map(t_pars *pars, int map_fd, t_data *data)
 
 	map_inline = get_map(pars, map_fd);
 	if (!map_inline)
+	{
+		print_error(ER_MALLOC_ER);
 		return (EXIT_FAILURE);
+	}
 	nb_player = get_player_and_things(pars, map_inline, data);
 	if (nb_player == 0)
 		print_error(ER_MAP_NO_PLAYER_FOUND);

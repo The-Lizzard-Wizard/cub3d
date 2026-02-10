@@ -6,7 +6,7 @@
 /*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:54:07 by gchauvet          #+#    #+#             */
-/*   Updated: 2026/02/10 14:41:26 by gchauvet         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:09:49 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ int	print_error(int code)
 	}
 	nb_er++;
 	return (code);
+}
+
+int	print_error_exit(int code, int exit_code)
+{
+	print_error(code);
+	return (exit_code);
+}
+
+void	*print_error_rptr(int code, void *ptr)
+{
+	print_error(code);
+	return (ptr);
 }

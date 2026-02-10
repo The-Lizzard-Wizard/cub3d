@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: authomas <authomas@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: gchauvet <gchauvet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:33:39 by authomas          #+#    #+#             */
-/*   Updated: 2026/02/10 14:17:29 by authomas         ###   ########lyon.fr   */
+/*   Updated: 2026/02/10 15:14:22 by gchauvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	*map_dup_error(char **map, char **n_map)
 {
 	free_array(map, EXIT_FAILURE);
 	free_array(n_map, EXIT_FAILURE);
+	print_error(ER_MALLOC_ER);
 	return (NULL);
 }
 
@@ -27,7 +28,7 @@ char	**normalize_map(char **map, size_t map_width, size_t map_height)
 
 	n_map = ft_calloc(sizeof(char *), map_height);
 	if (!n_map)
-		return (NULL);
+		return (map_dup_error(map, NULL));
 	y = -1;
 	while (map[++y])
 	{
